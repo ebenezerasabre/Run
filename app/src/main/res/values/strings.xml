@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Chase</string>
+    <string name="where_are_you_going">Where are you going ?</string>
+    <string name="search_destination">search destination</string>
+    <string name="cant_show_pickup_point">We can\'t show your pickup point on map because you have disabled location services. Please turn it on for better experience</string>
+    <string name="turn_on_location_services">Turn on location services</string>
+    <string name="very_bad">Very bad</string>
+    <string name="need_some_improvement">Need some improvement</string>
+    <string name="good">Good</string>
+    <string name="rate_default">\" \"</string>
+    <string name="great">Great</string>
+    <string name="awesome">Awesome</string>
+
+</resources>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bback"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Welcome to chase"
+            android:layout_margin="8dp"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_airplanemode_active_24"
+            android:layout_gravity="center"
+            android:layout_margin="32dp"
+            />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/enableGpsContainer"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="60dp"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_outline_location_offs_24"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="8dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enable location services"
+            android:fontFamily="@font/alegreya"
+            android:textSize="24dp"
+            android:textColor="#333"
+            android:gravity="center_horizontal"
+            android:layout_margin="8dp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cant_show_pickup_point"
+            android:textSize="18sp"
+            android:textColor="#474747"
+            android:fontFamily="@font/alegreya"
+            android:gravity="center"
+            />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/turnOnGPS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cornerRadius="32dp"
+            android:backgroundTint="@color/teal_200"
+            android:fontFamily="@font/andika"
+            android:text="@string/turn_on_location_services"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:layout_margin="32dp"
+            android:padding="8dp"
+            android:textStyle="bold"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

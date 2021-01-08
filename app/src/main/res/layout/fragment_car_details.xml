@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/sback"
+    android:padding="8dp"
+    >
+
+    <TextView
+        android:id="@+id/enterCarDetailsBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Enter your car details"
+        android:textSize="22sp"
+        android:textColor="#000"
+        android:fontFamily="@font/alegreya"
+        android:gravity="center_horizontal"
+        app:drawableStartCompat="@drawable/ic_outline_arrow_back_24"
+        android:layout_marginEnd="90dp"
+        android:layout_marginTop="8dp"
+
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="White Toyota Camry"
+        android:padding="8dp"
+        app:endIconMode="clear_text"
+        app:boxCornerRadiusTopStart="4dp"
+        app:boxCornerRadiusTopEnd="4dp"
+        app:boxCornerRadiusBottomStart="4dp"
+        app:boxCornerRadiusBottomEnd="4dp"
+        app:helperTextEnabled="true"
+        app:helperText="What car do you possess"
+        android:layout_margin="16dp"
+        app:startIconContentDescription="rideDescription"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/enterCarDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:fontFamily="@font/alegreya"
+            android:textSize="18sp"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="AS 234-18"
+        android:padding="8dp"
+        app:endIconMode="clear_text"
+        app:boxCornerRadiusTopStart="4dp"
+        app:boxCornerRadiusTopEnd="4dp"
+        app:boxCornerRadiusBottomStart="4dp"
+        app:boxCornerRadiusBottomEnd="4dp"
+        app:helperTextEnabled="true"
+        app:helperText="Your car number"
+        android:layout_margin="16dp"
+        app:startIconContentDescription="rideDescription"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/enterCarNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:fontFamily="@font/alegreya"
+            android:textSize="18sp"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/enterCarContinue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cornerRadius="32dp"
+        android:backgroundTint="@color/teal_200"
+        android:fontFamily="@font/alegreya"
+        android:text="Continue"
+        android:textColor="@color/white"
+        android:textAllCaps="true"
+        android:layout_margin="32dp"
+        android:padding="8dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
+
+</LinearLayout>

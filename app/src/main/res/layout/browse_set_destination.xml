@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <!--    setting destination-->
+
+    <!--    setting destination-->
+    <LinearLayout
+        android:id="@+id/setDestinationContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bback"
+
+        >
+
+        <TextView
+            android:id="@+id/setDestinationBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Set destination"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:fontFamily="@font/alegreya"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            app:drawableStartCompat="@drawable/ic_outline_arrow_back_24"
+            android:layout_marginEnd="90dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="vertical"
+            >
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="My location"
+                android:layout_margin="8dp"
+                app:startIconDrawable="@drawable/ic_baseline_my_location_teal_24"
+                app:startIconContentDescription="my location"
+                app:endIconMode="clear_text"
+                android:padding="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/setDestinationMyLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Where to"
+                android:layout_margin="8dp"
+                app:startIconDrawable="@drawable/ic_baseline_add_location_purple_24"
+                app:startIconContentDescription="destination"
+                app:endIconMode="clear_text"
+                android:padding="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/setDestinationWhereTo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/getPlaces"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cornerRadius="32dp"
+                android:backgroundTint="@color/teal_200"
+                android:fontFamily="@font/andika"
+                android:text="Get places"
+                android:textColor="@color/white"
+                android:textAllCaps="true"
+                android:layout_margin="32dp"
+                android:padding="8dp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/placesHolder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="A place holder for google places"
+                android:padding="8dp"
+                android:textColor="#333333"
+                android:gravity="center_horizontal"
+                />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/setDestinationHolderSuggestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            android:padding="8dp"
+            android:visibility="gone"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/setDestinationHolderTravelHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="-8dp"
+            android:padding="8dp"
+            android:visibility="gone"
+            />
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <LinearLayout
+        android:id="@+id/enableGpsContainer"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        >
+<!--        <ImageView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/ic_driver_30"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:layout_margin="8dp"-->
+<!--            />-->
+
+        <TextView
+            android:id="@+id/rideTimeDriverArrives"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Driver arrives in 2 min"
+            android:fontFamily="@font/alegreya"
+            android:textSize="24dp"
+            android:textColor="#333"
+            android:gravity="center_horizontal"
+            android:layout_margin="8dp"
+            android:textStyle="bold"
+            />
+
+
+        <TextView
+            android:id="@+id/rideCarDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chevrolet Kalos"
+            android:textSize="18sp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            />
+        <TextView
+            android:id="@+id/rideCarNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AS 1257-17"
+            android:textSize="24sp"
+            android:textColor="#000"
+            android:layout_margin="8dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your driver is"
+                android:textSize="18sp"
+                android:layout_margin="8dp"
+                />
+            <TextView
+                android:id="@+id/forUserDriverFirstName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EBENEZER"
+                android:textSize="22sp"
+                android:textColor="#333"
+                android:layout_margin="8dp"
+                />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/rideFinishedRides"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="300 finished rides"
+            android:textSize="18sp"
+            android:layout_margin="8dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_location_destination_24"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/forUserChangeRide"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cornerRadius="32dp"
+                    android:backgroundTint="#f5f5f5"
+                    android:fontFamily="@font/andika"
+                    android:text="Change trip"
+                    android:textColor="#707070"
+                    android:textAllCaps="true"
+                    android:padding="8dp"
+                    android:textStyle="bold"
+                    android:drawableEnd="@drawable/ic_arrow_right_key"
+                    />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

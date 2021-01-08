@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/sback"
+
+    >
+
+        <TextView
+            android:id="@+id/enterNameBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Enter your name"
+            android:textSize="22sp"
+            android:textColor="#000"
+            android:fontFamily="@font/alegreya"
+            android:gravity="center_horizontal"
+            app:drawableStartCompat="@drawable/ic_outline_arrow_back_24"
+            android:layout_marginEnd="90dp"
+            android:layout_marginTop="8dp"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_margin="16dp"
+            >
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="First name"
+                android:padding="8dp"
+                app:endIconMode="clear_text"
+                app:boxCornerRadiusTopStart="4dp"
+                app:boxCornerRadiusTopEnd="4dp"
+                app:boxCornerRadiusBottomStart="4dp"
+                app:boxCornerRadiusBottomEnd="4dp"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/enterFirstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/alegreya"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Last name"
+                android:padding="8dp"
+                app:endIconMode="clear_text"
+                app:boxCornerRadiusTopStart="4dp"
+                app:boxCornerRadiusTopEnd="4dp"
+                app:boxCornerRadiusBottomStart="4dp"
+                app:boxCornerRadiusBottomEnd="4dp"
+
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/enterLastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/alegreya"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alegreya"
+            android:textSize="16sp"
+            android:text="Confirm picking up the right person by their first name"
+            android:layout_margin="16dp"
+            android:textColor="#333"
+            android:layout_gravity="center_horizontal"
+            />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/enterNameDone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cornerRadius="32dp"
+        android:backgroundTint="@color/teal_200"
+        android:fontFamily="@font/alegreya"
+        android:text="Continue"
+        android:textColor="@color/white"
+        android:textAllCaps="true"
+        android:layout_margin="32dp"
+        android:padding="8dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
+
+
+</LinearLayout>
