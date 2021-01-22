@@ -27,6 +27,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
 import asabre.com.chase.R;
 import asabre.com.chase.service.model.Review;
+import asabre.com.chase.service.model.RideRequest;
 import asabre.com.chase.viewmodel.HomeViewModel;
 
 public class EndRideFragment extends Fragment {
@@ -105,6 +106,7 @@ public class EndRideFragment extends Fragment {
             mHomeViewModel.createReview(reviewObj()).observe(this, review -> {
                 hideVirtualKeyboard();
                 dismissProgressDialog();
+                resetViewModel();
                 loadMapFragment();
             });
         } else {
@@ -152,6 +154,7 @@ public class EndRideFragment extends Fragment {
     }
 
     private void loadMapFragment(){
+        if(getActivity() != null){
             MapFragment mapFragment = new MapFragment();
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -159,6 +162,13 @@ public class EndRideFragment extends Fragment {
             transaction.replace(R.id.containerHome, mapFragment);
             transaction.addToBackStack(null);
             transaction.commit();
+        }
+    }
+
+    private void resetViewModel(){
+        HomeViewModel.mLineOptions = null;
+        HomeViewModel.mPolyline = null;
+        HomeViewModel.mRideRequest = new RideRequest();
     }
 
     @Override

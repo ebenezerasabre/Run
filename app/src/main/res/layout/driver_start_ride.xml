@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+
+
+
+<!--  <LinearLayout-->
+<!--      android:id="@+id/driverAcceptRideContainer"-->
+<!--      android:layout_width="match_parent"-->
+<!--      android:layout_height="wrap_content"-->
+<!--      android:orientation="horizontal"-->
+<!--      android:weightSum="5"-->
+<!--      android:background="#707070"-->
+<!--      android:layout_alignParentBottom="true"-->
+<!--      android:layout_marginBottom="40dp"-->
+<!--      >-->
+
+<!--      <LinearLayout-->
+<!--          android:layout_width="0dp"-->
+<!--          android:layout_height="wrap_content"-->
+<!--          android:layout_weight="4"-->
+<!--          android:background="@color/teal_200"-->
+<!--          android:orientation="vertical"-->
+<!--          >-->
+
+<!--         <LinearLayout-->
+<!--             android:layout_width="match_parent"-->
+<!--             android:layout_height="wrap_content"-->
+<!--             android:orientation="horizontal"-->
+<!--             android:layout_marginStart="16dp"-->
+<!--             >-->
+<!--             <TextView-->
+<!--                 android:id="@+id/acceptTimeToUserPickUp"-->
+<!--                 android:layout_width="wrap_content"-->
+<!--                 android:layout_height="wrap_content"-->
+<!--                 android:text="4 mins"-->
+<!--                 android:fontFamily="@font/alegreya"-->
+<!--                 android:textColor="#fff"-->
+<!--                 android:textSize="25sp"-->
+<!--                 android:textStyle="bold"-->
+<!--                 android:layout_marginEnd="16dp"-->
+<!--                 />-->
+<!--             <TextView-->
+<!--                 android:id="@+id/acceptDistanceToUserPickUp"-->
+<!--                 android:layout_width="wrap_content"-->
+<!--                 android:layout_height="wrap_content"-->
+<!--                 android:text="3.5 km"-->
+<!--                 android:fontFamily="@font/alegreya"-->
+<!--                 android:textColor="#fff"-->
+<!--                 android:textSize="25sp"-->
+<!--                 android:layout_marginStart="8dp"-->
+<!--                 android:textStyle="bold"-->
+<!--                 />-->
+<!--         </LinearLayout>-->
+
+<!--          <LinearLayout-->
+<!--              android:layout_width="match_parent"-->
+<!--              android:layout_height="wrap_content"-->
+<!--              android:orientation="horizontal"-->
+<!--              >-->
+<!--              <TextView-->
+<!--                  android:layout_width="wrap_content"-->
+<!--                  android:layout_height="wrap_content"-->
+<!--                  android:text="start :"-->
+<!--                  android:fontFamily="@font/alegreya"-->
+<!--                  android:textColor="#fff"-->
+<!--                  android:textSize="18sp"-->
+<!--                  android:layout_marginStart="16dp"-->
+<!--                  />-->
+<!--              <TextView-->
+<!--                  android:id="@+id/acceptEntryLocation"-->
+<!--                  android:layout_width="wrap_content"-->
+<!--                  android:layout_height="wrap_content"-->
+<!--                  android:text="Old Tafo station"-->
+<!--                  android:fontFamily="@font/andika"-->
+<!--                  android:textColor="#fff"-->
+<!--                  android:textSize="18sp"-->
+<!--                  android:layout_marginStart="16dp"-->
+<!--                  />-->
+<!--          </LinearLayout>-->
+
+<!--          <LinearLayout-->
+<!--              android:layout_width="match_parent"-->
+<!--              android:layout_height="wrap_content"-->
+<!--              android:orientation="horizontal"-->
+<!--              >-->
+<!--              <TextView-->
+<!--                  android:layout_width="wrap_content"-->
+<!--                  android:layout_height="wrap_content"-->
+<!--                  android:text="end :"-->
+<!--                  android:fontFamily="@font/alegreya"-->
+<!--                  android:textColor="#fff"-->
+<!--                  android:textSize="18sp"-->
+<!--                  android:layout_marginStart="16dp"-->
+<!--                  />-->
+<!--              <TextView-->
+<!--                  android:id="@+id/acceptExitLocation"-->
+<!--                  android:layout_width="wrap_content"-->
+<!--                  android:layout_height="wrap_content"-->
+<!--                  android:text="Atimatim"-->
+<!--                  android:fontFamily="@font/andika"-->
+<!--                  android:textColor="#fff"-->
+<!--                  android:textSize="18sp"-->
+<!--                  android:layout_marginStart="16dp"-->
+<!--                  />-->
+<!--          </LinearLayout>-->
+<!--          <com.google.android.material.button.MaterialButton-->
+<!--              android:id="@+id/driverAcceptRide"-->
+<!--              android:layout_width="match_parent"-->
+<!--              android:layout_height="wrap_content"-->
+<!--              app:cornerRadius="8dp"-->
+<!--              android:backgroundTint="@color/teal_200"-->
+<!--              android:fontFamily="@font/andika"-->
+<!--              android:text="Accept"-->
+<!--              android:textColor="@color/white"-->
+<!--              android:textAllCaps="false"-->
+<!--              android:textSize="18sp"-->
+<!--              android:layout_margin="16dp"-->
+<!--              android:textStyle="bold"-->
+<!--              />-->
+<!--          <com.google.android.material.button.MaterialButton-->
+<!--              android:id="@+id/driverStartRide"-->
+<!--              android:layout_width="match_parent"-->
+<!--              android:layout_height="wrap_content"-->
+<!--              app:cornerRadius="8dp"-->
+<!--              android:backgroundTint="@color/teal_200"-->
+<!--              android:fontFamily="@font/andika"-->
+<!--              android:text="Start"-->
+<!--              android:textColor="@color/white"-->
+<!--              android:textAllCaps="false"-->
+<!--              android:textSize="18sp"-->
+<!--              android:layout_margin="16dp"-->
+<!--              android:textStyle="bold"-->
+<!--              android:visibility="gone"-->
+<!--              />-->
+<!--      </LinearLayout>-->
+
+<!--      <LinearLayout-->
+<!--          android:layout_width="0dp"-->
+<!--          android:layout_height="match_parent"-->
+<!--          android:layout_weight="1"-->
+<!--          >-->
+<!--          <ImageView-->
+<!--              android:id="@+id/callUser"-->
+<!--              android:layout_width="wrap_content"-->
+<!--              android:layout_height="wrap_content"-->
+<!--              android:src="@drawable/ic_baseline_call_24"-->
+<!--             android:layout_gravity="center"-->
+<!--              android:layout_margin="16dp"-->
+<!--              />-->
+<!--      </LinearLayout>-->
+<!--  </LinearLayout>-->
+
+
+</RelativeLayout>

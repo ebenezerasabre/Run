@@ -10,32 +10,52 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_history_gray_24"
+        android:src="@drawable/ic_outline_location_on_24"
         android:layout_margin="8dp"
         />
-    <LinearLayout
-        android:layout_width="wrap_content"
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         >
-        <TextView
-            android:id="@+id/historyLocationName"
-            android:layout_width="match_parent"
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tafo market"
-            android:fontFamily="@font/alegreya"
-            android:textSize="20dp"
-            android:textColor="#000000"
-            />
-        <TextView
-            android:id="@+id/historyLocationOther"
-            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_alignParentStart="true"
+            >
+            <TextView
+                android:id="@+id/browseExitPoint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tafo market"
+                android:fontFamily="@font/alegreya"
+                android:textSize="20dp"
+                android:textColor="#000000"
+                />
+            <TextView
+                android:id="@+id/browseExitCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kumasi, Ghana"
+                android:fontFamily="@font/alegreya"
+                android:textSize="18dp"
+                />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kumasi, Ghana"
-            android:fontFamily="@font/alegreya"
-            android:textSize="18dp"
+            android:src="@drawable/go_arrow"
+            android:layout_margin="8dp"
+            android:layout_alignParentEnd="true"
             />
 
-    </LinearLayout>
+    </RelativeLayout>
+
+
 
 </LinearLayout>

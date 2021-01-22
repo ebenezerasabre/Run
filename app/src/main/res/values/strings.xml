@@ -10,5 +10,6 @@
     <string name="rate_default">\" \"</string>
     <string name="great">Great</string>
     <string name="awesome">Awesome</string>
+    <string name="travel_details">Travel Details</string>
 
 </resources>

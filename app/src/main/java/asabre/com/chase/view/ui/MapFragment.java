@@ -2,7 +2,6 @@ package asabre.com.chase.view.ui;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -22,7 +21,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -84,6 +82,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     ArrayList<LatLng> mMarkerPoints;
 
 //     ride option widgets
+    RelativeLayout userRelativeLayout;
     LinearLayout rideOptionsContainer;
     LinearLayout carOptionRequest;
     TextView carTime;
@@ -118,10 +117,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     TextView forUserRideNumber;
     TextView forUserDriverName;
     TextView forUserDriverFinishedRides;
-    MaterialButton forUserChangeRide;
+//    MaterialButton forUserChangeRide;
     MaterialButton forUserFinishRide;
 
     // driver widget
+    /*
+
     LinearLayout forDriverPickingContainer;
     TextView forDriverPickingMsg;
     TextView forDriverUserEntryPoint;
@@ -132,8 +133,65 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     RelativeLayout driverPointContainer;
     LinearLayout driverPassContainer;
 
+    */
+
+    // driver Accept / start ride widgets
+    RelativeLayout driverRelativeLayout;
+    LinearLayout driverAcceptRideContainer;
+    TextView forDriverUserFirstName;
+    TextView acceptTimeToUserPickUp;
+    TextView acceptDistanceToUserPickUp;
+    TextView acceptEntryLocation;
+    TextView acceptExitLocation;
+    MaterialButton driverAcceptRide;
+    MaterialButton driverStartRide;
+    ImageView callUser;
 
 
+    // driver end ride widgets
+    LinearLayout driverEndRidContainer;
+    TextView endDestinationTime;
+    TextView endExitLocation;
+    MaterialButton driverEndRide;
+
+    // driver default/goOnline widgets
+    LinearLayout driverGoOnlineContainer;
+    MaterialButton driverGoOnline;
+    TextView driverTodayEarning;
+    TextView driverShowEarning;
+    TextView driverCurrentRating;
+    TextView driverShowCurrentRating;
+
+
+
+    private void initDriverAcceptStartRide(View view){
+        driverRelativeLayout = view.findViewById(R.id.driverRelativeLayout);
+        driverAcceptRideContainer = view.findViewById(R.id.driverAcceptRideContainer);
+        forDriverUserFirstName = view.findViewById(R.id.forDriverUserFirstName);
+        acceptTimeToUserPickUp = view.findViewById(R.id.acceptTimeToUserPickUp);
+        acceptDistanceToUserPickUp = view.findViewById(R.id.acceptDistanceToUserPickUp);
+        acceptEntryLocation = view.findViewById(R.id.acceptEntryLocation);
+        acceptExitLocation = view.findViewById(R.id.acceptExitLocation);
+        driverAcceptRide = view.findViewById(R.id.driverAcceptRide);
+        driverStartRide = view.findViewById(R.id.driverStartRide);
+        callUser = view.findViewById(R.id.callUser);
+
+    }
+
+    private void initDriverGoOnline(View view){
+        driverGoOnlineContainer = view.findViewById(R.id.driverGoOnlineContainer);
+        driverTodayEarning = view.findViewById(R.id.driverTodayEarning);
+        driverShowEarning = view.findViewById(R.id.driverShowEarning);
+        driverCurrentRating = view.findViewById(R.id.driverCurrentRating);
+        driverShowCurrentRating = view.findViewById(R.id.driverShowCurrentRating);
+    }
+
+    private void initDriverEndRide(View view){
+        driverEndRidContainer = view.findViewById(R.id.driverEndRidContainer);
+        endDestinationTime = view.findViewById(R.id.endDestinationTime);
+        endExitLocation = view.findViewById(R.id.endExitLocation);
+        driverEndRide = view.findViewById(R.id.endDriverEndRide);
+    }
 
     /**
      * For testing coordinates
@@ -152,14 +210,22 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
 
 
-    private void setVisibility(View v1, View v2, View v3, View v4, View v5, View v6){
-        View[] myContainer = {v1, v2, v3, v4, v5, v6};
+    private void setUserContainerVisibility(View v1, View v2, View v3, View v4, View v5){
+        View[] myContainer = {v1, v2, v3, v4, v5};
         for(View v : myContainer){
             v.setVisibility(View.GONE);
         }
         v1.setVisibility(View.VISIBLE);
 
         // v6 is for driver
+    }
+
+    private void setDriverContainerVisibility(View v1, View v2, View v3){
+        View[] myContainer = {v1, v2, v3};
+        for(View v : myContainer){
+            v.setVisibility(View.GONE);
+        }
+        v1.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -180,7 +246,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         initMap(view, savedInstanceState);
         internetConnection();
         observeUserDriverFull();
-        hideVirtualKeyboard();
 
         return view;
     }
@@ -241,7 +306,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         rideRequestContainer.setVisibility(View.GONE);
         driverArrivesContainer.setVisibility(View.GONE);
         mEnableInternetContainer.setVisibility(View.GONE);
-        forDriverPickingContainer.setVisibility(View.GONE);
+//        forDriverPickingContainer.setVisibility(View.GONE);
     }
 
 
@@ -387,12 +452,19 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             Log.d(TAG, "switchRequest: container driver");
             switch (requestState) {
                 case "targetDriver":
-                    targetDriver();
+//                    targetDriver();
+                    showDriverUserDetails();
+                    showDriverAcceptRide();
                     break;
+
                 case "accept":
+                    showDriverStartRide();
                     break;
+
                 case "start":
+                    showDriverEnd();
                     break;
+
                 case "finish":
                     break;
 
@@ -412,7 +484,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
 
     private void userEmittingSignals(){
-        forUserChangeRide.setOnClickListener(view -> {});
+//        forUserChangeRide.setOnClickListener(view -> {});
         forUserFinishRide.setOnClickListener(view -> {});
 
         carOptionRequest.setOnClickListener(view -> {
@@ -436,34 +508,42 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     // TODO DRIVER METHODS
 
-    private void toggleDriverWidgets(){
-        if(!HomeViewModel.driverHasRequest){
-            forDriverPickingMsg.setText(String.format(Locale.US,"%s", "No request"));
-            driverPointContainer.setVisibility(View.GONE);
-            driverPassContainer.setVisibility(View.GONE);
-            forDriverCallUser.setVisibility(View.GONE);
-        } else {
-            driverPointContainer.setVisibility(View.VISIBLE);
-            driverPassContainer.setVisibility(View.VISIBLE);
-            forDriverCallUser.setVisibility(View.VISIBLE);
-
-            showDriverUserDetails();
-        }
-    }
 
     private void showDriverUserDetails(){
         String entry =  HomeViewModel.mRideRequest.getEntryPoint().split("&")[1];
         String exit =  HomeViewModel.mRideRequest.getExitPoint().split("&")[1];
         String firstName = HomeViewModel.mRideRequest.getUserName();
 
-        forDriverPickingMsg.setText(String.format(Locale.US, "%s", "Picking up passenger"));
-        forDriverUserEntryPoint.setText(String.format(Locale.US, "%s", entry));
-        forDriverUserExitPoint.setText(String.format(Locale.US, "%s", exit));
-        forDriverUserName.setText(String.format(Locale.US, "%s", firstName));
+        acceptEntryLocation.setText(String.format(Locale.US, "%s", entry));
+        acceptExitLocation.setText(String.format(Locale.US, "%s", exit));
+        forDriverUserFirstName.setText(String.format(Locale.US, "%s", firstName));
+
+//        forDriverPickingMsg.setText(String.format(Locale.US, "%s", "Picking up passenger"));
+//        forDriverUserEntryPoint.setText(String.format(Locale.US, "%s", entry));
+//        forDriverUserExitPoint.setText(String.format(Locale.US, "%s", exit));
+//        forDriverUserName.setText(String.format(Locale.US, "%s", firstName));
+    }
+
+    private void driverActions(){
+        driverAcceptRide.setOnClickListener(view -> {
+            showDriverStartRide();
+            driverAcceptActions(); //
+        });
+
+        driverStartRide.setOnClickListener(view -> {
+            driverStartActions(); // here and automate response
+            showDriverEnd();
+        });
+
+        driverEndRide.setOnClickListener(view -> {
+            driverFinisActions();
+            showDriverGoOnline();
+        });
+
     }
 
     private void callUser(){
-        forDriverCallUser.setOnClickListener(view -> {
+        callUser.setOnClickListener(view -> {
             String phoneNumber = HomeViewModel.mRideRequest.getPhoneNumber(); // tel:+233
             Log.d(TAG, "callUser: the number " + phoneNumber);
             if(getContext() != null){
@@ -477,17 +557,20 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 startActivity(callIntent);
             }
         });
+
+
     }
 
-    private void driverAcceptRequest(){
+    private void driverAcceptActions(){
 //      driver accepts request
         HomeViewModel.driverHasRequest = true;
-        toggleDriverWidgets();
+//        toggleDriverWidgets();
         addDriverDetails();
         driverResponse("accept");
         routeDriverToUserEntry();
         Toast.makeText(getContext(), "Routing driver to location", Toast.LENGTH_SHORT).show();
     }
+
 
     private void updateDriverAccept(){
         // update driver arrival time
@@ -495,7 +578,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     }
 
-    private void driverStartRequest(){
+    private void driverStartActions(){
         if(HomeViewModel.countStart == 0){
             driverResponse("start");
             routeDriverToUserExit();
@@ -503,7 +586,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
-    private void driverFinishRide(){
+    private void driverFinisActions(){
         // letting it run twice in case of network error
         if(HomeViewModel.countFinish == 0){
             driverResponse("finish");
@@ -534,9 +617,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             updateDriverAccept();
 
         } else if(HomeViewModel.rideState.contains("start")){
-            driverStartRequest();
+            driverStartActions();
         } else if(HomeViewModel.rideState.contains("finish")){
-            driverFinishRide();
+            driverFinisActions();
         }
 
         // TODO FINISH RIDE
@@ -632,7 +715,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 .setMessage(msg)
                 .setPositiveButton("Accept", (dialogInterface, i) -> {
 
-                    driverAcceptRequest();
+                    driverAcceptActions();
                     dialogInterface.dismiss();
 
                 }).setNegativeButton("Reject", (dialogInterface, i) -> {
@@ -642,6 +725,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         materialAlertDialogBuilder.setCancelable(false);
         materialAlertDialogBuilder.create();
         materialAlertDialogBuilder.show();
+
+
     }
 
 
@@ -659,15 +744,28 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private void init(View view) {
         showCoords = view.findViewById(R.id.showCoords); /** For testing purposes */
         initInternetConnectivity(view);
+        initUserWidgets(view);
+        initDriverWidgets(view);
+    }
+
+    private void initUserWidgets(View view){
         initGoingWhere(view);
         initRideRequest(view);
         initRideOptions(view);
         initForUserRideArrives(view);
-        initForDriverViews(view);
+    }
+
+    private void initDriverWidgets(View view){
+        initDriverGoOnline(view);
+        initDriverAcceptStartRide(view);
+        initDriverEndRide(view);
     }
 
 
+
     private void initGoingWhere(View view){
+        userRelativeLayout = view.findViewById(R.id.userRelativeLayout);
+
         mGoingWhereContainer = view.findViewById(R.id.goingWhereContainer);
         mGoingWhere = view.findViewById(R.id.goingWhere);
         mHolderTravelHistory = view.findViewById(R.id.holderTravelHistory);
@@ -702,29 +800,22 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         forUserDriverName = view.findViewById(R.id.forUserDriverFirstName);
         forUserDriverFinishedRides = view.findViewById(R.id.forUserDriverFinishedRides);
-        forUserChangeRide = view.findViewById(R.id.forUserChangeRide);
+//        forUserChangeRide = view.findViewById(R.id.forUserChangeRide);
         forUserFinishRide = view.findViewById(R.id.forUserFinishRide);
     }
 
-    private void initForDriverViews(View view){
-        forDriverPickingContainer = view.findViewById(R.id.forDriverPickingContainer);
-        forDriverPickingMsg = view.findViewById(R.id.forDriverPickingMsg);
-        forDriverUserEntryPoint = view.findViewById(R.id.forDriverUserEntryPoint);
-        forDriverUserExitPoint = view.findViewById(R.id.forDriverUserExitPoint);
-        forDriverUserName = view.findViewById(R.id.forDriverUserName);
-
-        forDriverCallUser = view.findViewById(R.id.forDriverCallUser);
-
-        // the 3 main containers of driverContainer
-        driverPointContainer = view.findViewById(R.id.driverPointContainer);
-        driverPassContainer = view.findViewById(R.id.driverPassContainer);
-
-    }
 
     private void initInternetConnectivity(View view){
         tryAgain = view.findViewById(R.id.tryAgain);
         mEnableInternetContainer = view.findViewById(R.id.enableInternetContainer);
     }
+
+
+
+
+
+
+
 
 
     @Override
@@ -1266,16 +1357,23 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         rideOptionsContainer.setOnClickListener(view -> {});
         rideRequestContainer.setOnClickListener(view -> {});
         driverArrivesContainer.setOnClickListener(view -> {});
-        forDriverPickingContainer.setOnClickListener(view -> {});
+//        forDriverPickingContainer.setOnClickListener(view -> {});
+        driverGoOnlineContainer.setOnClickListener(view -> {});
+        driverEndRidContainer.setOnClickListener(view -> {});
+        driverAcceptRideContainer.setOnClickListener(view -> {});
 
     }
 
     private void internetConnection(){
         if(internetEnabled()){
             if(HomeViewModel.userType.equals("user")){
+                userRelativeLayout.setVisibility(View.VISIBLE);
+                driverRelativeLayout.setVisibility(View.GONE);
                 showGoingWhere();
             } else if(HomeViewModel.userType.equals("driver")){
-                showDriverContainer();
+                userRelativeLayout.setVisibility(View.GONE);
+                driverRelativeLayout.setVisibility(View.VISIBLE);
+                showDriverGoOnline();
             }
 
 
@@ -1311,6 +1409,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     private void showStartRide(){
         forUserDriverArrivesTime.setText(String.format(Locale.US, "Driving to destination"));
+        forUserFinishRide.setVisibility(View.VISIBLE);
     }
     private void showFinishRide(){
         forUserDriverArrivesTime.setText(String.format(Locale.US, "Arrived at destination"));
@@ -1329,65 +1428,87 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private void showDriverArrives(){
 //        HomeViewModel.mRideRequest.RideRequestReset(HomeViewModel.requestStringDetails);
         resetDriverArrives();
-        setVisibility(driverArrivesContainer,
+        setUserContainerVisibility(driverArrivesContainer,
                 mGoingWhereContainer,
                 mEnableInternetContainer,
                 rideOptionsContainer,
-                rideRequestContainer,
-                forDriverPickingContainer);
+                rideRequestContainer);
     }
 
     private void showRideOptions(){
-        setVisibility(rideOptionsContainer,
+        setUserContainerVisibility(rideOptionsContainer,
                 mEnableInternetContainer,
                 mGoingWhereContainer,
                 rideRequestContainer,
-                driverArrivesContainer,
-                forDriverPickingContainer);
+                driverArrivesContainer);
     }
 
     private void showInternet(){
-        setVisibility(mEnableInternetContainer,
+        setUserContainerVisibility(mEnableInternetContainer,
                 rideOptionsContainer,
                 mGoingWhereContainer,
                 rideRequestContainer,
-                driverArrivesContainer,
-                forDriverPickingContainer);
+                driverArrivesContainer);
     }
 
     private void showGoingWhere(){
-        setVisibility(mGoingWhereContainer,
+        setUserContainerVisibility(mGoingWhereContainer,
                 mEnableInternetContainer,
                 rideOptionsContainer,
                 rideRequestContainer,
-                driverArrivesContainer,
-                forDriverPickingContainer);
+                driverArrivesContainer);
     }
 
     private void showRideRequest(String rideType){
-        setVisibility(rideRequestContainer,
+        setUserContainerVisibility(rideRequestContainer,
                 mGoingWhereContainer,
                 mEnableInternetContainer,
                 rideOptionsContainer,
-                driverArrivesContainer,
-                forDriverPickingContainer);
+                driverArrivesContainer);
 
         setRideImage(rideType);
 
         // request ride view model
     }
 
-    private void showDriverContainer(){
-        setVisibility(forDriverPickingContainer,
-                rideRequestContainer,
-                mGoingWhereContainer,
-                mEnableInternetContainer,
-                rideOptionsContainer,
-                driverArrivesContainer);
 
-        toggleDriverWidgets();
+//    private void showDriverContainer(){
+//        setUserContainerVisibility(
+//                rideRequestContainer,
+//                mGoingWhereContainer,
+//                mEnableInternetContainer,
+//                rideOptionsContainer,
+//                driverArrivesContainer);
+//
+//        toggleDriverWidgets();
+//    }
 
+
+    private void showDriverGoOnline(){
+        setDriverContainerVisibility(driverGoOnlineContainer,
+                                    driverAcceptRideContainer,
+                                    driverEndRidContainer);
     }
+    private void showDriverAcceptRide(){
+        setDriverContainerVisibility(driverAcceptRideContainer,
+                                    driverGoOnlineContainer,
+                                    driverEndRidContainer);
+    }
+    private void showDriverStartRide(){
+//        setDriverContainerVisibility(driverAcceptRideContainer,
+//                                    driverGoOnlineContainer,
+//                                    driverEndRidContainer);
+        driverAcceptRide.setVisibility(View.GONE);
+        driverStartRide.setVisibility(View.VISIBLE);
+    }
+    private void showDriverEnd(){
+        setDriverContainerVisibility(driverEndRidContainer,
+                                    driverGoOnlineContainer,
+                                    driverAcceptRideContainer);
+    }
+
+
+
 
     private void setRideImage(String rideType){
         switch (rideType){
@@ -1451,7 +1572,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         restartActivity();
         userEmittingSignals();
         callUser();
-
+        driverActions();
     }
 
     @Override
@@ -1462,19 +1583,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 //        HomeViewModel.mMapView.onResume();
 
         Log.d(TAG, "onResume map : place id: " + HomeViewModel.searchedPlaceId);
-        if(null != HomeViewModel.searchedPlaceId && !HomeViewModel.searchedPlaceId.isEmpty()){
+        if(!HomeViewModel.searchedPlaceId.isEmpty()){
             Log.d(TAG, "onResume: the id: " + HomeViewModel.searchedPlaceId);
-//            downloadCoords(getCoords(HomeViewModel.searchedPlaceId));
             downloadCoords(ExtraClass.mGetCoords(HomeViewModel.searchedPlaceId));
-
             showRideOptions();
+            HomeViewModel.searchedPlaceId = "";
         }
     }
 
-    private void hideVirtualKeyboard(){
-//        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-//        imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
-    }
 
     private void loadEndRideFragment(){
         EndRideFragment endRideFragment = new EndRideFragment();
@@ -1485,6 +1601,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
+
 
     @Override
     public void onPause() {

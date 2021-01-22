@@ -207,8 +207,6 @@ public class MainActivity extends AppCompatActivity implements
     }
 
 
-
-
     private void setBottomNavigation(){
         navigationView = findViewById(R.id.navigation);
         navigationView.setOnNavigationItemSelectedListener(this);
@@ -325,6 +323,7 @@ public class MainActivity extends AppCompatActivity implements
                 }
                 break;
             case AppConstants.CALL_PHONE_CODE:
+                Log.d(TAG, "onRequestPermissionsResult: from mainActivity");
                 callUser();
                 break;
 
@@ -339,7 +338,6 @@ public class MainActivity extends AppCompatActivity implements
         Log.d(TAG, "callUser: the number " + phoneNumber);
         Intent callIntent = new Intent(Intent.ACTION_CALL);
         callIntent.setData(Uri.parse(String.format(Locale.US, "tel:%s", phoneNumber)));
-
     }
 
 
@@ -385,9 +383,21 @@ public class MainActivity extends AppCompatActivity implements
             transaction.replace(R.id.containerHome, mapFragment);
             transaction.addToBackStack(null);
             transaction.commit();
+
+            loadHistoryDetailsFragment();
         } else {
             loadOpenFragment();
         }
+    }
+
+    private void loadHistoryDetailsFragment(){
+        HistoryDetailsFragment historyDetailsFragment = new HistoryDetailsFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+        transaction.replace(R.id.containerProfile, historyDetailsFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     private void loadEnterNameFragment(){

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+
+    <LinearLayout
+        android:id="@+id/driverEndRidContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="5"
+        android:background="#707070"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        >
+    <TextView
+        android:id="@+id/endDestinationTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4 mins"
+        android:fontFamily="@font/alegreya"
+        android:textColor="#fff"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_marginStart="32dp"
+        />
+        <TextView
+            android:id="@+id/endExitLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Atimatim"
+            android:fontFamily="@font/andika"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:layout_marginStart="32dp"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/endDriverEndRide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cornerRadius="8dp"
+            android:backgroundTint="#ed2939"
+            android:fontFamily="@font/andika"
+            android:text="End ride"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:textSize="18sp"
+            android:layout_margin="16dp"
+            android:textStyle="bold"
+            app:icon="@drawable/ic_baseline_double_arrow_24"
+            app:iconTint="#fff"
+            />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
+

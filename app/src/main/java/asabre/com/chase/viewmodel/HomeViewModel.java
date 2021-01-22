@@ -36,7 +36,7 @@ public class HomeViewModel extends ViewModel {
     private static final String TAG = HomeViewModel.class.getSimpleName();
     private HomeRepository mHomeRepository;
 
-    public static String searchedPlaceId;
+    public static String searchedPlaceId = "";
     public static String searchedPlaceName;
 
     public static LatLng myLocationLatLng;
@@ -76,12 +76,13 @@ public class HomeViewModel extends ViewModel {
     private MutableLiveData<List<Review>> review;
     private MutableLiveData<List<Support>> support;
 
+    // track clicked history
+    public static History clickedHistory;
+
     // for google map
     public static GoogleMap mGoogleMap;
     public static PolylineOptions mLineOptions = new PolylineOptions();
     public static Polyline mPolyline;
-
-
 
     public void init(){ mHomeRepository = HomeRepository.getInstance(); }
 

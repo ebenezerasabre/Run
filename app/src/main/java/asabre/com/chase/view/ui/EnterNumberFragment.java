@@ -42,6 +42,7 @@ import asabre.com.chase.viewmodel.HomeViewModel;
 public class EnterNumberFragment extends Fragment {
     private static final String TAG = EnterNumberFragment.class.getSimpleName();
 
+    private TextView verifyNoBack;
     private TextInputEditText enterNumber;
     private MaterialButton enterNumberContinue;
 
@@ -66,6 +67,7 @@ public class EnterNumberFragment extends Fragment {
     }
 
     private void init(View view){
+        verifyNoBack = view.findViewById(R.id.verifyNoBack);
         enterNumber = view.findViewById(R.id.enterNumber);
         enterNumberContinue = view.findViewById(R.id.enterNumberContinue);
         enterNumberVerificationCode = view.findViewById(R.id.enterNumberVerificationCode);
@@ -230,6 +232,24 @@ public class EnterNumberFragment extends Fragment {
         transaction.commit();
     }
 
+    private void loadIntroFragment(){
+        MainActivity.mRegProcess = MainActivity.RegistrationProcess.INTRO;
+
+        IntroFragment introFragment = new IntroFragment();
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+        transaction.replace(R.id.containerHome, introFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    private void goBack(){
+        verifyNoBack.setOnClickListener(view -> {
+            loadIntroFragment();
+        });
+    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -247,6 +267,7 @@ public class EnterNumberFragment extends Fragment {
     public void onStart() {
         super.onStart();
         Log.d(TAG, "onStart: number called");
+        goBack();
     }
 
 

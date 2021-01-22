@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/driverGoOnlineContainer"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginBottom="40dp"-->
+<!--        >-->
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/driverGoOnline"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:cornerRadius="0dp"-->
+<!--            android:backgroundTint="@color/teal_200"-->
+<!--            android:fontFamily="@font/andika"-->
+<!--            android:text="Go online"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textAllCaps="true"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:icon="@drawable/ic_baseline_double_arrow_24"-->
+<!--            app:iconTint="#fff"-->
+<!--            android:padding="16dp"-->
+<!--            />-->
+
+<!--        -->
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_margin="8dp">-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_alignParentStart="true"-->
+<!--                android:padding="8dp">-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Toaday's Earnings"-->
+<!--                    android:fontFamily="@font/alegreya"-->
+<!--                    android:textColor="#707070"-->
+<!--                    android:textSize="18sp" />-->
+<!--                <TextView-->
+<!--                    android:id="@+id/driverTodayEarning"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="GH¢ 50.45"-->
+<!--                    android:fontFamily="@font/alegreya"-->
+<!--                    android:textColor="@color/purple_500"-->
+<!--                    android:textSize="25sp"-->
+<!--                    />-->
+<!--            </LinearLayout>-->
+<!--            <TextView-->
+<!--                android:id="@+id/driverShowEarning"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Earnings"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                app:drawableEndCompat="@drawable/go_arrow"-->
+<!--                android:fontFamily="@font/alegreya"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textColor="#333333"-->
+<!--                android:layout_margin="16dp" />-->
+<!--        </RelativeLayout>-->
+
+
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_margin="8dp">-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_alignParentStart="true"-->
+<!--                android:padding="8dp">-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Current rating"-->
+<!--                    android:fontFamily="@font/alegreya"-->
+<!--                    android:textColor="#707070"-->
+<!--                    android:textSize="18sp" />-->
+<!--                <TextView-->
+<!--                    android:id="@+id/driverCurrentRating"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="3.0"-->
+<!--                    android:fontFamily="@font/alegreya"-->
+<!--                    android:textColor="#f4ca16"-->
+<!--                    android:textSize="25sp"-->
+<!--                    android:textStyle="bold" />-->
+<!--            </LinearLayout>-->
+<!--            <TextView-->
+<!--                android:id="@+id/driverShowCurrentRating"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Rating"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                app:drawableEndCompat="@drawable/go_arrow"-->
+<!--                android:fontFamily="@font/alegreya"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textColor="#333333"-->
+<!--                android:layout_margin="16dp" />-->
+<!--        </RelativeLayout>-->
+<!--        -->
+<!--    </LinearLayout>-->
+
+</RelativeLayout>

@@ -20,7 +20,6 @@
         android:orientation="vertical"
         >
         <TextView
-            android:id="@+id/suggestionLocationName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Adum"
@@ -29,7 +28,6 @@
             android:textColor="#000000"
             />
         <TextView
-            android:id="@+id/suggestionLocationOther"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Kumasi, Ghana"

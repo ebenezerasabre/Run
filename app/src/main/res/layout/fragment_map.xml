@@ -27,8 +27,17 @@
     </LinearLayout>
 
 
-<!--    1-->
-<!--     Where are you going-->
+    <RelativeLayout
+        android:id="@+id/userRelativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:layout_marginBottom="40dp"
+        >
+
+
+        <!--    1-->
+        <!--     Where are you going-->
         <LinearLayout
             android:id="@+id/goingWhereContainer"
             android:orientation="vertical"
@@ -40,7 +49,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="34dp"
-             android:visibility="invisible"
+            android:visibility="invisible"
             >
             <TextView
                 android:layout_width="match_parent"
@@ -66,7 +75,6 @@
                 android:layout_margin="16dp"
                 android:padding="8dp"
                 android:textStyle="bold"
-
                 app:icon="@drawable/ic_baseline_search_24"
                 app:iconTint="@color/white"
                 />
@@ -82,370 +90,370 @@
 
 
 
-<!--    2-->
-<!--    internet connectivity-->
-    <LinearLayout
-        android:id="@+id/enableInternetContainer"
-        android:orientation="vertical"
-        android:padding="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp"
-        android:visibility="gone"
-        >
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_outline_settings_24"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="8dp"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Enable internet"
-            android:fontFamily="@font/alegreya"
-            android:textSize="24dp"
-            android:textColor="#333"
-            android:gravity="center_horizontal"
-            android:layout_margin="8dp"
-            android:textStyle="bold"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Can't connect to internet. Please check your network settings and try again"
-            android:textSize="18sp"
-            android:textColor="#474747"
-            android:fontFamily="@font/alegreya"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="8dp"
-            />
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/tryAgain"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cornerRadius="32dp"
-            android:backgroundTint="@color/teal_200"
-            android:fontFamily="@font/andika"
-            android:text="Try again"
-            android:textColor="@color/white"
-            android:textAllCaps="true"
-            android:layout_margin="32dp"
-            android:padding="8dp"
-            android:textStyle="bold"
-            />
-    </LinearLayout>
-
-
-
-
-
-
-<!--3-->
-    <!--        ride options select-->
-    <LinearLayout
-        android:id="@+id/rideOptionsContainer"
-        android:orientation="vertical"
-        android:padding="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bback"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="40dp"
-        android:visibility="invisible"
-
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select ride"
-            android:fontFamily="@font/alegreya"
-             android:layout_gravity="center_horizontal"
-            android:textSize="20sp"
-            android:textColor="#333"
-
-            />
-
-
+        <!--    2-->
+        <!--    internet connectivity-->
         <LinearLayout
-            android:id="@+id/carOption"
+            android:id="@+id/enableInternetContainer"
+            android:orientation="vertical"
+            android:padding="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="5"
-            android:layout_margin="4dp"
-            android:background="@drawable/cback"
+            android:background="#fff"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="50dp"
+            android:visibility="gone"
             >
             <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_outline_settings_24"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="8dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enable internet"
+                android:fontFamily="@font/alegreya"
+                android:textSize="24dp"
+                android:textColor="#333"
+                android:gravity="center_horizontal"
+                android:layout_margin="8dp"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Can't connect to internet. Please check your network settings and try again"
+                android:textSize="18sp"
+                android:textColor="#474747"
+                android:fontFamily="@font/alegreya"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="8dp"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/tryAgain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cornerRadius="32dp"
+                android:backgroundTint="@color/teal_200"
+                android:fontFamily="@font/andika"
+                android:text="Try again"
+                android:textColor="@color/white"
+                android:textAllCaps="true"
+                android:layout_margin="32dp"
+                android:padding="8dp"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+
+
+
+
+
+
+        <!--3-->
+        <!--        ride options select-->
+        <LinearLayout
+            android:id="@+id/rideOptionsContainer"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bback"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="40dp"
+            android:visibility="invisible"
+
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select ride"
+                android:fontFamily="@font/alegreya"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20sp"
+                android:textColor="#333"
+
+                />
+
+
+            <LinearLayout
+                android:id="@+id/carOption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:layout_margin="4dp"
+                android:background="@drawable/cback"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_directions_car_24"
+                    android:layout_gravity="center"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="2">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chase"
+                        android:textColor="#333"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/alegreya"
+                        />
+                    <TextView
+                        android:id="@+id/carTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2 min"
+                        android:fontFamily="@font/alegreya"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="2"
+                    >
+                    <TextView
+                        android:id="@+id/carPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="GH¢ 12"
+                        android:textColor="#333"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/alegreya"
+                        />
+                    <TextView
+                        android:id="@+id/carPreviousPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chase"
+                        android:fontFamily="@font/alegreya"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cycleOption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:layout_margin="4dp"
+                android:background="@drawable/aback"
+                >
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_directions_bike_24"
+                    android:layout_gravity="center"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="2">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pragya"
+                        android:textColor="#333"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/alegreya"
+                        />
+                    <TextView
+                        android:id="@+id/cycleTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10 min"
+                        android:fontFamily="@font/alegreya"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="2"
+                    >
+                    <TextView
+                        android:id="@+id/cyclePrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="GH¢ 5"
+                        android:textColor="#333"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/alegreya"
+                        />
+                    <TextView
+                        android:id="@+id/cyclePreviousPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chase"
+                        android:fontFamily="@font/alegreya"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/optionCancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cornerRadius="32dp"
+                android:backgroundTint="@color/teal_200"
+                android:fontFamily="@font/andika"
+                android:text="Back"
+                android:textColor="@color/white"
+                android:textAllCaps="true"
+                android:layout_margin="16dp"
+                android:padding="8dp"
+                android:textStyle="bold"
+                />
+
+
+
+        </LinearLayout>
+
+
+
+        <!--4-->
+        <!--    request ride-->
+        <LinearLayout
+            android:id="@+id/rideRequestContainer"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="40dp"
+            android:visibility="invisible"
+            >
+            <ImageView
+                android:id="@+id/rideImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_baseline_directions_car_24"
-                android:layout_gravity="center"
+                android:layout_gravity="center_horizontal"
                 android:layout_margin="8dp"
-                android:layout_weight="1"
                 />
-            <LinearLayout
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="2">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Chase"
-                    android:textColor="#333"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/alegreya"
-                    />
-                <TextView
-                    android:id="@+id/carTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="2 min"
-                    android:fontFamily="@font/alegreya"
-                    />
-            </LinearLayout>
-            <LinearLayout
+                android:text="Requesting ride"
+                android:fontFamily="@font/alegreya"
+                android:layout_gravity="center_horizontal"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:layout_margin="8dp"
+                />
+            <ProgressBar
+                android:id="@+id/requestProgressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="2"
-                >
-                <TextView
-                    android:id="@+id/carPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="GH¢ 12"
-                    android:textColor="#333"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/alegreya"
-                    />
-                <TextView
-                    android:id="@+id/carPreviousPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Chase"
-                    android:fontFamily="@font/alegreya"
-                    />
-
-            </LinearLayout>
-
+                android:layout_gravity="center_horizontal"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/requestCancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cornerRadius="32dp"
+                android:backgroundTint="@color/teal_200"
+                android:fontFamily="@font/andika"
+                android:text="Cancel"
+                android:textColor="@color/white"
+                android:textAllCaps="true"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="40dp"
+                android:padding="8dp"
+                android:textStyle="bold"
+                />
         </LinearLayout>
 
+
+
+
+        <!--5-->
+        <!--    driver arrives widgets-->
         <LinearLayout
-            android:id="@+id/cycleOption"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="5"
-            android:layout_margin="4dp"
-            android:background="@drawable/aback"
-            >
-
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_directions_bike_24"
-                android:layout_gravity="center"
-                android:layout_margin="8dp"
-                android:layout_weight="1"
-                />
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="2">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Pragya"
-                    android:textColor="#333"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/alegreya"
-                    />
-                <TextView
-                    android:id="@+id/cycleTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="10 min"
-                    android:fontFamily="@font/alegreya"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="2"
-                >
-                <TextView
-                    android:id="@+id/cyclePrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="GH¢ 5"
-                    android:textColor="#333"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/alegreya"
-                    />
-                <TextView
-                    android:id="@+id/cyclePreviousPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Chase"
-                    android:fontFamily="@font/alegreya"
-                    />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/optionCancel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cornerRadius="32dp"
-            android:backgroundTint="@color/teal_200"
-            android:fontFamily="@font/andika"
-            android:text="Back"
-            android:textColor="@color/white"
-            android:textAllCaps="true"
-            android:layout_margin="16dp"
+            android:id="@+id/forUserDriverArrivesContainer"
+            android:orientation="vertical"
             android:padding="8dp"
-            android:textStyle="bold"
-            />
-
-
-
-    </LinearLayout>
-
-
-
-<!--4-->
-<!--    request ride-->
-    <LinearLayout
-        android:id="@+id/rideRequestContainer"
-        android:orientation="vertical"
-        android:padding="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="40dp"
-        android:visibility="invisible"
-        >
-        <ImageView
-            android:id="@+id/rideImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_directions_car_24"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="8dp"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Requesting ride"
-            android:fontFamily="@font/alegreya"
-            android:layout_gravity="center_horizontal"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:layout_margin="8dp"
-            />
-        <ProgressBar
-            android:id="@+id/requestProgressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            />
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/requestCancel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cornerRadius="32dp"
-            android:backgroundTint="@color/teal_200"
-            android:fontFamily="@font/andika"
-            android:text="Cancel"
-            android:textColor="@color/white"
-            android:textAllCaps="true"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="40dp"
-            android:padding="8dp"
-            android:textStyle="bold"
-            />
-    </LinearLayout>
-
-
-
-
-<!--5-->
-<!--    driver arrives widgets-->
-    <LinearLayout
-        android:id="@+id/forUserDriverArrivesContainer"
-        android:orientation="vertical"
-        android:padding="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bback"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp"
-        android:visibility="invisible"
-        >
-        <TextView
-            android:id="@+id/forUserDriverArrivesTime"
-            android:text="Driver arrives in 2 min"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/alegreya"
-            android:layout_gravity="center_horizontal"
-            android:textSize="18sp"
-            android:layout_margin="8dp"
-            android:textColor="#000"
-            />
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:background="@drawable/bback"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="50dp"
+            android:visibility="visible"
             >
-            <LinearLayout
+            <TextView
+                android:id="@+id/forUserDriverArrivesTime"
+                android:text="Driver arrives in 2 min"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:fontFamily="@font/alegreya"
+                android:layout_gravity="center_horizontal"
+                android:textSize="18sp"
                 android:layout_margin="8dp"
-                android:padding="8dp"
-                >
-                <TextView
-                    android:id="@+id/forUserRideDescription"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Chevrolet Kalos"
-                    android:textSize="18sp"
-                    android:fontFamily="@font/alegreya"
-                    />
-                <TextView
-                    android:id="@+id/forUserRideNumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="AS 1257-17"
-                    android:textSize="20sp"
-                    android:textColor="#333"
-                    android:fontFamily="@font/alegreya"
-                    />
-            </LinearLayout>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_driver_50"
-                android:layout_alignParentEnd="true"
-                android:layout_margin="8dp"
-                android:padding="8dp"
+                android:textColor="#000"
                 />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="8dp"
+                    android:padding="8dp"
+                    >
+                    <TextView
+                        android:id="@+id/forUserRideDescription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chevrolet Kalos"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/alegreya"
+                        />
+                    <TextView
+                        android:id="@+id/forUserRideNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="AS 1257-17"
+                        android:textSize="20sp"
+                        android:textColor="#333"
+                        android:fontFamily="@font/alegreya"
+                        />
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_driver_50"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="8dp"
+                    android:padding="8dp"
+                    />
 
-        </RelativeLayout>
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -463,6 +471,7 @@
                     android:textColor="#333"
                     android:fontFamily="@font/alegreya"
                     />
+
                 <TextView
                     android:id="@+id/forUserDriverFinishedRides"
                     android:layout_width="wrap_content"
@@ -470,180 +479,556 @@
                     android:text="300 finished rides"
                     android:textSize="18sp"
                     android:fontFamily="@font/alegreya" />
+
+
             </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-            <LinearLayout
-                android:layout_width="0dp"
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/forUserFinishRide"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="4dp"
-                >
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/forUserChangeRide"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cornerRadius="32dp"
-                    android:backgroundTint="#f5f5f5"
-                    android:fontFamily="@font/andika"
-                    android:text="Change"
-                    android:textColor="#707070"
-                    android:textAllCaps="false"
-                    android:textSize="18sp"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="4dp"
-                >
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/forUserFinishRide"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cornerRadius="32dp"
-                    android:backgroundTint="@color/teal_200"
-                    android:fontFamily="@font/andika"
-                    android:text="Finish"
-                    android:textColor="@color/white"
-                    android:textAllCaps="false"
-                    android:textSize="18sp"
-                    />
-            </LinearLayout>
+                app:cornerRadius="32dp"
+                android:backgroundTint="@color/teal_200"
+                android:fontFamily="@font/andika"
+                android:text="finish"
+                android:textColor="@color/white"
+                android:textAllCaps="true"
+                android:layout_margin="16dp"
+                android:padding="8dp"
+                android:textStyle="bold"
+                app:icon="@drawable/ic_baseline_double_arrow_24"
+                app:iconTint="@color/white"
+                android:visibility="gone"
+                />
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:weightSum="2">-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1"-->
+<!--                    >-->
+<!--                    <com.google.android.material.button.MaterialButton-->
+<!--                        android:id="@+id/forUserChangeRide"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        app:cornerRadius="32dp"-->
+<!--                        android:backgroundTint="#f5f5f5"-->
+<!--                        android:fontFamily="@font/andika"-->
+<!--                        android:text="Change"-->
+<!--                        android:textColor="#707070"-->
+<!--                        android:textAllCaps="true"-->
+<!--                        android:textSize="18sp"-->
+<!--                        android:layout_margin="16dp"-->
+<!--                        android:padding="8dp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        />-->
+<!--                </LinearLayout>-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1"-->
+<!--                    >-->
+<!--                    <com.google.android.material.button.MaterialButton-->
+<!--                        android:id="@+id/forUserFinishRide"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        app:cornerRadius="32dp"-->
+<!--                        android:backgroundTint="@color/teal_200"-->
+<!--                        android:fontFamily="@font/andika"-->
+<!--                        android:text="Finish"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textAllCaps="true"-->
+<!--                        android:textSize="18sp"-->
+<!--                        android:layout_margin="16dp"-->
+<!--                        android:padding="8dp"-->
+<!--                        android:textStyle="bold"-->
+
+<!--                        />-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+
+
         </LinearLayout>
-    </LinearLayout>
+
+
+    </RelativeLayout>
 
 
 
 
 <!--6-->
     <!--    for driver-->
-    <LinearLayout
-        android:id="@+id/forDriverPickingContainer"
-        android:orientation="vertical"
-        android:padding="8dp"
+<!--    <LinearLayout-->
+<!--        android:id="@+id/forDriverPickingContainer"-->
+<!--        android:orientation="vertical"-->
+<!--        android:padding="8dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@drawable/bback"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginBottom="50dp"-->
+<!--        android:visibility="visible"-->
+<!--        >-->
+<!--        <TextView-->
+<!--            android:id="@+id/forDriverPickingMsg"-->
+<!--            android:text="Picking up user"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/alegreya"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:textSize="18sp"-->
+<!--            android:layout_margin="8dp"-->
+<!--            android:textColor="#474747"-->
+<!--            />-->
+
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/driverPassContainer"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            >-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Firstname "-->
+<!--                android:textSize="18sp"-->
+<!--                android:fontFamily="@font/alegreya"-->
+<!--                />-->
+<!--            <TextView-->
+<!--                android:id="@+id/forDriverUserName"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text=" Ebenezer"-->
+<!--                android:textSize="18sp"-->
+<!--                android:fontFamily="@font/andika"-->
+<!--                android:textColor="#474747"-->
+<!--                />-->
+<!--        </LinearLayout>-->
+
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/driverPointContainer"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            >-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:padding="4dp"-->
+<!--                >-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Entry Point"-->
+<!--                    android:textSize="18sp"-->
+<!--                    android:fontFamily="@font/alegreya"-->
+<!--                    />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/forDriverUserEntryPoint"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Tafo Ahenbronum"-->
+<!--                    android:textSize="18sp"-->
+<!--                    android:textColor="#474747"-->
+<!--                    android:fontFamily="@font/andika"-->
+<!--                    />-->
+<!--                -->
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:padding="4dp"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                >-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Exit Point"-->
+<!--                    android:textSize="18sp"-->
+<!--                    android:fontFamily="@font/alegreya"-->
+<!--                    />-->
+<!--                <TextView-->
+<!--                    android:id="@+id/forDriverUserExitPoint"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Ashtown"-->
+<!--                    android:textSize="18sp"-->
+<!--                    android:textColor="#474747"-->
+<!--                    android:fontFamily="@font/andika"-->
+<!--                    />-->
+<!--                -->
+<!--            </LinearLayout>-->
+
+<!--        </RelativeLayout>-->
+
+
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/forDriverCallUser"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:cornerRadius="32dp"-->
+<!--            android:backgroundTint="@color/teal_200"-->
+<!--            android:fontFamily="@font/andika"-->
+<!--            android:text="Call"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textSize="18sp"-->
+<!--            android:layout_margin="16dp"-->
+<!--            />-->
+
+<!--    </LinearLayout>-->
+
+
+    <RelativeLayout
+        android:id="@+id/driverRelativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bback"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp"
-        android:visibility="visible"
+        android:layout_marginBottom="40dp"
+        android:visibility="gone"
         >
-        <TextView
-            android:id="@+id/forDriverPickingMsg"
-            android:text="Picking up user"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/alegreya"
-            android:layout_gravity="center_horizontal"
-            android:textSize="18sp"
-            android:layout_margin="8dp"
-            android:textColor="#474747"
-            />
 
 
+
+<!--        accepting ride-->
         <LinearLayout
-            android:id="@+id/driverPassContainer"
-            android:layout_width="wrap_content"
+            android:id="@+id/driverAcceptRideContainer"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:weightSum="5"
+            android:background="#fff"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="40dp"
+            android:visibility="gone"
             >
-            <TextView
-                android:layout_width="wrap_content"
+
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Firstname "
-                android:textSize="18sp"
-                android:fontFamily="@font/alegreya"
-                />
-            <TextView
-                android:id="@+id/forDriverUserName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" Ebenezer"
-                android:textSize="18sp"
-                android:fontFamily="@font/andika"
-                android:textColor="#474747"
-                />
+                android:layout_weight="4"
+                android:orientation="vertical"
+                android:background="#ffffff"
+                >
+
+                <TextView
+                    android:id="@+id/forDriverUserFirstName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ebenezer"
+                    android:fontFamily="@font/andika"
+                    android:textColor="#474747"
+                    android:textSize="20sp"
+                    android:layout_gravity="center"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="16dp"
+                    >
+                    <TextView
+                        android:id="@+id/acceptTimeToUserPickUp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="4 mins"
+                        android:fontFamily="@font/alegreya"
+                        android:textColor="#474747"
+                        android:textSize="22sp"
+
+                        android:layout_marginEnd="16dp"
+                        />
+                    <TextView
+                        android:id="@+id/acceptDistanceToUserPickUp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3.5 km"
+                        android:fontFamily="@font/alegreya"
+                        android:textColor="#474747"
+                        android:textSize="22sp"
+                        android:layout_marginStart="8dp"
+
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="start :"
+                        android:fontFamily="@font/alegreya"
+                        android:textSize="18sp"
+                        android:layout_marginStart="16dp"
+                        />
+                    <TextView
+                        android:id="@+id/acceptEntryLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Old Tafo station"
+                        android:fontFamily="@font/andika"
+                        android:textColor="#333333"
+                        android:textSize="18sp"
+                        android:layout_marginStart="16dp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="end :"
+                        android:fontFamily="@font/alegreya"
+                        android:textSize="18sp"
+                        android:layout_marginStart="16dp"
+                        />
+                    <TextView
+                        android:id="@+id/acceptExitLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Atimatim"
+                        android:fontFamily="@font/andika"
+                        android:textColor="#333333"
+                        android:textSize="18sp"
+                        android:layout_marginStart="16dp"
+                        />
+                </LinearLayout>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/driverAcceptRide"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cornerRadius="32dp"
+                    android:backgroundTint="@color/teal_200"
+                    android:fontFamily="@font/andika"
+                    android:text="Accept"
+                    android:textColor="@color/white"
+                    android:textAllCaps="false"
+                    android:textSize="18sp"
+                    android:layout_margin="16dp"
+                    android:textStyle="bold"
+                    />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/driverStartRide"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cornerRadius="32dp"
+                    android:backgroundTint="@color/teal_200"
+                    android:fontFamily="@font/andika"
+                    android:text="Start"
+                    android:textColor="@color/white"
+                    android:textAllCaps="false"
+                    android:textSize="18sp"
+                    android:layout_margin="16dp"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#707070"
+                >
+                <ImageView
+                    android:id="@+id/callUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_call_24"
+                    android:layout_gravity="center"
+                    android:layout_margin="16dp"
+                    />
+            </LinearLayout>
         </LinearLayout>
 
-        <RelativeLayout
-            android:id="@+id/driverPointContainer"
+
+
+
+<!--        ending ride-->
+        <LinearLayout
+            android:id="@+id/driverEndRidContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
+            android:weightSum="5"
+            android:background="#707070"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone"
             >
-            <LinearLayout
+            <TextView
+                android:id="@+id/endDestinationTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="4dp"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Entry Point"
-                    android:textSize="18sp"
-                    android:fontFamily="@font/alegreya"
-                    />
-
-                <TextView
-                    android:id="@+id/forDriverUserEntryPoint"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tafo Ahenbronum"
-                    android:textSize="18sp"
-                    android:textColor="#474747"
-                    android:fontFamily="@font/andika"
-                    />
-            </LinearLayout>
-            <LinearLayout
+                android:text="4 mins"
+                android:fontFamily="@font/alegreya"
+                android:textColor="#fff"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:layout_marginStart="32dp"
+                />
+            <TextView
+                android:id="@+id/endExitLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="4dp"
-                android:layout_alignParentEnd="true"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Exit Point"
-                    android:textSize="18sp"
-                    android:fontFamily="@font/alegreya"
-                    />
-                <TextView
-                    android:id="@+id/forDriverUserExitPoint"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ashtown"
-                    android:textSize="18sp"
-                    android:textColor="#474747"
-                    android:fontFamily="@font/andika"
-                    />
-            </LinearLayout>
+                android:text="Atimatim"
+                android:fontFamily="@font/andika"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:layout_marginStart="32dp"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/endDriverEndRide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cornerRadius="8dp"
+                android:backgroundTint="#ed2939"
+                android:fontFamily="@font/andika"
+                android:text="End ride"
+                android:textColor="@color/white"
+                android:textAllCaps="true"
+                android:textSize="18sp"
+                android:layout_margin="16dp"
+                android:textStyle="bold"
+                app:icon="@drawable/ic_baseline_double_arrow_24"
+                app:iconTint="#fff"
+                />
 
-        </RelativeLayout>
+        </LinearLayout>
 
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/forDriverCallUser"
+
+<!--        driver default page-->
+        <LinearLayout
+            android:id="@+id/driverGoOnlineContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cornerRadius="32dp"
-            android:backgroundTint="@color/teal_200"
-            android:fontFamily="@font/andika"
-            android:text="Call"
-            android:textColor="@color/white"
-            android:textAllCaps="false"
-            android:textSize="18sp"
-            android:layout_margin="16dp"
-            />
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone"
+            android:background="#fff"
+            >
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/driverGoOnline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cornerRadius="0dp"
+                android:backgroundTint="@color/teal_200"
+                android:fontFamily="@font/andika"
+                android:text="Go online"
+                android:textColor="@color/white"
+                android:textAllCaps="true"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:icon="@drawable/ic_baseline_double_arrow_24"
+                app:iconTint="#fff"
+                android:padding="16dp"
+                />
 
-    </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="8dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignParentStart="true"
+                    android:padding="8dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Toaday's Earnings"
+                        android:fontFamily="@font/alegreya"
+                        android:textColor="#707070"
+                        android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/driverTodayEarning"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="GH¢ 50.45"
+                        android:fontFamily="@font/alegreya"
+                        android:textColor="@color/purple_500"
+                        android:textSize="25sp"
+                        />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/driverShowEarning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Earnings"
+                    android:layout_alignParentEnd="true"
+                    app:drawableEndCompat="@drawable/go_arrow"
+                    android:fontFamily="@font/alegreya"
+                    android:textSize="20sp"
+                    android:textColor="#333333"
+                    android:layout_margin="16dp" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="8dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignParentStart="true"
+                    android:padding="8dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Current rating"
+                        android:fontFamily="@font/alegreya"
+                        android:textColor="#707070"
+                        android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/driverCurrentRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3.0"
+                        android:fontFamily="@font/alegreya"
+                        android:textColor="#f4ca16"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/driverShowCurrentRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rating"
+                    android:layout_alignParentEnd="true"
+                    app:drawableEndCompat="@drawable/go_arrow"
+                    android:fontFamily="@font/alegreya"
+                    android:textSize="20sp"
+                    android:textColor="#333333"
+                    android:layout_margin="16dp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+<!--        driver relativeLayout ends-->
+    </RelativeLayout>
 
 
 

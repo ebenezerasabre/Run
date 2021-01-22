@@ -198,55 +198,62 @@ public class EnterNameFragment extends Fragment implements BaseFragment{
     }
 
     private void loadMapFragment(){
-        if(gpsIsOn()){
-            MapFragment mapFragment = new MapFragment();
-            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-            transaction.replace(R.id.containerHome, mapFragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
-        } else {
-            loadOpenFragment();
-        }
+       if(getActivity() != null){
+           if(gpsIsOn()){
+               MapFragment mapFragment = new MapFragment();
+               FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+               FragmentTransaction transaction = fragmentManager.beginTransaction();
+               transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+               transaction.replace(R.id.containerHome, mapFragment);
+               transaction.addToBackStack(null);
+               transaction.commit();
+           } else {
+               loadOpenFragment();
+           }
+       }
     }
 
     private void loadCarDetailsFragment(){
-        MainActivity.mRegProcess = MainActivity.RegistrationProcess.CAR_DETAILS;
-
-        EnterCarDetailsFragment carDetailsFragment = new EnterCarDetailsFragment();
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-        transaction.replace(R.id.containerHome, carDetailsFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        if(getActivity() != null){
+            MainActivity.mRegProcess = MainActivity.RegistrationProcess.CAR_DETAILS;
+            EnterCarDetailsFragment carDetailsFragment = new EnterCarDetailsFragment();
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+            transaction.replace(R.id.containerHome, carDetailsFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
     }
 
     private boolean gpsIsOn(){
-        LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        LocationManager locationManager = (LocationManager) getActivity()
+                .getSystemService(Context.LOCATION_SERVICE);
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
 
     private void loadOpenFragment(){
-        OpenFragment openFragment = new OpenFragment();
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-        transaction.replace(R.id.containerHome, openFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-
+         if(getActivity() != null){
+             OpenFragment openFragment = new OpenFragment();
+             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+             FragmentTransaction transaction = fragmentManager.beginTransaction();
+             transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+             transaction.replace(R.id.containerHome, openFragment);
+             transaction.addToBackStack(null);
+             transaction.commit();
+         }
     }
 
     private void loadEnterEmailFragment(){
-        EnterEmailFragment enterEmailFragment = new EnterEmailFragment();
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-        transaction.replace(R.id.containerHome, enterEmailFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+          if(getActivity() != null){
+              EnterEmailFragment enterEmailFragment = new EnterEmailFragment();
+              FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+              FragmentTransaction transaction = fragmentManager.beginTransaction();
+              transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+              transaction.replace(R.id.containerHome, enterEmailFragment);
+              transaction.addToBackStack(null);
+              transaction.commit();
+          }
     }
 
     private void showProgressDialog(){

@@ -9,11 +9,169 @@
     >
 
     <TextView
+        android:id="@+id/endRideBack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello darkness my own friend"
-        android:layout_margin="32dp"
+        android:padding="8dp"
+        android:text="Profile"
+        android:textSize="20sp"
+        android:fontFamily="@font/alegreya"
+        android:gravity="center_horizontal"
         />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0554290691"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:fontFamily="@font/andika"
+        android:textColor="#333"
+        android:textSize="18sp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Ebenezer"
+            android:layout_margin="8dp"
+            android:padding="8dp"
+            android:fontFamily="@font/andika"
+            android:textColor="#333"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Asabre"
+            android:layout_margin="8dp"
+            android:padding="8dp"
+            android:fontFamily="@font/andika"
+            android:textColor="#333"
+            android:textSize="18sp"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ebenezerasabre@gmail.com"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:fontFamily="@font/andika"
+        android:textColor="#333"
+        android:textSize="18sp"
+        />
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_outline_home_24"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="8dp"
+            android:padding="8dp"
+            />
+
+        <LinearLayout
+            android:id="@+id/enterHomeLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="8dp"
+            android:padding="8dp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:fontFamily="@font/alegreya"
+                android:textSize="18sp"
+                android:textColor="#333"
+                android:drawableEnd="@drawable/go_arrow"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enter home location"
+                android:fontFamily="@font/alegreya"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_work_outline_24"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="8dp"
+            android:padding="8dp"
+            />
+
+        <LinearLayout
+            android:id="@+id/enterWorkLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="8dp"
+            android:padding="8dp"
+            android:drawableEnd="@drawable/go_arrow"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Work"
+                android:fontFamily="@font/alegreya"
+                android:textSize="18sp"
+                android:textColor="#333"
+                android:drawableEnd="@drawable/go_arrow"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enter work location"
+                android:fontFamily="@font/alegreya"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log out"
+        android:fontFamily="@font/alegreya"
+        android:textSize="18sp"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        />
+
+
 
 
 </LinearLayout>

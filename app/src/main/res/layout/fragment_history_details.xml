@@ -1,6 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    >
+    <TextView
+        android:id="@+id/endRideBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/travel_details"
+        android:textSize="20sp"
+        android:fontFamily="@font/alegreya"
+        android:gravity="center_horizontal"
+        android:drawableStart="@drawable/ic_outline_arrow_back_24"
+        />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="8dp"
+            android:background="@drawable/bback"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tafo ahenbronum"
+                android:drawableStart="@drawable/ic_baseline_arrow_drop_up_24"
+                android:fontFamily="@font/andika"
+                android:textSize="18sp"
+                android:padding="8dp"
+                android:textColor="#474747"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Atimatim Junction"
+                android:drawableStart="@drawable/ic_baseline_arrow_drop_down_24"
+                android:fontFamily="@font/andika"
+                android:textSize="18sp"
+                android:padding="8dp"
+                android:textColor="#474747"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Payment"
+                android:layout_marginStart="16dp"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="8dp"
+                android:padding="8dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/alegreya"
+                    android:text="Cash"
+                    android:textColor="#333"
+                    android:layout_alignParentStart="true"
+                    android:layout_margin="8dp"
+                    />
+                <TextView
+                    android:id="@+id/endRideFee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/alegreya"
+                    android:text="GH¢ 9.45"
+                    android:textColor="#000"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="8dp"
+                    />
+            </RelativeLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_driver_cyan"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="8dp"
+                    android:padding="8dp"
+                    />
+
+              <LinearLayout
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:layout_margin="8dp"
+                  android:padding="8dp"
+                  >
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="Your trip with Kwame Gyasi"
+                      android:fontFamily="@font/alegreya"
+                      android:textSize="18sp"
+                      android:textColor="#333"
+                      />
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="12 Sep 2020"
+                      android:fontFamily="@font/alegreya"
+                      />
+              </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Need help?"
+                android:layout_marginStart="16dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Resend Receipt"
+                android:drawableEnd="@drawable/go_arrow"
+                android:fontFamily="@font/alegreya"
+                android:textSize="18sp"
+                android:textColor="#333"
+                android:padding="8dp"
+                android:layout_marginStart="8dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My driver was rude"
+                android:drawableEnd="@drawable/go_arrow"
+                android:fontFamily="@font/alegreya"
+                android:textSize="18sp"
+                android:textColor="#333"
+                android:padding="8dp"
+                android:layout_marginStart="8dp"
+                />
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

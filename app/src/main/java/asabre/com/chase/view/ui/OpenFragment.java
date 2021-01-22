@@ -41,20 +41,21 @@ public class OpenFragment extends Fragment {
     private void init(View view){
 
         turnOnGps = view.findViewById(R.id.turnOnGPS);
-
     }
 
     private void locationSettings(){
-        // the results of tuning on gps will be shown at onActivityResult()
-        new GpsUtils(getContext()).turnOnGps(new GpsUtils.onGpsListener() {
-            @Override
-            public void gpsStatus(boolean isGPSEnable) {
-                // callback when gps is turned on already
-                isGps = isGPSEnable;
-                Log.d(TAG, "gpsStatus:  is " + isGPSEnable);
+        if(getContext() != null){
+            // the results of tuning on gps will be shown at onActivityResult()
+            new GpsUtils(getContext()).turnOnGps(new GpsUtils.onGpsListener() {
+                @Override
+                public void gpsStatus(boolean isGPSEnable) {
+                    // callback when gps is turned on already
+                    isGps = isGPSEnable;
+                    Log.d(TAG, "gpsStatus:  is " + isGPSEnable);
 
-            }
-        });
+                }
+            });
+        }
     }
 
    private void setTurnOnGps(){
