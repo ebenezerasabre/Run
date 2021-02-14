@@ -12,9 +12,23 @@
 
         />
 
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/homeExtraFAB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        app:icon="@drawable/ic_baseline_view_headline_24"
+        android:backgroundTint="@color/teal_200"
+        android:textColor="#fff"
+        app:iconTint="#fff"
+        android:textSize="16sp"
+        android:textAllCaps="false"
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         >
         <TextView
             android:id="@+id/showCoords"
@@ -49,7 +63,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="34dp"
-            android:visibility="invisible"
+            android:visibility="gone"
             >
             <TextView
                 android:layout_width="match_parent"
@@ -163,7 +177,7 @@
             android:background="@drawable/bback"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="40dp"
-            android:visibility="invisible"
+            android:visibility="gone"
 
             >
 
@@ -171,27 +185,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Select ride"
-                android:fontFamily="@font/alegreya"
+                android:fontFamily="@font/andada"
                 android:layout_gravity="center_horizontal"
                 android:textSize="20sp"
-                android:textColor="#333"
+                android:textColor="#000"
+                android:layout_margin="8dp"
 
                 />
 
-
             <LinearLayout
-                android:id="@+id/carOption"
+              android:id="@+id/longVehicleOption"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="5"
                 android:layout_margin="4dp"
-                android:background="@drawable/cback"
                 >
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_directions_car_24"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/long_vehicle"
                     android:layout_gravity="center"
                     android:layout_margin="8dp"
                     android:layout_weight="1"
@@ -204,7 +217,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Chase"
+                        android:text="Long vehicle"
                         android:textColor="#333"
                         android:textSize="20sp"
                         android:fontFamily="@font/alegreya"
@@ -244,21 +257,22 @@
 
             </LinearLayout>
 
+
+
+
             <LinearLayout
-                android:id="@+id/cycleOption"
+                android:id="@+id/truckOption"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="5"
                 android:layout_margin="4dp"
-                android:background="@drawable/aback"
                 >
 
-
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_directions_bike_24"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/truck"
                     android:layout_gravity="center"
                     android:layout_margin="8dp"
                     android:layout_weight="1"
@@ -271,7 +285,70 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Pragya"
+                        android:text="Track"
+                        android:textColor="#333"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/alegreya"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10 min"
+                        android:fontFamily="@font/alegreya"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="2"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="GH¢ 5"
+                        android:textColor="#333"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/alegreya"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chase"
+                        android:fontFamily="@font/alegreya"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:id="@+id/vanOption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:layout_margin="4dp"
+                >
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/van"
+                    android:layout_gravity="center"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="2">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Van"
                         android:textColor="#333"
                         android:textSize="20sp"
                         android:fontFamily="@font/alegreya"
@@ -307,17 +384,18 @@
                         android:fontFamily="@font/alegreya"
                         />
                 </LinearLayout>
-
             </LinearLayout>
 
+
+
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/optionCancel"
+                android:id="@+id/cancelRideOption"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cornerRadius="32dp"
                 android:backgroundTint="@color/teal_200"
                 android:fontFamily="@font/andika"
-                android:text="Back"
+                android:text="cancel"
                 android:textColor="@color/white"
                 android:textAllCaps="true"
                 android:layout_margin="16dp"
@@ -342,12 +420,12 @@
             android:background="#fff"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="40dp"
-            android:visibility="invisible"
+            android:visibility="visible"
             >
             <ImageView
                 android:id="@+id/rideImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:src="@drawable/ic_baseline_directions_car_24"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="8dp"
@@ -369,7 +447,7 @@
                 android:layout_gravity="center_horizontal"
                 />
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/requestCancel"
+                android:id="@+id/cancelRequest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cornerRadius="32dp"
@@ -401,7 +479,7 @@
             android:background="@drawable/bback"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="50dp"
-            android:visibility="visible"
+            android:visibility="gone"
             >
             <TextView
                 android:id="@+id/forUserDriverArrivesTime"
@@ -693,7 +771,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
-        android:visibility="gone"
+        android:visibility="visible"
         >
 
 
@@ -711,6 +789,8 @@
             android:visibility="gone"
             >
 
+
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -718,6 +798,13 @@
                 android:orientation="vertical"
                 android:background="#ffffff"
                 >
+
+                <ProgressBar
+                    android:id="@+id/watingForAccept"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    />
 
                 <TextView
                     android:id="@+id/forDriverUserFirstName"
@@ -838,6 +925,9 @@
                     android:textStyle="bold"
                     android:visibility="gone"
                     />
+
+
+
             </LinearLayout>
 
             <LinearLayout

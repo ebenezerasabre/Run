@@ -36,6 +36,8 @@ public class HomeViewModel extends ViewModel {
     private static final String TAG = HomeViewModel.class.getSimpleName();
     private HomeRepository mHomeRepository;
 
+    public static String msg = "Asabre here";
+
     public static String searchedPlaceId = "";
     public static String searchedPlaceName;
 
@@ -57,6 +59,8 @@ public class HomeViewModel extends ViewModel {
     private MutableLiveData<User> currentUser = new MutableLiveData<>();
     private MutableLiveData<Driver> currentDriver = new MutableLiveData<>();
 
+
+    public static String userState = ""; // create, sign
     public static UserEntity userEntity = null;
     public static String userType = "";
     public static String rideType = "";
@@ -65,6 +69,7 @@ public class HomeViewModel extends ViewModel {
 
     public static RideRequest mRideRequest = new RideRequest();
     public static String requestStringDetails = "";
+    private MutableLiveData<List<RideRequest>> mRideRequestHistory;
 
     // automation of driver response
     // start, finish should be called once
@@ -78,19 +83,51 @@ public class HomeViewModel extends ViewModel {
 
     // track clicked history
     public static History clickedHistory;
+    public static RideRequest mRideRequestDetails = new RideRequest();
+
+
 
     // for google map
     public static GoogleMap mGoogleMap;
     public static PolylineOptions mLineOptions = new PolylineOptions();
     public static Polyline mPolyline;
 
+
+    // track data loading
+    public static MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
+    public static MutableLiveData<Boolean> mapIsReady = new MutableLiveData<>();
+    public static MutableLiveData<String>  mViewTrack = new MutableLiveData<>();
+    public static String strViewTrack = "";
+
+    // view visibility
+    /*
+         // only for views within mapFragment
+         ViewTrack {
+            USER_GOING_WHERE,
+            USER_RIDE_OPTIONS,
+            USER_RIDE_REQUEST,
+            USER_RIDE_ARRIVE,
+
+            DRIVER_GO_ONLINE,
+            DRIVER_ACCEPT_RIDE,
+            DRIVER_START_RIDE,
+            DRIVER_END_RIDE,
+            CONNECT_INTERNET,
+            SEARCH_INTENT
+        };
+    */
+
+
     public void init(){ mHomeRepository = HomeRepository.getInstance(); }
+
 
     // TODO USER
     public LiveData<User> createUser(HashMap<String, String> body){ return mHomeRepository.createUser(body); }
     public void setFindUserById(String userId){ currentUser = mHomeRepository.findUserById(userId); }
     public LiveData<User> getFindUserById(){ return currentUser; }
+
     public LiveData<User> signInUser(String phoneNumber){ return mHomeRepository.signInUser(phoneNumber); }
+
     public LiveData<User> updateUser(String id, HashMap<String, String> body){ return mHomeRepository.updateUser(id, body); }
     public LiveData<String> deleteUser(String userId){ return mHomeRepository.deleteUser(userId); }
 
@@ -125,6 +162,45 @@ public class HomeViewModel extends ViewModel {
     // TODO SUPPORT
     public void setSupport(){ support = mHomeRepository.findAllSupports(); }
     public LiveData<List<Support>> findAllSupports(){ return support; }
+
+
+    // TODO LOADING
+    public static void startLoading(){ isLoading.setValue(true); }
+    public static void stopLoading(){ isLoading.setValue(false);}
+    public static LiveData<Boolean> getIsLoading(){ return isLoading; }
+
+    // TODO MAP READY
+    public static void setMapIsReady(){ mapIsReady.setValue(true);}
+    public static void setmapIsNotReady(){ mapIsReady.setValue(false);}
+    public static LiveData<Boolean> getMapReady(){ return mapIsReady; }
+
+    // set viewTrack
+    public static void setViewTrack(String viewTrack){ mViewTrack.setValue(viewTrack); }
+    public static LiveData<String > getViewTrack(){ return mViewTrack; }
+
+    // TODO RIDE REQUEST
+
+    public LiveData<List<RideRequest>> userRequestHistory(String id){
+        if(mRideRequestHistory == null){
+            mRideRequestHistory = mHomeRepository.findUserRideRequests(id);
+        }
+        return mRideRequestHistory;
+    }
+
+    public LiveData<List<RideRequest>> driverRequestHistory(String id){
+        if(mRideRequestHistory == null){
+            mRideRequestHistory = mHomeRepository.findDriverRideRequests(id);
+        }
+        return mRideRequestHistory;
+    }
+
+    public void resetRequestHistory(){
+        mRideRequestHistory = null;
+    }
+
+
+
+
 
 
 

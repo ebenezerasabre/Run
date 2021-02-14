@@ -11,5 +11,26 @@
     <string name="great">Great</string>
     <string name="awesome">Awesome</string>
     <string name="travel_details">Travel Details</string>
+    <string name="_continue">continue</string>
+    <string name="sign_in">sign in</string>
+    <string name="resend_receipt">Resend Receipt</string>
+    <string name="need_help">Need help?</string>
+    <string name="rate_app">Rate app</string>
+    <string name="facebook">Facebook</string>
+    <string name="tafo_market">Tafo market</string>
+    <string name="kumasi_ghana">Kumasi, Ghana</string>
+    <string name="_00_49_30">00:49:30</string>
+    <string name="_2021_02_04">2021-02-04</string>
+    <string name="finished">finished</string>
+    <string name="tafo_ahenbronum">Tafo ahenbronum</string>
+    <string name="atimatim_junction">Atimatim Junction</string>
+    <string name="cash">Cash</string>
+    <string name="gh_9_45">GH¢ 9.45</string>
+    <string name="your_trip_with_kwame_gyasi">Your trip with Kwame Gyasi</string>
+    <string name="_12_sep_2020">12 Sep 2020</string>
+    <string name="my_driver_was_rude">My driver was rude</string>
+    <string name="travel_history">Travel History</string>
+    <string name="signup_as_driver">signup as driver</string>
+    <string name="already_have_an_account">Already have an account ?</string>
 
 </resources>

@@ -44,6 +44,8 @@ public class RideRequest {
     private String driverReject = "";
     private String rideState = "pending";  // pending, picking, start, finish, cancel
     private String fee = "";
+    private String createdAt = "";
+    private String updatedAt = "";
 
     private   JSONObject initRequest = new JSONObject();
 
@@ -89,7 +91,7 @@ public class RideRequest {
             setRideState(request.getString("rideState"));
             setFee(request.getString("fee"));
 
-        } catch (JSONException e){
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 
@@ -157,6 +159,7 @@ public class RideRequest {
     // save result in HomeViewModel.requestStringDetails and retrieve from there
     public String returnRequestString(){
         try {
+
             initRequest.put("userName", getUserName());
             initRequest.put("userId", getUserId());
             initRequest.put("userType", getUserType());
@@ -192,8 +195,6 @@ public class RideRequest {
         }
         return initRequest.toString();
     }
-
-
 
 
     public String getUserId() {
@@ -346,7 +347,6 @@ public class RideRequest {
     public String getdRideNumber() {
         return dRideNumber;
     }
-
     public void setdRideNumber(String dRideNumber) {
         this.dRideNumber = dRideNumber;
     }
@@ -354,7 +354,6 @@ public class RideRequest {
     public String getdFinishedRides() {
         return dFinishedRides;
     }
-
     public void setdFinishedRides(String dFinishedRides) {
         this.dFinishedRides = dFinishedRides;
     }
@@ -362,26 +361,21 @@ public class RideRequest {
     public String getDriverReject() {
         return driverReject;
     }
-
     public void setDriverReject(String driverReject) {
         this.driverReject = driverReject;
     }
 
-    public String getRideState() {
-        return rideState;
-    }
+    public String getRideState() { return rideState; }
+    public void setRideState(String rideState) { this.rideState = rideState; }
 
-    public void setRideState(String rideState) {
-        this.rideState = rideState;
-    }
+    public String getFee() { return fee; }
+    public void setFee(String fee) { this.fee = fee; }
 
-    public String getFee() {
-        return fee;
-    }
+    public String getCreatedAt() { return createdAt; }
+    public void setCreatedAt(String createdAt) { this.createdAt = createdAt; }
 
-    public void setFee(String fee) {
-        this.fee = fee;
-    }
+    public String getUpdatedAt() { return updatedAt; }
+    public void setUpdatedAt(String updatedAt) { this.updatedAt = updatedAt; }
 
     @Override
     public String toString() {
@@ -410,6 +404,8 @@ public class RideRequest {
                 ", driverReject='" + driverReject + '\'' +
                 ", rideState='" + rideState + '\'' +
                 ", fee='" + fee + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
                 ", initRequest=" + initRequest +
                 '}';
     }

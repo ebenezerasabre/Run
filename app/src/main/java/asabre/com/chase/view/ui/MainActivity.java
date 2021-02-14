@@ -17,15 +17,14 @@ import asabre.com.chase.viewmodel.HomeViewModel;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,7 +35,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -76,20 +74,37 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate main: called");
         setContentView(R.layout.activity_main);
 
         checkPermission();
         setBottomNavigation();
 
         init();
+        Log.d(TAG, "onCreate: here " + HomeViewModel.msg);
 
 //        readSMS();
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull String name, @NonNull Context context, @NonNull AttributeSet attrs) {
+        return super.onCreateView(name, context, attrs);
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.d(TAG, "onSaveInstanceState: called");
+        outState.putString("placeId", HomeViewModel.searchedPlaceId);
+        Log.d(TAG, "onCreate: here " + HomeViewModel.msg);
     }
 
 
 
     private void init(){
         initPlaces();
+        HomeViewModel.setViewTrack("USER_GOING_WHERE");
     }
 
     private void initPlaces(){
@@ -100,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
 
-    // method to retrieve user data from database when app is first switched on
+    // method to retrieve user data from database when app is first launched
     // else user has to sign-in or sign-up
     private void getCustomerData(){
 
@@ -126,6 +141,7 @@ public class MainActivity extends AppCompatActivity implements
                         Log.d(TAG, "firstName " + HomeViewModel.userEntity.getFirstName());
                         Log.d(TAG, "driverId " + HomeViewModel.userEntity.get_id());
                         loadMapFragment();
+//                        loadRequestFragment();
                     } else {
                         // sign up user
                         startRegistering();
@@ -136,9 +152,10 @@ public class MainActivity extends AppCompatActivity implements
             getCustomerData.execute();
 
         } else {
-            Log.d(TAG, "getCustomerData: userEntity is null");
+            Log.d(TAG, "getCustomerData: userEntity is not null");
             // user is already logged in
             loadMapFragment();
+//            loadRequestFragment();
         }
 
     }
@@ -163,6 +180,7 @@ public class MainActivity extends AppCompatActivity implements
         transaction.commit();
 
     }
+
 
     private void startRegistering(){
         switch (mRegProcess){
@@ -384,20 +402,23 @@ public class MainActivity extends AppCompatActivity implements
             transaction.addToBackStack(null);
             transaction.commit();
 
-            loadHistoryDetailsFragment();
+            loadRequestFragment();
+            loadAboutFragment();
+            loadProfileFragment();
         } else {
             loadOpenFragment();
         }
     }
 
-    private void loadHistoryDetailsFragment(){
-        HistoryDetailsFragment historyDetailsFragment = new HistoryDetailsFragment();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-        transaction.replace(R.id.containerProfile, historyDetailsFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+    private void loadRequestFragment(){
+            RequestFragment requestFragment = new RequestFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+            transaction.replace(R.id.containerRequests, requestFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+
     }
 
     private void loadEnterNameFragment(){
@@ -450,6 +471,19 @@ public class MainActivity extends AppCompatActivity implements
         transaction.commit();
     }
 
+    private void loadAboutFragment(){
+            AboutFragment aboutFragment = new AboutFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+            transaction.replace(R.id.containerAbout, aboutFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+    }
+
+
+
+
 
     private void grantPermissionsDialog(){
         MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(this);
@@ -459,6 +493,7 @@ public class MainActivity extends AppCompatActivity implements
         materialAlertDialogBuilder.create();
         materialAlertDialogBuilder.show();
     }
+
 
 
     @Override
@@ -477,6 +512,9 @@ public class MainActivity extends AppCompatActivity implements
     public void onResume() {
         super.onResume();
         Log.d(TAG, "act onResume: main called");
+        Log.d(TAG, "onResume main : place id: " + HomeViewModel.searchedPlaceId);
+
+        Log.d(TAG, "onResume: here " + HomeViewModel.msg);
     }
 
 
@@ -484,6 +522,9 @@ public class MainActivity extends AppCompatActivity implements
     protected void onStop() {
         super.onStop();
         Log.d(TAG, "onStop: main called");
+        Log.d(TAG, "onStop main : place id: " + HomeViewModel.searchedPlaceId);
+
+        Log.d(TAG, "onStop: here " + HomeViewModel.msg);
     }
 
 
@@ -612,7 +653,7 @@ public class MainActivity extends AppCompatActivity implements
     private View HomeDetailsFrame(){ return findViewById(R.id.containerHomeDetails);}
     private View HomeExtraFrame(){return findViewById(R.id.containerHomeExtra);}
 
-    private View HistoryFrame(){return findViewById(R.id.containerHistory);}
+    private View HistoryFrame(){return findViewById(R.id.containerRequests);}
     private View HistoryDetailsFrame(){return findViewById(R.id.containerHistoryDetails);}
     private View HistoryExtraFrame(){return findViewById(R.id.containerHistoryExtra);}
 

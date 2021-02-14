@@ -38,10 +38,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
             // do something
         } else {
             History history = mHistoryList.get(position);
-            // set texts
             holder.browseExitPoint.setText(history.getExitPoint().split("&")[1]);
             holder.browseExitCity.setText(history.getExitPoint().split("&")[0]);
-
             holder.itemView.setOnClickListener(historyDetails(history));
         }
     }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/sback"
+    android:padding="8dp"
+    >
+
+    <TextView
+        android:id="@+id/signInBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Sign in"
+        android:textSize="22sp"
+        android:textColor="#000"
+        android:fontFamily="@font/alegreya"
+        android:gravity="center_horizontal"
+        app:drawableStartCompat="@drawable/ic_outline_arrow_back_24"
+        android:layout_marginEnd="90dp"
+        android:layout_marginTop="8dp"
+
+        />
+
+</LinearLayout>

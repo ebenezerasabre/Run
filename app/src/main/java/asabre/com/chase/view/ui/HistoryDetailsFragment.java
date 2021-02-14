@@ -41,4 +41,7 @@ public class HistoryDetailsFragment extends Fragment implements BaseFragment {
     public void onBackPressed() {
 
     }
+
+
+
 }

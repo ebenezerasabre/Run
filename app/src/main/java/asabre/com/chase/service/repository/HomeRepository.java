@@ -14,8 +14,10 @@ import asabre.com.chase.service.model.Driver;
 import asabre.com.chase.service.model.Help;
 import asabre.com.chase.service.model.History;
 import asabre.com.chase.service.model.Review;
+import asabre.com.chase.service.model.RideRequest;
 import asabre.com.chase.service.model.Support;
 import asabre.com.chase.service.model.User;
+import asabre.com.chase.viewmodel.HomeViewModel;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -60,27 +62,59 @@ public class HomeRepository {
         });
         return user;
     }
+    public MutableLiveData<User> signInUser(String phoneNumber){
+        HomeViewModel.startLoading();
 
-    public MutableLiveData<User> signInUser(String phoneNumber) {
         final MutableLiveData<User> user = new MutableLiveData<>();
-        Call<User> call = chaseService.signInUser(phoneNumber);
-        call.enqueue(new Callback<User>() {
+        Call<List<User>> call = chaseService.signInUser(phoneNumber);
+        call.enqueue(new Callback<List<User>>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                HomeViewModel.stopLoading();
+
                 if(response.isSuccessful()){
-                    user.setValue(response.body());
+                    Log.d(TAG, "onResponse: body is " + response.body());
+                    user.setValue(response.body().get(0));
                 } else {
                     Log.d(TAG, "onResponse: signInUser error " + response.errorBody());
                 }
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<List<User>> call, Throwable t) {
                 Log.d(TAG, "onFailure: signInUser failure " + t.getMessage());
+                HomeViewModel.stopLoading();
             }
         });
         return user;
     }
+//    public MutableLiveData<User> signInUser(String phoneNumber) {
+//        HomeViewModel.startLoading();
+//
+//        final MutableLiveData<User> user = new MutableLiveData<>();
+//        Call<User> call = chaseService.signInUser(phoneNumber);
+//        call.enqueue(new Callback<User>() {
+//            @Override
+//            public void onResponse(Call<User> call, Response<User> response) {
+//                HomeViewModel.stopLoading();
+//
+//                if(response.isSuccessful()){
+//                    Log.d(TAG, "onResponse: body is " + response.body());
+//                    user.setValue(response.body());
+//                } else {
+//                    Log.d(TAG, "onResponse: signInUser error " + response.errorBody());
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<User> call, Throwable t) {
+//                Log.d(TAG, "onFailure: signInUser failure " + t.getMessage());
+//                HomeViewModel.stopLoading();
+//            }
+//        });
+//        return user;
+//    }
+
 
     public MutableLiveData<User> findUserById(String userId){
         final MutableLiveData<User> currentUser = new MutableLiveData<>();
@@ -172,21 +206,25 @@ public class HomeRepository {
     }
 
     public MutableLiveData<Driver> signInDriver(String phoneNumber){
+        HomeViewModel.startLoading();
+
         final MutableLiveData<Driver> driver = new MutableLiveData<>();
-        Call<Driver> call = chaseService.signInDriver(phoneNumber);
-        call.enqueue(new Callback<Driver>() {
+        Call<List<Driver>> call = chaseService.signInDriver(phoneNumber);
+        call.enqueue(new Callback<List<Driver>>() {
             @Override
-            public void onResponse(Call<Driver> call, Response<Driver> response) {
+            public void onResponse(Call<List<Driver>> call, Response<List<Driver>> response) {
                 if(response.isSuccessful()){
-                    driver.setValue(response.body());
+                    Log.d(TAG, "onResponse: " + response.body().get(0));
+                    driver.setValue(response.body().get(0));
                 } else {
-                    Log.d(TAG, "onResponse: signInDriver error " + response.errorBody());
+                    Log.d(TAG, "onResponse: signInDriver erro " + response.errorBody());
                 }
             }
 
             @Override
-            public void onFailure(Call<Driver> call, Throwable t) {
-                Log.d(TAG, "onFailure: signInDriver failure " + t.getMessage());
+            public void onFailure(Call<List<Driver>> call, Throwable t) {
+                Log.d(TAG, "onFailure: signInDriver failuure " + t.getMessage());
+                HomeViewModel.stopLoading();
             }
         });
         return driver;
@@ -442,5 +480,55 @@ public class HomeRepository {
         return supports;
     }
 
+
+    // TODO RIDE REQUEST
+    public MutableLiveData<List<RideRequest>> findUserRideRequests(String id){
+        HomeViewModel.startLoading();
+
+        final MutableLiveData<List<RideRequest>> rides = new MutableLiveData<>();
+        Call<List<RideRequest>> call = chaseService.findUserRideRequests(id);
+        call.enqueue(new Callback<List<RideRequest>>() {
+            @Override
+            public void onResponse(Call<List<RideRequest>> call, Response<List<RideRequest>> response) {
+                HomeViewModel.stopLoading();
+                if(response.isSuccessful()){
+                    Log.d(TAG, "onResponse: request body " + response.body());
+                    rides.setValue(response.body());
+                } else {
+                    Log.d(TAG, "onResponse: findUserRideRequest error " + response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<RideRequest>> call, Throwable t) {
+                HomeViewModel.stopLoading();
+                Log.d(TAG, "onFailure: findUserRideRequest failure " + t.getMessage());
+            }
+        });
+        return rides;
+    }
+
+    public MutableLiveData<List<RideRequest>> findDriverRideRequests(String id){
+        HomeViewModel.startLoading();
+
+        final MutableLiveData<List<RideRequest>> rides = new MutableLiveData<>();
+        Call<List<RideRequest>> call = chaseService.findDriverRideRequests(id);
+        call.enqueue(new Callback<List<RideRequest>>() {
+            @Override
+            public void onResponse(Call<List<RideRequest>> call, Response<List<RideRequest>> response) {
+                if(response.isSuccessful()){
+                    rides.setValue(response.body());
+                } else {
+                    Log.d(TAG, "onResponse: findDriverRideRequest error " + response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<RideRequest>> call, Throwable t) {
+                Log.d(TAG, "onFailure: findDriverRideRequest failure " + t.getMessage());
+            }
+        });
+        return rides;
+    }
 
 }

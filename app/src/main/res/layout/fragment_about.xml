@@ -1,7 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+        <ImageView
+            android:id="@+id/aboutBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_go"
+            android:layout_marginStart="8dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="About"
+            android:textSize="20sp"
+            android:fontFamily="@font/andada"
+            android:layout_marginStart="32dp"
+            android:textColor="#000"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/rateApp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#fff"
+                android:fontFamily="@font/andada"
+                android:text="@string/rate_app"
+                android:textColor="@color/cardview_dark_background"
+                android:textAllCaps="false"
+                android:textSize="20sp"
+                android:paddingStart="32dp"
+                android:paddingEnd="32dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:gravity="start"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:strokeColor="#000"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/connectFacebook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#fff"
+                android:fontFamily="@font/andada"
+                android:text="@string/facebook"
+                android:textColor="@color/cardview_dark_background"
+                android:textAllCaps="false"
+                android:textSize="20sp"
+                android:paddingStart="32dp"
+                android:paddingEnd="32dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:gravity="start"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:strokeColor="#000"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/termsAndConditions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#fff"
+                android:fontFamily="@font/andada"
+                android:text="Terms and conditions"
+                android:textColor="@color/cardview_dark_background"
+                android:textAllCaps="false"
+                android:textSize="20sp"
+                android:paddingStart="32dp"
+                android:paddingEnd="32dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:gravity="start"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:strokeColor="#000"
+                />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

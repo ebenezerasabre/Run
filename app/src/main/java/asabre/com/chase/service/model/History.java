@@ -12,6 +12,11 @@ public class History {
     private String driverId;
     @SerializedName("driverName")
     private String driverName;
+    @SerializedName("driverLat")
+    private String driverLat;
+    @SerializedName("driverLng")
+    private String driverLng;
+
     @SerializedName("userId")
     private String userId;                  // server
     @SerializedName("userName")
@@ -22,8 +27,9 @@ public class History {
     private String entryPoint;       // current coordinates          // server
     @SerializedName("exitPoint")
     private String exitPoint;        // destination coordinates       // server
+
     @SerializedName("status")
-    private String status = "";      //  finished by default
+    private String status = "";   // pending, picking, start, finish, cancel
     @SerializedName("fee")
     private String fee;         // money to be paid                 // server
     @SerializedName("date")
@@ -35,6 +41,8 @@ public class History {
     public History(String _id,
                    String driverId,
                    String driverName,
+                   String driverLat,
+                   String driverLng,
                    String userId,
                    String userName,
                    String city,
@@ -46,6 +54,8 @@ public class History {
         this._id = _id;
         this.driverId = driverId;
         this.driverName = driverName;
+        this.driverLat = driverLat;
+        this.driverLng = driverLng;
         this.userId = userId;
         this.userName = userName;
         this.city = city;
@@ -78,6 +88,22 @@ public class History {
 
     public void setDriverName(String driverName) {
         this.driverName = driverName;
+    }
+
+    public String getDriverLat() {
+        return driverLat;
+    }
+
+    public void setDriverLat(String driverLat) {
+        this.driverLat = driverLat;
+    }
+
+    public String getDriverLng() {
+        return driverLng;
+    }
+
+    public void setDriverLng(String driverLng) {
+        this.driverLng = driverLng;
     }
 
     public String getUserId() {
@@ -144,12 +170,15 @@ public class History {
         this.date = date;
     }
 
+
     @Override
     public String toString() {
         return "History{" +
                 "_id='" + _id + '\'' +
                 ", driverId='" + driverId + '\'' +
                 ", driverName='" + driverName + '\'' +
+                ", driverLat='" + driverLat + '\'' +
+                ", driverLng='" + driverLng + '\'' +
                 ", userId='" + userId + '\'' +
                 ", userName='" + userName + '\'' +
                 ", city='" + city + '\'' +

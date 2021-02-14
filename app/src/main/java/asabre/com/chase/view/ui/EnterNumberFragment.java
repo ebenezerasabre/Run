@@ -74,6 +74,14 @@ public class EnterNumberFragment extends Fragment {
 
     }
 
+    private void setButton(){
+        if(HomeViewModel.userState.contains("create")){
+            enterNumberContinue.setText(R.string._continue);
+        } else if(HomeViewModel.userState.contains("sign")){
+            enterNumberContinue.setText(R.string.sign_in);
+        }
+    }
+
     private void setSmsListener(){
         enterNumberContinue.setOnClickListener(view -> sendVerificationCode());
     }
@@ -82,12 +90,12 @@ public class EnterNumberFragment extends Fragment {
        return !enterNumber.getText().toString().isEmpty();
     }
 
-    private void sendVerificationCode(){
+    private void sendVerificationCode() {
         if(smsGranted() && getActivity() != null){
             if(fieldIsNotEmpty()){
                 showProgressDialog();
                 ReadSMS readSMS = new ReadSMS();
-                readSMS.execute();  // call AsynTask
+                readSMS.execute();  // call AsyncTask
             } else {
                 Toast.makeText(getContext(), "Field can't be empty", Toast.LENGTH_SHORT).show();
             }
@@ -170,15 +178,30 @@ public class EnterNumberFragment extends Fragment {
      @Override
      protected void onPostExecute(String s) {
          super.onPostExecute(s);
-         // set phoneNumber
-         HomeViewModel.createObject.put("phoneNumber", mPhoneNumber);
+//         if(!(s.isEmpty())){
+             // set phoneNumber
+             HomeViewModel.createObject.put("phoneNumber", mPhoneNumber);
 
-         enterNumberVerificationCode.setText(s);
-         Log.d(TAG, "onPostExecute: the string " + s);
-         dismissProgressDialog();
-         loadEnterEmailFragment();
+             enterNumberVerificationCode.setText(s);
+             Log.d(TAG, "onPostExecute: the string " + s);
+             dismissProgressDialog();
+
+             loadNext();
+//         }
      }
  }
+
+ private void loadNext(){
+     Log.d(TAG, "loadNext: ik");
+     if(HomeViewModel.userState.contains("create")){
+         Log.d(TAG, "loadNext: creating ");
+         loadEnterEmailFragment();
+     } else if(HomeViewModel.userState.contains("sign")){
+         Log.d(TAG, "loadNext: signing buddy");
+         loadSignInFragment();
+     }
+ }
+
 
  private void sendTextMessage(){
      mPhoneNumber = enterNumber.getText().toString();
@@ -195,7 +218,7 @@ public class EnterNumberFragment extends Fragment {
         return false;
     }
 
-    private void grantSMSPermission(){
+    private void grantSMSPermission() {
         if(getActivity() != null){
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.SEND_SMS}, AppConstants.SEND_SMS_PERMISSION);
         }
@@ -203,7 +226,7 @@ public class EnterNumberFragment extends Fragment {
 
 
 
-    private void showProgressDialog(){
+    private void showProgressDialog() {
         mProgressDialog = new ProgressDialog(getContext());
         mProgressDialog.setTitle("Verifying number");
         mProgressDialog.setMessage("Please wait.");
@@ -212,7 +235,7 @@ public class EnterNumberFragment extends Fragment {
 
     }
 
-    private void dismissProgressDialog(){
+    private void dismissProgressDialog() {
         if(mProgressDialog != null){
             if(mProgressDialog.isShowing()){
                 mProgressDialog.dismiss();
@@ -220,7 +243,7 @@ public class EnterNumberFragment extends Fragment {
         }
     }
 
-    private void loadEnterEmailFragment(){
+    private void loadEnterEmailFragment() {
         MainActivity.mRegProcess = MainActivity.RegistrationProcess.EMAIL;
 
         EnterEmailFragment enterEmailFragment = new EnterEmailFragment();
@@ -232,7 +255,7 @@ public class EnterNumberFragment extends Fragment {
         transaction.commit();
     }
 
-    private void loadIntroFragment(){
+    private void loadIntroFragment() {
         MainActivity.mRegProcess = MainActivity.RegistrationProcess.INTRO;
 
         IntroFragment introFragment = new IntroFragment();
@@ -242,9 +265,23 @@ public class EnterNumberFragment extends Fragment {
         transaction.replace(R.id.containerHome, introFragment);
         transaction.addToBackStack(null);
         transaction.commit();
+
+
     }
 
-    private void goBack(){
+    private void loadSignInFragment() {
+        MainActivity.mRegProcess = MainActivity.RegistrationProcess.EMAIL;
+
+        SignInFragment signInFragment = new SignInFragment();
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+        transaction.replace(R.id.containerHome, signInFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    private void goBack() {
         verifyNoBack.setOnClickListener(view -> {
             loadIntroFragment();
         });
@@ -268,6 +305,7 @@ public class EnterNumberFragment extends Fragment {
         super.onStart();
         Log.d(TAG, "onStart: number called");
         goBack();
+        setButton();
     }
 
 

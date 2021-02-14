@@ -106,8 +106,11 @@ public class EndRideFragment extends Fragment {
             mHomeViewModel.createReview(reviewObj()).observe(this, review -> {
                 hideVirtualKeyboard();
                 dismissProgressDialog();
+                setState();
                 resetViewModel();
                 loadMapFragment();
+
+
             });
         } else {
             Toast.makeText(getContext(), "Field can't be empty", Toast.LENGTH_SHORT).show();
@@ -169,6 +172,16 @@ public class EndRideFragment extends Fragment {
         HomeViewModel.mLineOptions = null;
         HomeViewModel.mPolyline = null;
         HomeViewModel.mRideRequest = new RideRequest();
+
+
+    }
+
+    private void setState(){
+        if(HomeViewModel.userState.contains("user")){
+            HomeViewModel.setViewTrack("USER_GOING_WHERE");
+        } else {
+            HomeViewModel.setViewTrack("DRIVER_GO_ONLINE");
+        }
     }
 
     @Override

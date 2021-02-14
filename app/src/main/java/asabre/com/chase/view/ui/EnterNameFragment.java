@@ -56,13 +56,15 @@ public class EnterNameFragment extends Fragment implements BaseFragment{
     }
 
     private void init(View view){
-        // initialize viewModel
-        mHomeViewModel = ViewModelProviders.of(getActivity()).get(HomeViewModel.class);
+        if(getActivity() != null) {
+            // initialize viewModel
+            mHomeViewModel = ViewModelProviders.of(getActivity()).get(HomeViewModel.class);
 
-        enterNameBack = view.findViewById(R.id.enterNameBack);
-        enterFirstName = view.findViewById(R.id.enterFirstName);
-        enterLastName = view.findViewById(R.id.enterLastName);
-        enterNameDone = view.findViewById(R.id.enterNameDone);
+            enterNameBack = view.findViewById(R.id.enterNameBack);
+            enterFirstName = view.findViewById(R.id.enterFirstName);
+            enterLastName = view.findViewById(R.id.enterLastName);
+            enterNameDone = view.findViewById(R.id.enterNameDone);
+        }
     }
 
     private void nameContinueListener(){

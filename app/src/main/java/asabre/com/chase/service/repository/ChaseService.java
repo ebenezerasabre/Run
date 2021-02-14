@@ -11,6 +11,7 @@ import asabre.com.chase.service.model.Driver;
 import asabre.com.chase.service.model.Help;
 import asabre.com.chase.service.model.History;
 import asabre.com.chase.service.model.Review;
+import asabre.com.chase.service.model.RideRequest;
 import asabre.com.chase.service.model.Support;
 import asabre.com.chase.service.model.User;
 import retrofit2.Call;
@@ -30,7 +31,7 @@ public interface ChaseService {
     Call<User> createUser(@Body HashMap<String, String> body);
 
     @GET("user/sign/{id}")
-    Call<User> signInUser(@Path("id") String id);
+    Call<List<User>> signInUser(@Path("id") String id);
 
     @GET("user/{id}")
     Call<User> findUserById(@Path("id") String id);
@@ -48,7 +49,7 @@ public interface ChaseService {
     Call<Driver> createDriver(@Body HashMap<String, String> body);
 
     @GET("driver/sign/{id}")
-    Call<Driver> signInDriver(@Path("id") String id);
+    Call<List<Driver>> signInDriver(@Path("id") String id);
 
     @GET("driver/{id}")
     Call<Driver> findDriverById(@Path("id") String id);
@@ -96,5 +97,12 @@ public interface ChaseService {
     // TODO SUPPORT
     @GET("support/")
     Call<List<Support>> findAllSupports();
+
+    // TODO RIDE REQUEST
+    @GET("ride/user/{id}")
+    Call<List<RideRequest>> findUserRideRequests(@Path("id") String id);
+
+    @GET("ride/driver/{id}")
+    Call<List<RideRequest>> findDriverRideRequests(@Path("id") String id);
 
 }

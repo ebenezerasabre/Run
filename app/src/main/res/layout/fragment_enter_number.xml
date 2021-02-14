@@ -108,23 +108,22 @@
             android:text="- - - -"
             android:gravity="center_horizontal"
             android:layout_margin="32dp"
+            android:visibility="gone"
             />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/enterNumberContinue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cornerRadius="32dp"
-            android:backgroundTint="@color/teal_200"
-            android:fontFamily="@font/alegreya"
-            android:text="continue"
-            android:textColor="@color/white"
-            android:textAllCaps="true"
             android:layout_margin="32dp"
+            android:backgroundTint="@color/teal_200"
+            android:fontFamily="@font/andada"
             android:padding="8dp"
+            android:text="continue"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
             android:textSize="20sp"
-            android:textStyle="bold"
-            />
+            app:cornerRadius="32dp" />
 
 
     </LinearLayout>

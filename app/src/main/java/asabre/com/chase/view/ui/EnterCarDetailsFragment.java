@@ -241,7 +241,6 @@ public class EnterCarDetailsFragment extends Fragment {
         transaction.replace(R.id.containerHome, openFragment);
         transaction.addToBackStack(null);
         transaction.commit();
-
     }
 
     @Override
