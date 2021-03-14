@@ -9,6 +9,7 @@ public class User implements Serializable {
 
     @SerializedName("_id")
     private String _id;
+
     @SerializedName("firstName")
     private String firstName = "";
     @SerializedName("lastName")
@@ -17,6 +18,7 @@ public class User implements Serializable {
     private String phoneNumber;
     @SerializedName("password")
     private String password;
+
     @SerializedName("email")
     private String email;
     @SerializedName("userType")
@@ -25,8 +27,14 @@ public class User implements Serializable {
     private String finishedRides = "";   // server
     @SerializedName("rating")
     private String rating = "";          // 1 - 5, // server
+
+    @SerializedName("homeLocation")
+    private String homeLocation;
+    @SerializedName("workLocation")
+    private String workLocation;
     @SerializedName("isActive")
     private String isActive = "";          // on/off ie authorized  // server
+
     @SerializedName("createdAt")
     private String createdAt;
     @SerializedName("updatedAt")
@@ -85,7 +93,6 @@ public class User implements Serializable {
     public String get_id() {
         return _id;
     }
-
     public void set_id(String _id) {
         this._id = _id;
     }
@@ -93,7 +100,6 @@ public class User implements Serializable {
     public String getFirstName() {
         return firstName;
     }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -101,7 +107,6 @@ public class User implements Serializable {
     public String getLastName() {
         return lastName;
     }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -109,7 +114,6 @@ public class User implements Serializable {
     public String getPhoneNumber() {
         return phoneNumber;
     }
-
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
@@ -117,7 +121,6 @@ public class User implements Serializable {
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -125,7 +128,6 @@ public class User implements Serializable {
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -133,7 +135,6 @@ public class User implements Serializable {
     public String getUserType() {
         return userType;
     }
-
     public void setUserType(String userType) {
         this.userType = userType;
     }
@@ -141,7 +142,6 @@ public class User implements Serializable {
     public String getFinishedRides() {
         return finishedRides;
     }
-
     public void setFinishedRides(String finishedRides) {
         this.finishedRides = finishedRides;
     }
@@ -149,15 +149,19 @@ public class User implements Serializable {
     public String getRating() {
         return rating;
     }
-
     public void setRating(String rating) {
         this.rating = rating;
     }
 
+    public String getHomeLocation() { return homeLocation; }
+    public void setHomeLocation(String homeLocation) { this.homeLocation = homeLocation; }
+
+    public String getWorkLocation() { return workLocation; }
+    public void setWorkLocation(String workLocation) { this.workLocation = workLocation; }
+
     public String getIsActive() {
         return isActive;
     }
-
     public void setIsActive(String isActive) {
         this.isActive = isActive;
     }
@@ -165,7 +169,6 @@ public class User implements Serializable {
     public String getCreatedAt() {
         return createdAt;
     }
-
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
@@ -173,7 +176,6 @@ public class User implements Serializable {
     public String getUpdatedAt() {
         return updatedAt;
     }
-
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
@@ -191,9 +193,14 @@ public class User implements Serializable {
                 ", userType='" + userType + '\'' +
                 ", finishedRides='" + finishedRides + '\'' +
                 ", rating='" + rating + '\'' +
+                ", homeLocation='" + homeLocation + '\'' +
+                ", workLocation='" + workLocation + '\'' +
                 ", isActive='" + isActive + '\'' +
                 ", createdAt='" + createdAt + '\'' +
                 ", updatedAt='" + updatedAt + '\'' +
                 '}';
     }
+
+
+
 }

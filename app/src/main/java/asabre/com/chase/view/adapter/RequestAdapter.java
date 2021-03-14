@@ -83,4 +83,6 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
     private View.OnClickListener requestDetails(RideRequest rideRequest){
         return view -> mRequestCallback.requestCallback(rideRequest);
     }
+
+
 }

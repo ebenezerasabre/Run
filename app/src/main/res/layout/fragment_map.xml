@@ -164,8 +164,6 @@
 
 
 
-
-
         <!--3-->
         <!--        ride options select-->
         <LinearLayout
@@ -285,7 +283,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Track"
+                        android:text="Truck"
                         android:textColor="#333"
                         android:textSize="20sp"
                         android:fontFamily="@font/alegreya"
@@ -420,7 +418,7 @@
             android:background="#fff"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="40dp"
-            android:visibility="visible"
+            android:visibility="gone"
             >
             <ImageView
                 android:id="@+id/rideImage"
@@ -1010,14 +1008,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_alignParentBottom="true"
-            android:visibility="gone"
+            android:visibility="visible"
             android:background="#fff"
             >
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/driverGoOnline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cornerRadius="0dp"
                 android:backgroundTint="@color/teal_200"
                 android:fontFamily="@font/andika"
                 android:text="Go online"

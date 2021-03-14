@@ -14,6 +14,7 @@ import asabre.com.chase.viewmodel.HomeViewModel;
  */
 public class RideRequest {
     private static final String TAG = "RideRequest";
+    private String _id;
 
     private String userName = "";
     private String userId = "";
@@ -59,6 +60,8 @@ public class RideRequest {
         try {
             JSONObject request = new JSONObject(jsonString);
 
+            set_id(request.getString("_id"));
+
             setUserName(request.getString("userName"));
             setUserId(request.getString("userId"));
             setUserType(request.getString("userType"));
@@ -101,6 +104,7 @@ public class RideRequest {
     // user sending request for the first time
     public String initializeRequest(){
         try {
+            initRequest.put("_id", "");
             // entryPoint = name&lat&lng
             initRequest.put("userName", HomeViewModel.userEntity.getFirstName());
             initRequest.put("userId", HomeViewModel.userEntity.get_id());
@@ -157,8 +161,9 @@ public class RideRequest {
 
     // driver sends this string anytime, only updating the rideStatus
     // save result in HomeViewModel.requestStringDetails and retrieve from there
-    public String returnRequestString(){
+    public String returnRequestString() {
         try {
+            initRequest.put("_id", get_id());
 
             initRequest.put("userName", getUserName());
             initRequest.put("userId", getUserId());
@@ -196,6 +201,8 @@ public class RideRequest {
         return initRequest.toString();
     }
 
+    public String get_id() { return _id; }
+    public void set_id(String _id) { this._id = _id; }
 
     public String getUserId() {
         return userId;

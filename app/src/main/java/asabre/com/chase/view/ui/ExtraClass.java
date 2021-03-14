@@ -16,6 +16,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -49,7 +50,7 @@ public class ExtraClass {
 
 
 /** form url for google direction api */
-    public static String getDirectionsUrl(LatLng origin, LatLng dest){
+    public static String setDirectionsUrl(LatLng origin, LatLng dest){
 
         // Origin of route
         String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
@@ -255,4 +256,40 @@ public class ExtraClass {
         return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
 
+    public static String userGoOnlineObj(){
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("userId", HomeViewModel.userEntity.get_id());
+            obj.put("userType", HomeViewModel.userEntity.getUserType());
+            obj.put("socketId", HomeViewModel.socketId);
+        } catch (JSONException e){
+            e.printStackTrace();
+        }
+        return obj.toString();
+    }
+
+    public static String driverGoOnlineObj(){
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("driverId", HomeViewModel.userEntity.get_id());
+            obj.put("userType", HomeViewModel.userEntity.getUserType());
+            obj.put("socketId", HomeViewModel.socketId);
+            obj.put("city", HomeViewModel.userEntryPoint.split("&")[0].toLowerCase());
+            obj.put("lat", HomeViewModel.userEntryPoint.split("&")[2]);
+            obj.put("lng",  HomeViewModel.userEntryPoint.split("&")[3]);
+            obj.put("rideType", "car");
+        } catch (JSONException e){
+            e.printStackTrace();
+        }
+        return obj.toString();
+    }
+
+
+
 }
+
+
+
+
+
+

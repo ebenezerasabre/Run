@@ -88,32 +88,6 @@ public class HomeRepository {
         });
         return user;
     }
-//    public MutableLiveData<User> signInUser(String phoneNumber) {
-//        HomeViewModel.startLoading();
-//
-//        final MutableLiveData<User> user = new MutableLiveData<>();
-//        Call<User> call = chaseService.signInUser(phoneNumber);
-//        call.enqueue(new Callback<User>() {
-//            @Override
-//            public void onResponse(Call<User> call, Response<User> response) {
-//                HomeViewModel.stopLoading();
-//
-//                if(response.isSuccessful()){
-//                    Log.d(TAG, "onResponse: body is " + response.body());
-//                    user.setValue(response.body());
-//                } else {
-//                    Log.d(TAG, "onResponse: signInUser error " + response.errorBody());
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<User> call, Throwable t) {
-//                Log.d(TAG, "onFailure: signInUser failure " + t.getMessage());
-//                HomeViewModel.stopLoading();
-//            }
-//        });
-//        return user;
-//    }
 
 
     public MutableLiveData<User> findUserById(String userId){

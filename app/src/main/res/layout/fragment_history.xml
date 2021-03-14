@@ -5,12 +5,19 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp"
-        >
+        android:padding="8dp">
+        <ImageView
+            android:id="@+id/aboutBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_go"
+            android:layout_marginStart="8dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -19,9 +26,11 @@
             android:fontFamily="@font/andada"
             android:layout_marginStart="32dp"
             android:textColor="#000"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
     </LinearLayout>
+
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

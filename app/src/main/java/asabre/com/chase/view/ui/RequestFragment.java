@@ -59,6 +59,7 @@ public class RequestFragment extends Fragment implements BaseFragment, RequestCa
     public void requestCallback(RideRequest rideRequest){
         Toast.makeText(getContext(), "Details", Toast.LENGTH_SHORT).show();
 
+
         HomeViewModel.mRideRequestDetails = rideRequest;
         loadRequestDetailsFragment();
     }
@@ -78,8 +79,10 @@ public class RequestFragment extends Fragment implements BaseFragment, RequestCa
             Log.d(TAG, "setViewModel: inside one");
             if(HomeViewModel.userEntity != null) {
                 if(HomeViewModel.userType.contains("user")){
+                    Log.d(TAG, "setViewModel: setting user");
                     setUserRequestModel();
                 } else if(HomeViewModel.userType.contains("driver")){
+                    Log.d(TAG, "setting driver");
                     setDriverRequestModel();
                 }
             }
@@ -88,12 +91,14 @@ public class RequestFragment extends Fragment implements BaseFragment, RequestCa
 
     private void setUserRequestModel() {
         mHomeViewModel.userRequestHistory(HomeViewModel.userEntity.get_id()).observe(this, list -> {
+            Log.d(TAG, "setUserRequestModel: list " + list);
             mRequestAdapter.loadNewData(list);
         });
     }
 
     private void setDriverRequestModel() {
         mHomeViewModel.driverRequestHistory(HomeViewModel.userEntity.get_id()).observe(this, list -> {
+            Log.d(TAG, "setDriverRequestModel: list " + list);
             mRequestAdapter.loadNewData(list);
         });
     }

@@ -32,5 +32,10 @@
     <string name="travel_history">Travel History</string>
     <string name="signup_as_driver">signup as driver</string>
     <string name="already_have_an_account">Already have an account ?</string>
+    <string name="profile">Profile</string>
+    <string name="enter_work_location">Enter work location</string>
+    <string name="ebenezerasabre_gmail_com">ebenezerasabre@gmail.com</string>
+    <string name="email">Email</string>
+    <string name="about_us">About us</string>
 
 </resources>

@@ -81,15 +81,12 @@ public class SignInFragment extends Fragment {
     }
 
     private void setUserViewModel() {
-
         mHomeViewModel.signInUser(HomeViewModel.createObject.get("phoneNumber"))
                 .observe(this, user -> {
                     Log.d(TAG, "onChanged: the user is " + user);
-//                    HomeViewModel.userType = user.getUserType();
                     HomeViewModel.userFull = new User(user);
                     saveUserData(userInfo(user));
                 });
-
     }
 
     private void setDriverViewModel() {
@@ -141,6 +138,8 @@ public class SignInFragment extends Fragment {
                     resultInfo(success, "Enjoy convenient and cheaper rides on chase");
                     loadMapFragment();
                     loadAboutFragment();
+                    loadProfileFragment();
+                    loadRequestHistoryFragment();
 
                 }
             }
@@ -219,6 +218,29 @@ public class SignInFragment extends Fragment {
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
             transaction.replace(R.id.containerAbout, aboutFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
+    }
+
+    private void loadRequestHistoryFragment(){
+        if (getActivity() != null){
+            RequestFragment requestFragment = new RequestFragment();
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+            transaction.replace(R.id.containerRequests, requestFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
+    }
+    private void loadProfileFragment(){
+        if (getActivity() != null){
+            ProfileFragment profileFragment = new ProfileFragment();
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+            transaction.replace(R.id.containerProfile, profileFragment);
             transaction.addToBackStack(null);
             transaction.commit();
         }

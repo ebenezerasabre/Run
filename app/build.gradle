@@ -48,10 +48,6 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
 
 
-    // for lifecycle methods
-    def archLifecycleVersion = '1.1.1'
-    implementation("android.arch.lifecycle:extensions:$archLifecycleVersion")
-    annotationProcessor("android.arch.lifecycle:compiler:$archLifecycleVersion")
 
     // glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
@@ -67,6 +63,10 @@ dependencies {
     implementation('com.google.code.gson:gson:2.8.5')
     implementation('com.squareup.okhttp3:logging-interceptor:3.4.1')
 
+    // for lifecycle methods
+    def archLifecycleVersion = '1.1.1'
+    implementation("android.arch.lifecycle:extensions:$archLifecycleVersion")
+    annotationProcessor("android.arch.lifecycle:compiler:$archLifecycleVersion")
 
     // room persistence library
     def room_version = "1.1.1"
@@ -87,6 +87,18 @@ dependencies {
         // excluding org.json which is provided by Android
         exclude group: 'org.json', module: 'json'
     }
+
+//    // open street map
+//    implementation 'org.osmdroid:osmdroid-android:6.1.2'
+//
+//    // osmdroid geopackage
+////    implementation 'org.osmdroid:osmdroid-geopackage:6.1.2'
+//
+//    // osmdroid wms
+//    implementation 'org.osmdroid:osmdroid-wms:6.1.2'
+//
+//    // osmdroid-mapsforge
+//    implementation 'org.osmdroid:osmdroid-mapsforge:6.1.2'
 
 
 }

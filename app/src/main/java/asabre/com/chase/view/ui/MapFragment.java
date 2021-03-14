@@ -317,18 +317,26 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
 
         Log.d(TAG, "chosenPlace: place id: " + HomeViewModel.searchedPlaceId);
         Log.d(TAG, "chosenPlace: place name: " + HomeViewModel.searchedPlaceName);
+        Log.d(TAG, "chosenPlace: place lat " + place.getLatLng().latitude);
+        Log.d(TAG, "chosenPlace: place lng " + place.getLatLng().longitude);
 
-        coordsCallChangeExp();
-    }
 
+        /**
+         * I was useing the method below coordsCallChangeExp() to download the coordinates
+         * Of a place with it's place id after selecting a a place from google place fragment
+         * But I've realised you can get the coordinates straight away so I've commented it
+         * and calling the methods after it which at first was called in
+         * DownloadTask, ParserTask , PostExecute
+         */
+        //        coordsCallChangeExp(); // uncomment this
 
-    private void hideAllViews(){
-        rideOptionsContainer.setVisibility(View.GONE);
-        mGoingWhereContainer.setVisibility(View.GONE);
-        rideRequestContainer.setVisibility(View.GONE);
-        driverArrivesContainer.setVisibility(View.GONE);
-        mEnableInternetContainer.setVisibility(View.GONE);
-//        forDriverPickingContainer.setVisibility(View.GONE);
+        HomeViewModel.myDestinationLatLng = place.getLatLng();
+        drawRoute(HomeViewModel.myLocationLatLng, HomeViewModel.myDestinationLatLng);
+        createMarkerPoints(HomeViewModel.myLocationLatLng, HomeViewModel.myDestinationLatLng);
+
+        setPoints(HomeViewModel.myDestinationLatLng, "exit");
+        HomeViewModel.setViewTrack("USER_RIDE_OPTIONS"); // set driver view
+
     }
 
 
@@ -383,9 +391,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
                         Log.d(TAG, "initSocket: pending request is " + pendingRequestString);
                         passRequestString(pendingRequestString, "targetDriver");
                     });
-
-
             mSocket.connect();
+
         } catch (URISyntaxException e){
             e.printStackTrace();
         }
@@ -395,43 +402,49 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
 // union systems
 
 
+    /**
+     * I've moved these methods to ExtraClass
+     * @return
+     */
     private String userGoOnlineObj(){
         JSONObject obj = new JSONObject();
-        try {
-            obj.put("userId", HomeViewModel.userEntity.get_id());
-            obj.put("userType", HomeViewModel.userEntity.getUserType());
-            obj.put("socketId", HomeViewModel.socketId);
-        } catch (JSONException e){
-            e.printStackTrace();
-        }
+//        try {
+//            obj.put("userId", HomeViewModel.userEntity.get_id());
+//            obj.put("userType", HomeViewModel.userEntity.getUserType());
+//            obj.put("socketId", HomeViewModel.socketId);
+//        } catch (JSONException e){
+//            e.printStackTrace();
+//        }
         return obj.toString();
     }
 
     private String driverGoOnlineObj(){
         JSONObject obj = new JSONObject();
-        try {
-            obj.put("driverId", HomeViewModel.userEntity.get_id());
-            obj.put("userType", HomeViewModel.userEntity.getUserType());
-            obj.put("socketId", HomeViewModel.socketId);
-            obj.put("city", HomeViewModel.userEntryPoint.split("&")[0].toLowerCase());
-            obj.put("lat", HomeViewModel.userEntryPoint.split("&")[2]);
-            obj.put("lng",  HomeViewModel.userEntryPoint.split("&")[3]);
-            obj.put("rideType", "car");
-        } catch (JSONException e){
-            e.printStackTrace();
-        }
+//        try {
+//            obj.put("driverId", HomeViewModel.userEntity.get_id());
+//            obj.put("userType", HomeViewModel.userEntity.getUserType());
+//            obj.put("socketId", HomeViewModel.socketId);
+//            obj.put("city", HomeViewModel.userEntryPoint.split("&")[0].toLowerCase());
+//            obj.put("lat", HomeViewModel.userEntryPoint.split("&")[2]);
+//            obj.put("lng",  HomeViewModel.userEntryPoint.split("&")[3]);
+//            obj.put("rideType", "car");
+//        } catch (JSONException e){
+//            e.printStackTrace();
+//        }
         return obj.toString();
     }
 
     private void goOnline(){
         if(HomeViewModel.userType.contains("user")){
-            mSocket.emit("userOnline", userGoOnlineObj())
+//            mSocket.emit("userOnline", userGoOnlineObj())
+            mSocket.emit("userOnline", ExtraClass.userGoOnlineObj())
                     .on("userOnline", args -> {
                         Log.d(TAG, "initSocket: userOnline with " + args[0]);
                     });
         }
         if(HomeViewModel.userType.contains("driver")){
-            mSocket.emit("driverOnline", driverGoOnlineObj())
+//            mSocket.emit("driverOnline", driverGoOnlineObj())
+            mSocket.emit("driverOnline", ExtraClass.driverGoOnlineObj())
                     .on("driverOnline", args -> {
                         Log.d(TAG, "driverGoOnline: with " + args[0]);
                     });
@@ -524,27 +537,47 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
             setRideImage("longVehicle");
             HomeViewModel.setViewTrack("USER_RIDE_REQUEST");
         });
-//        truckOption.setOnClickListener(view -> {
-//            HomeViewModel.rideType = "car";
-//            userRequestRide();
-//            setRideImage("truck");
-//            HomeViewModel.setViewTrack("USER_RIDE_REQUEST");
-//        });
-//        vanOption.setOnClickListener(view -> {
-//            HomeViewModel.rideType = "car";
-//            userRequestRide();
-//            setRideImage("van");
-//            HomeViewModel.setViewTrack("USER_RIDE_REQUEST");
-//        });
+        truckOption.setOnClickListener(view -> {
+            HomeViewModel.rideType = "car";
+            userRequestRide();
+            setRideImage("truck");
+            HomeViewModel.setViewTrack("USER_RIDE_REQUEST");
+        });
+        vanOption.setOnClickListener(view -> {
+            HomeViewModel.rideType = "car";
+            userRequestRide();
+            setRideImage("van");
+            HomeViewModel.setViewTrack("USER_RIDE_REQUEST");
+        });
     }
 
     private void driverEmittingSignals() {
 
     }
 
+    @Override
+    public void onAttach(@NonNull Activity activity) {
+        super.onAttach(activity);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
 
 
     // TODO DRIVER METHODS
+
+    private void driverEarnings(){
+        driverShowEarning.setOnClickListener(view -> {
+
+        });
+    }
+    private void driverRatings(){
+        driverShowCurrentRating.setOnClickListener(view -> {
+
+        });
+    }
 
 
     private void showDriverUserDetails(){
@@ -570,6 +603,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
 //            driverAcceptActions();
 //            waitingForAccept.setVisibility(View.GONE);
 
+
+
             HomeViewModel.setViewTrack("DRIVER_ACCEPT_RIDE");
         });
 
@@ -584,6 +619,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
 //            driverFinisActions();
 //            showDriverGoOnline();
 
+            clearGoogleMap();
             HomeViewModel.setViewTrack("DRIVER_END_RIDE");
         });
 
@@ -660,6 +696,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
                 loadEnterNumberFragment();
                 break;
             case "Sign-out":
+//                clearFragments();
                 clearDatabase();
                 break;
             case "News":
@@ -1000,7 +1037,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
             if (mMarkerPoints.size() > 1) {
                 mMarkerPoints.clear();
 //                mGoogleMap.clear();
-                HomeViewModel.mGoogleMap.clear();
+//                HomeViewModel.mGoogleMap.clear();
+                clearGoogleMap();
             }
 //            if (HomeViewModel.mMarkerPoints.size() > 1) {
 //                HomeViewModel.mMarkerPoints.clear();
@@ -1046,12 +1084,15 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
         });
     }
 
+    private void clearGoogleMap(){
+        HomeViewModel.mGoogleMap.clear();
+    }
 
     private void drawRoute(LatLng origin, LatLng destination) {
         // Getting URL to the Google Direction API
 //        String url = getDirectionsUrl(mOrigin, mDestination);
 //        String url = getDirectionsUrl(origin, destination);
-        String url = ExtraClass.getDirectionsUrl(origin, destination);
+        String url = ExtraClass.setDirectionsUrl(origin, destination);
         DownloadTask downloadTask = new DownloadTask();
         // Start downloading json data from Google Direction API
         downloadTask.execute(url);
@@ -1102,7 +1143,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
 
                 moveCamera(currentLocationCoords, AppConstants.DEFAULT_ZOOM, "My location");
 
-                Toast.makeText(getContext(), "Location has changed", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "Location has changed", Toast.LENGTH_SHORT).show();
 
 //                if (mGoogleMap != null && getContext() !=null) {
                 if(HomeViewModel.mGoogleMap != null && getContext() != null){
@@ -1160,7 +1201,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
                             Log.d(TAG, "setPoints: called address");
                             Address address = addresses.get(0);
                             String locality = address.getLocality().toLowerCase(Locale.US);
-                            String subLocality =  null == address.getSubLocality() ? address.getSubLocality().toLowerCase(Locale.US) : "empty"; // gets null sometimes
+                            String subLocality =  null != address.getSubLocality() ? address.getSubLocality().toLowerCase(Locale.US) : "empty"; // gets null sometimes
                             String lat = String.valueOf(latLng.latitude);
                             String lng = String.valueOf(latLng.longitude);
 
@@ -1447,7 +1488,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
         if(!Places.isInitialized()){
             Places.initialize(getContext(), AppConstants.API_KEY);
         }
-        List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME);
+        List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG);
 
         // start the autocomplete intent
         Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields).build(getContext());
@@ -1505,10 +1546,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
 
 
     private void restartActivity(){
-        tryAgain.setOnClickListener(view -> {
+        if(getActivity() != null){
             Intent intent = getActivity().getIntent();
             getActivity().finish();
             startActivity(intent);
+        }
+    }
+
+    private void setTryAgain(){
+        tryAgain.setOnClickListener(view -> {
+            restartActivity();
         });
     }
 
@@ -1519,7 +1566,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
         return connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
                 connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED;
     }
-
 
 
     private void updateUser(String msg){
@@ -1592,16 +1638,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
     }
 
 
-//    private void showDriverContainer(){
-//        setUserContainerVisibility(
-//                rideRequestContainer,
-//                mGoingWhereContainer,
-//                mEnableInternetContainer,
-//                rideOptionsContainer,
-//                driverArrivesContainer);
-//
-//        toggleDriverWidgets();
-//    }
 
 
     private void showDriverGoOnline(){
@@ -1700,7 +1736,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
 
         containerListeners();
         goingWHereListener();
-        restartActivity();
+        setTryAgain();
         userEmittingSignals();
 
         callUser();
@@ -1816,8 +1852,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
                         showDriverGoOnline();
                         break;
                     case "DRIVER_ACCEPT_RIDE":
+
                         showDriverStartRide();
                         driverAcceptActions();
+                        Log.d(TAG, "details from driver " + HomeViewModel.mRideRequest);
                         waitingForAccept.setVisibility(View.GONE);
                         break;
                     case "DRIVER_START_RIDE":
@@ -1844,8 +1882,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
 
 
 
-
     private void clearDatabase(){
+        HomeViewModel.reset();
+
         class ClearDatabase extends AsyncTask<Void, Void, Void>{
             @Override
             protected Void doInBackground(Void... voids) {
@@ -1906,6 +1945,48 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
 
 
 
+    private void clearFragments(){
+        loadAboutFragment();
+        loadProfileFragment();
+        loadRequestHistoryFragment();
+    }
+
+
+    private void loadAboutFragment(){
+        if (getActivity() != null){
+            AboutFragment aboutFragment = new AboutFragment();
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+            transaction.replace(R.id.containerAbout, aboutFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
+    }
+
+    private void loadRequestHistoryFragment(){
+        if (getActivity() != null){
+            RequestFragment requestFragment = new RequestFragment();
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+            transaction.replace(R.id.containerRequests, requestFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
+    }
+    private void loadProfileFragment(){
+        if (getActivity() != null){
+            ProfileFragment profileFragment = new ProfileFragment();
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+            transaction.replace(R.id.containerProfile, profileFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
+    }
+
 
 
     @Override
@@ -1913,7 +1994,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
         super.onPause();
         Log.d(TAG, "onPause: called");
         mMapView.onPause();
-
     }
 
     @Override
@@ -1921,7 +2001,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
         super.onStop();
         Log.d(TAG, "onStop: called");
         mMapView.onStop();
-
     }
 
     @Override
@@ -1929,7 +2008,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
         super.onLowMemory();
         Log.d(TAG, "onLowMemory: called");
         mMapView.onLowMemory();
-
     }
 
     @Override
@@ -1937,9 +2015,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
         super.onDestroy();
         Log.d(TAG, "onDestroy: called");
         mMapView.onDestroy();
-
     }
-
 
 
 }

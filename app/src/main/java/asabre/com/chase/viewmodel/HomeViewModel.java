@@ -33,6 +33,56 @@ import asabre.com.chase.service.model.UserOnline;
 import asabre.com.chase.service.repository.HomeRepository;
 
 public class HomeViewModel extends ViewModel {
+
+
+//    private static HomeViewModel instance = null;
+//    public static void resetViewModel(){ instance = null; }
+//    public static HomeViewModel getInstance(){
+//        if(instance == null){ instance = new HomeViewModel(); }
+//        return instance;
+//    }
+
+
+    public static void reset(){
+        searchedPlaceId = "";
+        searchedPlaceName = "";
+
+//        myLocationLatLng = null;
+//        myDestinationLatLng = null;
+        socketId = "";
+
+        userEntryPoint = "";
+        userExitPoint = "";
+
+        createObject = new HashMap<>();
+        userFull = new User();
+        driverFull = new Driver();
+
+
+        userEntity = new UserEntity();
+        userType = "";
+        rideType = "";
+        rideState = "";
+        driverHasRequest = false;
+
+        countStart = 0;
+        countFinish = 0;
+
+
+
+        // google map
+//        mGoogleMap = null;
+//        mLineOptions = new PolylineOptions();
+//        mPolyline = null;
+
+        // track data loading
+        isLoading = new MutableLiveData<>();
+        mapIsReady = new MutableLiveData<>();
+        mViewTrack = new MutableLiveData<>();
+
+    }
+
+
     private static final String TAG = HomeViewModel.class.getSimpleName();
     private HomeRepository mHomeRepository;
 
@@ -88,9 +138,9 @@ public class HomeViewModel extends ViewModel {
 
 
     // for google map
-    public static GoogleMap mGoogleMap;
+    public static GoogleMap mGoogleMap = null;
     public static PolylineOptions mLineOptions = new PolylineOptions();
-    public static Polyline mPolyline;
+    public static Polyline mPolyline = null;
 
 
     // track data loading
@@ -142,7 +192,7 @@ public class HomeViewModel extends ViewModel {
 
 
     // TODO ABOUT
-    public void setAbout(){about = mHomeRepository.findAllAbouts(); }
+    public void setAbout(){ about = mHomeRepository.findAllAbouts(); }
     public LiveData<List<About>> getAbouts(){ return about; }
 
     // TODO HELP

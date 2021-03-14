@@ -6,40 +6,62 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <LinearLayout
+<!--    <org.osmdroid.views.MapView-->
+<!--        android:id="@+id/osm_map"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:clickable="true"-->
+<!--        android:focusable="true" />-->
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="8dp"
-        >
-        <ImageView
-            android:id="@+id/rideDetailsBack"
-            android:layout_width="wrap_content"
+        android:layout_height="350dp">
+        <LinearLayout
+            android:id="@+id/profileTop"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_go"
-            android:layout_marginStart="8dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/travel_details"
-            android:textSize="20sp"
-            android:fontFamily="@font/andada"
-            android:layout_marginStart="32dp"
-            android:textColor="#000"
-            android:textStyle="bold" />
-    </LinearLayout>
+            android:orientation="horizontal"
+            android:padding="8dp"
+            >
+            <ImageView
+                android:id="@+id/rideDetailsBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_go"
+                android:layout_marginStart="8dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/travel_details"
+                android:textSize="20sp"
+                android:fontFamily="@font/andada"
+                android:layout_marginStart="32dp"
+                android:textColor="#000"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/requestMapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            />
+
+    </RelativeLayout>
+
 
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="8dp">
+        android:layout_height="wrap_content"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_margin="8dp"
             android:background="@drawable/bback"
+            android:padding="8dp"
+            android:layout_marginBottom="20dp"
             >
             <TextView
                 android:id="@+id/endRideStartPoint"
@@ -165,6 +187,7 @@
                 android:textColor="#333"
                 android:padding="8dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginBottom="30dp"
                 app:drawableEndCompat="@drawable/go_arrow" />
 
         </LinearLayout>

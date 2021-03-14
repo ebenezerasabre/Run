@@ -9,8 +9,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import asabre.com.chase.R;
+import asabre.com.chase.service.model.Driver;
+import asabre.com.chase.service.model.User;
 import asabre.com.chase.service.model.UserEntity;
 import asabre.com.chase.service.repository.DatabaseClient;
 import asabre.com.chase.viewmodel.HomeViewModel;
@@ -154,6 +157,7 @@ public class MainActivity extends AppCompatActivity implements
         } else {
             Log.d(TAG, "getCustomerData: userEntity is not null");
             // user is already logged in
+           loadUserDriverFull();
             loadMapFragment();
 //            loadRequestFragment();
         }
@@ -163,10 +167,26 @@ public class MainActivity extends AppCompatActivity implements
     private void loadUserDriverFull(){
         mHomeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         mHomeViewModel.init();
+
         if(HomeViewModel.userType.contains("user")){
             mHomeViewModel.setFindUserById(HomeViewModel.userEntity.get_id());
+            mHomeViewModel.getFindUserById().observe(this, new Observer<User>() {
+                @Override
+                public void onChanged(User user) {
+                    Log.d(TAG, "onChanged: getting userFull " + user);
+                    HomeViewModel.userFull = user;
+                }
+            });
+
         } else if(HomeViewModel.userType.contains("driver")){
             mHomeViewModel.setFindDriverById(HomeViewModel.userEntity.get_id());
+            mHomeViewModel.getFindDriverById().observe(this, new Observer<Driver>() {
+                @Override
+                public void onChanged(Driver driver) {
+                    Log.d(TAG, "onChanged: getting driverFull " + driver);
+                    HomeViewModel.driverFull = driver;
+                }
+            });
         }
     }
 
@@ -183,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements
 
 
     private void startRegistering(){
-        switch (mRegProcess){
+        switch (mRegProcess) {
             case INTRO:
                 loadIntroFragment();
                 break;
@@ -212,8 +232,6 @@ public class MainActivity extends AppCompatActivity implements
     public boolean requireContext() {
         return getApplicationContext() != null;
     }
-
-
 
 
     private void loadProfileFragment(){
@@ -395,12 +413,7 @@ public class MainActivity extends AppCompatActivity implements
     private void loadMapFragment(){
         if(gpsIsOn()){
             MapFragment mapFragment = new MapFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-            transaction.replace(R.id.containerHome, mapFragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
+             getSupportFragmentManager().beginTransaction().replace(R.id.containerHome, mapFragment).commit();
 
             loadRequestFragment();
             loadAboutFragment();
@@ -412,13 +425,9 @@ public class MainActivity extends AppCompatActivity implements
 
     private void loadRequestFragment(){
             RequestFragment requestFragment = new RequestFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-            transaction.replace(R.id.containerRequests, requestFragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
-
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.containerRequests, requestFragment).commit();
     }
 
     private void loadEnterNameFragment(){
@@ -473,15 +482,14 @@ public class MainActivity extends AppCompatActivity implements
 
     private void loadAboutFragment(){
             AboutFragment aboutFragment = new AboutFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-            transaction.replace(R.id.containerAbout, aboutFragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
+             getSupportFragmentManager().beginTransaction().replace(R.id.containerAbout, aboutFragment).commit();
+//            FragmentManager fragmentManager = getSupportFragmentManager();
+//            FragmentTransaction transaction = fragmentManager.beginTransaction();
+//            transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+//            transaction.replace(R.id.containerAbout, aboutFragment);
+//            transaction.addToBackStack(null);
+//            transaction.commit();
     }
-
-
 
 
 
@@ -603,6 +611,7 @@ public class MainActivity extends AppCompatActivity implements
                 ProfileFrame(),ProfileDetailsFrame(),ProfileExtraFrame()
         );
     }
+
     private void setAboutExtraVisible(){
         setVisibility(
                 AboutExtraFrame(), AboutFrame(),AboutDetailsFrame(),
@@ -620,6 +629,7 @@ public class MainActivity extends AppCompatActivity implements
                 HomeFrame(),HomeDetailsFrame(),HomeExtraFrame()
         );
     }
+
     private void setProfileDetailsVisible(){
         setVisibility(
                 ProfileDetailsFrame(),ProfileExtraFrame(),ProfileFrame(),
@@ -628,7 +638,8 @@ public class MainActivity extends AppCompatActivity implements
                 HomeDetailsFrame(),HomeExtraFrame(),HomeFrame()
         );
     }
-    private void setProfileExtraVisible(){
+
+    private void setProfileExtraVisible() {
         setVisibility(
                 ProfileExtraFrame(),ProfileFrame(),ProfileDetailsFrame(),
                 AboutExtraFrame(), AboutFrame(),AboutDetailsFrame(),
@@ -636,7 +647,6 @@ public class MainActivity extends AppCompatActivity implements
                 HomeExtraFrame(),HomeFrame(),HomeDetailsFrame()
         );
     }
-
 
 
     private void setVisibility(View v1, View v2, View v3,
@@ -664,6 +674,8 @@ public class MainActivity extends AppCompatActivity implements
     private View ProfileFrame(){return findViewById(R.id.containerProfile);}
     private View ProfileDetailsFrame(){return findViewById(R.id.containerProfileDetails);}
     private View ProfileExtraFrame(){return findViewById(R.id.containerProfileExtra);}
+
+
 
 
 
