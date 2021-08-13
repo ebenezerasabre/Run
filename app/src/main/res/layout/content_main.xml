@@ -9,7 +9,7 @@
 
 <!--     TODO HOME-->
     <FrameLayout
-        android:id="@+id/containerHome"
+        android:id="@+id/conHome"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -37,7 +37,7 @@
 
 <!--    TODO HISTORY-->
     <FrameLayout
-        android:id="@+id/containerRequests"
+        android:id="@+id/conHistory"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -46,7 +46,7 @@
         android:visibility="gone"
         />
     <FrameLayout
-        android:id="@+id/containerHistoryDetails"
+        android:id="@+id/conHistoryDetails"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -55,7 +55,7 @@
         android:visibility="gone"
         />
     <FrameLayout
-        android:id="@+id/containerHistoryExtra"
+        android:id="@+id/conRequestExtra"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -67,7 +67,7 @@
 
 <!--    // TODO ABOUT-->
     <FrameLayout
-        android:id="@+id/containerAbout"
+        android:id="@+id/conAbout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -76,7 +76,7 @@
         android:visibility="gone"
         />
     <FrameLayout
-        android:id="@+id/containerAboutDetails"
+        android:id="@+id/conAboutDetails"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintLeft_toLeftOf="parent"

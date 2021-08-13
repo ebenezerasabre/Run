@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
@@ -195,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-        transaction.replace(R.id.containerHome, introFragment);
+        transaction.replace(R.id.conHome, introFragment);
         transaction.addToBackStack(null);
         transaction.commit();
 
@@ -413,7 +414,7 @@ public class MainActivity extends AppCompatActivity implements
     private void loadMapFragment(){
         if(gpsIsOn()){
             MapFragment mapFragment = new MapFragment();
-             getSupportFragmentManager().beginTransaction().replace(R.id.containerHome, mapFragment).commit();
+             getSupportFragmentManager().beginTransaction().replace(R.id.conHome, mapFragment).commit();
 
             loadRequestFragment();
             loadAboutFragment();
@@ -424,10 +425,11 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void loadRequestFragment(){
-            RequestFragment requestFragment = new RequestFragment();
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.containerRequests, requestFragment).commit();
+        mHistoryTrack = HistoryTrack.HISTORY;
+        RequestFragment requestFragment = new RequestFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.conHistory, requestFragment).commit();
     }
 
     private void loadEnterNameFragment(){
@@ -435,7 +437,7 @@ public class MainActivity extends AppCompatActivity implements
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-        transaction.replace(R.id.containerHome, confirmName);
+        transaction.replace(R.id.conHome, confirmName);
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -445,7 +447,7 @@ public class MainActivity extends AppCompatActivity implements
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-        transaction.replace(R.id.containerHome, enterNumberFragment);
+        transaction.replace(R.id.conHome, enterNumberFragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -455,7 +457,7 @@ public class MainActivity extends AppCompatActivity implements
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-        transaction.replace(R.id.containerHome, enterEmailFragment);
+        transaction.replace(R.id.conHome, enterEmailFragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -465,7 +467,7 @@ public class MainActivity extends AppCompatActivity implements
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-        transaction.replace(R.id.containerHome, openFragment);
+        transaction.replace(R.id.conHome, openFragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -475,20 +477,22 @@ public class MainActivity extends AppCompatActivity implements
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-        transaction.replace(R.id.containerHome, carDetailsFragment);
+        transaction.replace(R.id.conHome, carDetailsFragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
 
     private void loadAboutFragment(){
-            AboutFragment aboutFragment = new AboutFragment();
-             getSupportFragmentManager().beginTransaction().replace(R.id.containerAbout, aboutFragment).commit();
-//            FragmentManager fragmentManager = getSupportFragmentManager();
-//            FragmentTransaction transaction = fragmentManager.beginTransaction();
-//            transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-//            transaction.replace(R.id.containerAbout, aboutFragment);
-//            transaction.addToBackStack(null);
-//            transaction.commit();
+         mAboutTrack = AboutTrack.ABOUT;
+
+        AboutFragment aboutFragment = new AboutFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.conAbout, aboutFragment).commit();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+        transaction.replace(R.id.conAbout, aboutFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
 
@@ -542,6 +546,8 @@ public class MainActivity extends AppCompatActivity implements
         super.onPause();
         Log.d(TAG, "onPause: main called");
     }
+
+
 
 
     private void setHomeVisible(){
@@ -659,16 +665,16 @@ public class MainActivity extends AppCompatActivity implements
     }
 
 
-    private View HomeFrame(){return findViewById(R.id.containerHome);}
+    private View HomeFrame(){return findViewById(R.id.conHome);}
     private View HomeDetailsFrame(){ return findViewById(R.id.containerHomeDetails);}
     private View HomeExtraFrame(){return findViewById(R.id.containerHomeExtra);}
 
-    private View HistoryFrame(){return findViewById(R.id.containerRequests);}
-    private View HistoryDetailsFrame(){return findViewById(R.id.containerHistoryDetails);}
-    private View HistoryExtraFrame(){return findViewById(R.id.containerHistoryExtra);}
+    private View HistoryFrame(){return findViewById(R.id.conHistory);}
+    private View HistoryDetailsFrame(){return findViewById(R.id.conHistoryDetails);}
+    private View HistoryExtraFrame(){return findViewById(R.id.conRequestExtra);}
 
-    private View AboutFrame(){return findViewById(R.id.containerAbout);}
-    private View AboutDetailsFrame(){return findViewById(R.id.containerAboutDetails);}
+    private View AboutFrame(){return findViewById(R.id.conAbout);}
+    private View AboutDetailsFrame(){return findViewById(R.id.conAboutDetails);}
     private View AboutExtraFrame(){return findViewById(R.id.containerAboutExtra);}
 
     private View ProfileFrame(){return findViewById(R.id.containerProfile);}
@@ -676,6 +682,42 @@ public class MainActivity extends AppCompatActivity implements
     private View ProfileExtraFrame(){return findViewById(R.id.containerProfileExtra);}
 
 
+    private void setTrackSpecific(){
+
+    }
+
+    private void setTrackMain(){
+        switch (mTrackMain){
+            case HOME:
+                break;
+            case HISTORY:
+                break;
+            case ABOUT:
+                break;
+            case PROFILE:
+                break;
+            default:
+                // do nothing
+                break;
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(mTrackMain == TrackMain.HOME && mHomeTrack == HomeTrack.HOME){
+            super.onBackPressed();
+        }
+        TellFragmentsBackIsPressed();
+    }
+
+    private void TellFragmentsBackIsPressed(){
+        List<Fragment> fragments = getSupportFragmentManager().getFragments();
+        for(Fragment f : fragments){
+            if(f instanceof BaseFragment){
+                ((BaseFragment)f).onBackPressed();
+            }
+        }
+    }
 
 
 

@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
@@ -19,7 +18,7 @@ import androidx.lifecycle.ViewModelProviders;
 import asabre.com.chase.R;
 import asabre.com.chase.viewmodel.HomeViewModel;
 
-public class AboutFragment extends Fragment implements BaseFragment {
+public class AboutFragment extends Fragment {
     private static final String TAG = AboutFragment.class.getSimpleName();
 
     private ImageView aboutBack;
@@ -53,19 +52,15 @@ public class AboutFragment extends Fragment implements BaseFragment {
         resetButtons();
     }
 
-    @Override
-    public void onBackPressed() {
 
-    }
 
     private void listeners(){
 
         aboutBack.setOnClickListener(view -> {
             goBack();
-
         });
         aboutUs.setOnClickListener(view -> {
-            loadAboutUsFragment();
+            setVisibility();
         });
         rateApp.setOnClickListener(view -> {
 
@@ -76,7 +71,6 @@ public class AboutFragment extends Fragment implements BaseFragment {
         termsAndConditions.setOnClickListener(view -> {
 
         });
-
     }
 
     private void resetButtons(){
@@ -102,14 +96,26 @@ public class AboutFragment extends Fragment implements BaseFragment {
     }
 
 
+    private void setVisibility(){
+        if(getActivity() != null){
+            Log.d(TAG, "setVisibility: Going back to About");
+            MainActivity.mAboutTrack= MainActivity.AboutTrack.ABOUT_DETAILS;
+
+            getActivity().findViewById(R.id.conAbout).setVisibility(View.GONE);
+            getActivity().findViewById(R.id.conAboutDetails).setVisibility(View.VISIBLE);
+
+            loadAboutUsFragment();
+        }
+    }
+
+
     private void loadAboutUsFragment(){
         if(getActivity() != null){
             AboutUsFragment aboutUsFragment = new AboutUsFragment();
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-            transaction.replace(R.id.containerAbout, aboutUsFragment);
+            transaction.replace(R.id.conAboutDetails, aboutUsFragment);
             transaction.addToBackStack("aboutUsFragment");
             transaction.commit();
         }
@@ -118,21 +124,13 @@ public class AboutFragment extends Fragment implements BaseFragment {
 
     private void goBack(){
         if(getActivity() != null){
-//            AboutFragment aboutUsFragment = new AboutFragment();
-            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//            fragmentManager.popBackStack("aboutUsFragment", 0);
-//
-//            Log.d(TAG, "goBack: hello");
+            MainActivity.mTrackMain = MainActivity.TrackMain.HOME;
+            getActivity().findViewById(R.id.conHome).setVisibility(View.VISIBLE);
+            getActivity().findViewById(R.id.conAbout).setVisibility(View.GONE);
 
-            Toast.makeText(getContext(), "nothing", Toast.LENGTH_SHORT).show();
-
-
-//            FragmentTransaction transaction = fragmentManager.beginTransaction();
-//            transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-//            transaction.replace(R.id.containerAbout, aboutUsFragment);
-//            transaction.addToBackStack(null);
-//            transaction.commit();
         }
     }
+
+
 
 }

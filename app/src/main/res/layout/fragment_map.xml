@@ -45,7 +45,6 @@
         android:id="@+id/userRelativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible"
         android:layout_marginBottom="40dp"
         >
 
@@ -58,13 +57,13 @@
             android:padding="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bback"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="34dp"
-            android:visibility="gone"
+            android:visibility="visible"
             >
+<!--            android:background="@drawable/bback"-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -83,7 +82,7 @@
                 app:cornerRadius="32dp"
                 android:backgroundTint="@color/teal_200"
                 android:fontFamily="@font/andika"
-                android:text="Search destination"
+                android:text="@string/search_destination"
                 android:textColor="@color/white"
                 android:textAllCaps="true"
                 android:layout_margin="16dp"
@@ -138,7 +137,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Can't connect to internet. Please check your network settings and try again"
+                android:text="@string/can_t_connect_to_internet_please_check_your_network_settings_and_try_again"
                 android:textSize="18sp"
                 android:textColor="#474747"
                 android:fontFamily="@font/alegreya"
@@ -955,7 +954,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:weightSum="5"
-            android:background="#707070"
             android:layout_alignParentBottom="true"
             android:visibility="gone"
             >
@@ -965,7 +963,7 @@
                 android:layout_height="wrap_content"
                 android:text="4 mins"
                 android:fontFamily="@font/alegreya"
-                android:textColor="#fff"
+                android:textColor="#333"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 android:layout_marginStart="32dp"
@@ -976,7 +974,7 @@
                 android:layout_height="wrap_content"
                 android:text="Atimatim"
                 android:fontFamily="@font/andika"
-                android:textColor="#fff"
+                android:textColor="#333"
                 android:textSize="18sp"
                 android:layout_marginStart="32dp"
                 />
@@ -984,7 +982,7 @@
                 android:id="@+id/endDriverEndRide"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cornerRadius="8dp"
+                app:cornerRadius="32dp"
                 android:backgroundTint="#ed2939"
                 android:fontFamily="@font/andika"
                 android:text="End ride"
@@ -1008,7 +1006,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_alignParentBottom="true"
-            android:visibility="visible"
+            android:visibility="gone"
             android:background="#fff"
             >
             <com.google.android.material.button.MaterialButton

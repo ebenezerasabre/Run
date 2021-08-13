@@ -72,7 +72,7 @@ public class IntroFragment extends Fragment {
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-            transaction.replace(R.id.containerHome, enterNumberFragment);
+            transaction.replace(R.id.conHome, enterNumberFragment);
             transaction.addToBackStack(null);
             transaction.commit();
         }

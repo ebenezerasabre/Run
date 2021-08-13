@@ -3,7 +3,6 @@ package asabre.com.chase.view.ui;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,11 +21,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
 import asabre.com.chase.R;
-import asabre.com.chase.service.model.Review;
 import asabre.com.chase.service.model.RideRequest;
 import asabre.com.chase.viewmodel.HomeViewModel;
 
@@ -162,7 +158,7 @@ public class EndRideFragment extends Fragment {
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-            transaction.replace(R.id.containerHome, mapFragment);
+            transaction.replace(R.id.conHome, mapFragment);
             transaction.addToBackStack(null);
             transaction.commit();
         }

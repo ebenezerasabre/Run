@@ -23,7 +23,7 @@ import asabre.com.chase.view.adapter.RequestAdapter;
 import asabre.com.chase.view.callback.RequestCallback;
 import asabre.com.chase.viewmodel.HomeViewModel;
 
-public class RequestFragment extends Fragment implements BaseFragment, RequestCallback {
+public class RequestFragment extends Fragment implements RequestCallback {
     private static final String TAG = RequestFragment.class.getSimpleName();
 
     private RequestAdapter mRequestAdapter;
@@ -58,17 +58,10 @@ public class RequestFragment extends Fragment implements BaseFragment, RequestCa
     @Override
     public void requestCallback(RideRequest rideRequest){
         Toast.makeText(getContext(), "Details", Toast.LENGTH_SHORT).show();
-
-
+        Log.d(TAG, "history details");
         HomeViewModel.mRideRequestDetails = rideRequest;
-        loadRequestDetailsFragment();
+        setVisibility();
     }
-
-    @Override
-    public void onBackPressed() {
-
-    }
-
 
 
 
@@ -111,12 +104,22 @@ public class RequestFragment extends Fragment implements BaseFragment, RequestCa
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-            transaction.replace(R.id.containerRequests, requestDetailsFragment);
+            transaction.replace(R.id.conHistoryDetails, requestDetailsFragment);
             transaction.addToBackStack(null);
             transaction.commit();
         }
     }
 
+    private void setVisibility(){
+        if(getActivity() != null){
+            Log.d(TAG, "Going to request details");
+            MainActivity.mHistoryTrack = MainActivity.HistoryTrack.HISTORY_DETAILS;
+            getActivity().findViewById(R.id.conHistory).setVisibility(View.GONE);
+            getActivity().findViewById(R.id.conHistoryDetails).setVisibility(View.VISIBLE);
+
+            loadRequestDetailsFragment();
+        }
+    }
 
 
 

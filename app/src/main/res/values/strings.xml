@@ -37,5 +37,6 @@
     <string name="ebenezerasabre_gmail_com">ebenezerasabre@gmail.com</string>
     <string name="email">Email</string>
     <string name="about_us">About us</string>
+    <string name="can_t_connect_to_internet_please_check_your_network_settings_and_try_again">Can\'t connect to internet. Please check your network settings and try again</string>
 
 </resources>

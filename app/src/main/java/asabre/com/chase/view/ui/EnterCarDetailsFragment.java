@@ -23,11 +23,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import asabre.com.chase.R;
 import asabre.com.chase.service.model.Driver;
-import asabre.com.chase.service.model.User;
 import asabre.com.chase.service.model.UserEntity;
 import asabre.com.chase.service.repository.DatabaseClient;
 import asabre.com.chase.viewmodel.HomeViewModel;
@@ -103,7 +101,7 @@ public class EnterCarDetailsFragment extends Fragment {
         MainActivity.mRegProcess = MainActivity.RegistrationProcess.DONE;
         mHomeViewModel.init();
         mHomeViewModel.createDriver(HomeViewModel.createObject)
-                .observe(this, this::saveDriverData);
+                .observe(getViewLifecycleOwner(), this::saveDriverData);
     }
 
 
@@ -209,7 +207,7 @@ public class EnterCarDetailsFragment extends Fragment {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-        transaction.replace(R.id.containerHome, enterNameFragment);
+        transaction.replace(R.id.conHome, enterNameFragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -220,7 +218,7 @@ public class EnterCarDetailsFragment extends Fragment {
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-            transaction.replace(R.id.containerHome, mapFragment);
+            transaction.replace(R.id.conHome, mapFragment);
             transaction.addToBackStack(null);
             transaction.commit();
         } else {
@@ -238,7 +236,7 @@ public class EnterCarDetailsFragment extends Fragment {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-        transaction.replace(R.id.containerHome, openFragment);
+        transaction.replace(R.id.conHome, openFragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }

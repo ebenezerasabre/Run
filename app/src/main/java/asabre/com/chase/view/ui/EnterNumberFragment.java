@@ -14,15 +14,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
-
-import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,7 +31,6 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.MutableLiveData;
 import asabre.com.chase.R;
 import asabre.com.chase.viewmodel.HomeViewModel;
 
@@ -250,7 +245,7 @@ public class EnterNumberFragment extends Fragment {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-        transaction.replace(R.id.containerHome, enterEmailFragment);
+        transaction.replace(R.id.conHome, enterEmailFragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -262,7 +257,7 @@ public class EnterNumberFragment extends Fragment {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-        transaction.replace(R.id.containerHome, introFragment);
+        transaction.replace(R.id.conHome, introFragment);
         transaction.addToBackStack(null);
         transaction.commit();
 
@@ -276,7 +271,7 @@ public class EnterNumberFragment extends Fragment {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-        transaction.replace(R.id.containerHome, signInFragment);
+        transaction.replace(R.id.conHome, signInFragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }

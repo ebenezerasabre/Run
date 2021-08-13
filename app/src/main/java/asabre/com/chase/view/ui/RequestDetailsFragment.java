@@ -98,7 +98,6 @@ public class RequestDetailsFragment extends Fragment implements BaseFragment, On
         endRideDriverName = view.findViewById(R.id.endRideDriverName);
         endRideDate = view.findViewById(R.id.endRideDate);
 
-
     }
 
 
@@ -132,7 +131,7 @@ public class RequestDetailsFragment extends Fragment implements BaseFragment, On
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-            transaction.replace(R.id.containerHome, requestFragment);
+            transaction.replace(R.id.conHome, requestFragment);
             transaction.addToBackStack(null);
             transaction.commit();
         }
@@ -339,7 +338,29 @@ public class RequestDetailsFragment extends Fragment implements BaseFragment, On
     }
 
 
+    private void setVisibility(){
+        if(getActivity() != null){
+            Log.d(TAG, "Going back to request");
+            MainActivity.mHistoryTrack = MainActivity.HistoryTrack.HISTORY;
+            getActivity().findViewById(R.id.conHistory).setVisibility(View.VISIBLE);
+            getActivity().findViewById(R.id.conHistoryDetails).setVisibility(View.GONE);
 
+            removeThisFragment();
+        }
+    }
+
+    private void removeThisFragment(){
+        if(getActivity() != null){
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            Fragment fragment = fragmentManager.findFragmentById(R.id.conHistoryDetails);
+            if(fragment != null){
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .remove(fragment)
+                        .commit();
+                Log.d(TAG, "removeThisFragment: called");
+            }
+        }
+    }
 
 
 
@@ -385,6 +406,11 @@ public class RequestDetailsFragment extends Fragment implements BaseFragment, On
 
     @Override
     public void onBackPressed() {
-
+        if(MainActivity.mTrackMain == MainActivity.TrackMain.HISTORY){
+            Log.d(TAG, "onBackPressed: pressed");
+            setVisibility();
+        }
     }
+
+
 }

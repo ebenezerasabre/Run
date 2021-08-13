@@ -202,7 +202,7 @@ public class SignInFragment extends Fragment {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-                transaction.replace(R.id.containerHome, mapFragment);
+                transaction.replace(R.id.conHome, mapFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
             } else {
@@ -217,7 +217,7 @@ public class SignInFragment extends Fragment {
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-            transaction.replace(R.id.containerAbout, aboutFragment);
+            transaction.replace(R.id.conAbout, aboutFragment);
             transaction.addToBackStack(null);
             transaction.commit();
         }
@@ -229,7 +229,7 @@ public class SignInFragment extends Fragment {
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-            transaction.replace(R.id.containerRequests, requestFragment);
+            transaction.replace(R.id.conHistory, requestFragment);
             transaction.addToBackStack(null);
             transaction.commit();
         }
@@ -252,7 +252,7 @@ public class SignInFragment extends Fragment {
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-            transaction.replace(R.id.containerHome, openFragment);
+            transaction.replace(R.id.conHome, openFragment);
             transaction.addToBackStack(null);
             transaction.commit();
         }

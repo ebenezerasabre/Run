@@ -149,6 +149,8 @@ public class HomeViewModel extends ViewModel {
     public static MutableLiveData<String>  mViewTrack = new MutableLiveData<>();
     public static String strViewTrack = "";
 
+    public static MutableLiveData<String> mBackTrack = new MutableLiveData<>();
+
     // view visibility
     /*
          // only for views within mapFragment
@@ -227,6 +229,13 @@ public class HomeViewModel extends ViewModel {
     // set viewTrack
     public static void setViewTrack(String viewTrack){ mViewTrack.setValue(viewTrack); }
     public static LiveData<String > getViewTrack(){ return mViewTrack; }
+
+    // set backTrack
+    public static void setBackTrack(String backTrack){ mBackTrack.setValue(backTrack);}
+    public static LiveData<String> getBackTrack(){ return mBackTrack; }
+    // eg Home, HomeDet1,
+    // His, HisDet1, Hisdet2, HisDet3
+
 
     // TODO RIDE REQUEST
 

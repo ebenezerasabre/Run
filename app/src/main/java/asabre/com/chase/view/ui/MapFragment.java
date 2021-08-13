@@ -49,7 +49,6 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -88,7 +87,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
     ArrayList<LatLng> mMarkerPoints;
 
     ExtendedFloatingActionButton homeExtraFAB;
-    private FilterDialogCallback mFilterDialogCallback = this;
+    private final FilterDialogCallback mFilterDialogCallback = this;
 
 //     ride option widgets
     RelativeLayout userRelativeLayout;
@@ -322,7 +321,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
 
 
         /**
-         * I was useing the method below coordsCallChangeExp() to download the coordinates
+         * I was using the method below coordsCallChangeExp() to download the coordinates
          * Of a place with it's place id after selecting a a place from google place fragment
          * But I've realised you can get the coordinates straight away so I've commented it
          * and calling the methods after it which at first was called in
@@ -570,12 +569,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
 
     private void driverEarnings(){
         driverShowEarning.setOnClickListener(view -> {
-
+            loadDriverEarningFragment();
         });
     }
     private void driverRatings(){
         driverShowCurrentRating.setOnClickListener(view -> {
-
+            loadDriverRatingFragment();
         });
     }
 
@@ -591,10 +590,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
 
         endExitLocation.setText(String.format(Locale.US, "%s", exit));
 
-//        forDriverPickingMsg.setText(String.format(Locale.US, "%s", "Picking up passenger"));
-//        forDriverUserEntryPoint.setText(String.format(Locale.US, "%s", entry));
-//        forDriverUserExitPoint.setText(String.format(Locale.US, "%s", exit));
-//        forDriverUserName.setText(String.format(Locale.US, "%s", firstName));
     }
 
     private void driverActions(){
@@ -812,11 +807,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
     }
 
     private void automation(){
-        if(HomeViewModel.userType.contains("driver")){
-            Toast.makeText(getContext(), "Automation", Toast.LENGTH_SHORT).show();
-            Log.d(TAG, "automation:  called");
-            automateDriverResponse();
-            changeRequestState();
+        if(getContext() != null){
+            if(HomeViewModel.userType.contains("driver")){
+                Toast.makeText(getContext(), "Automation", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "automation:  called");
+                automateDriverResponse();
+                changeRequestState();
+            }
         }
     }
 
@@ -1731,6 +1728,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
     @Override
     public void onStart() {
         super.onStart();
+        mMapView.onStart();
+
         Log.d(TAG, "mapFrag onStart: called");
 //        loadAboutFragment();
 
@@ -1745,6 +1744,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
 
         cancelRideOptions();
         cancelRideRequest();
+
+        driverEarnings();
+        driverRatings();
 
 //        loadRequestFragment();
 
@@ -1913,7 +1915,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
           FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
           FragmentTransaction transaction = fragmentManager.beginTransaction();
           transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-          transaction.replace(R.id.containerHome, endRideFragment);
+          transaction.replace(R.id.conHome, endRideFragment);
           transaction.addToBackStack(null);
           transaction.commit();
       }
@@ -1925,7 +1927,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
           FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
           FragmentTransaction transaction = fragmentManager.beginTransaction();
           transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-          transaction.replace(R.id.containerHome, enterNumberFragment);
+          transaction.replace(R.id.conHome, enterNumberFragment);
           transaction.addToBackStack(null);
           transaction.commit();
       }
@@ -1937,18 +1939,38 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
            FragmentTransaction transaction = fragmentManager.beginTransaction();
            transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-           transaction.replace(R.id.containerHome, introFragment);
+           transaction.replace(R.id.conHome, introFragment);
            transaction.addToBackStack(null);
            transaction.commit();
        }
     }
 
+    private void loadDriverEarningFragment(){
+        if(getActivity() != null){
+            DriverEarningFragment driverEarningFragment = new DriverEarningFragment();
+//            getActivity().getSupportFragmentManager().beginTransaction().replace().commit();
 
 
-    private void clearFragments(){
-        loadAboutFragment();
-        loadProfileFragment();
-        loadRequestHistoryFragment();
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+            transaction.replace(R.id.conHome, driverEarningFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
+    }
+    private void loadDriverRatingFragment(){
+        if(getActivity() != null){
+            DriverRatingFragment driverRatingFragment = new DriverRatingFragment();
+//            getActivity().getSupportFragmentManager().beginTransaction().replace().commit();
+
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+            transaction.replace(R.id.conHome, driverRatingFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
     }
 
 
@@ -1958,7 +1980,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-            transaction.replace(R.id.containerAbout, aboutFragment);
+            transaction.replace(R.id.conAbout, aboutFragment);
             transaction.addToBackStack(null);
             transaction.commit();
         }
@@ -1970,7 +1992,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-            transaction.replace(R.id.containerRequests, requestFragment);
+            transaction.replace(R.id.conHistory, requestFragment);
             transaction.addToBackStack(null);
             transaction.commit();
         }

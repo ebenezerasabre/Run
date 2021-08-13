@@ -206,7 +206,7 @@ public class EnterNameFragment extends Fragment implements BaseFragment{
                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                FragmentTransaction transaction = fragmentManager.beginTransaction();
                transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-               transaction.replace(R.id.containerHome, mapFragment);
+               transaction.replace(R.id.conHome, mapFragment);
                transaction.addToBackStack(null);
                transaction.commit();
            } else {
@@ -222,7 +222,7 @@ public class EnterNameFragment extends Fragment implements BaseFragment{
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-            transaction.replace(R.id.containerHome, carDetailsFragment);
+            transaction.replace(R.id.conHome, carDetailsFragment);
             transaction.addToBackStack(null);
             transaction.commit();
         }
@@ -240,7 +240,7 @@ public class EnterNameFragment extends Fragment implements BaseFragment{
              FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
              FragmentTransaction transaction = fragmentManager.beginTransaction();
              transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-             transaction.replace(R.id.containerHome, openFragment);
+             transaction.replace(R.id.conHome, openFragment);
              transaction.addToBackStack(null);
              transaction.commit();
          }
@@ -252,7 +252,7 @@ public class EnterNameFragment extends Fragment implements BaseFragment{
               FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
               FragmentTransaction transaction = fragmentManager.beginTransaction();
               transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-              transaction.replace(R.id.containerHome, enterEmailFragment);
+              transaction.replace(R.id.conHome, enterEmailFragment);
               transaction.addToBackStack(null);
               transaction.commit();
           }
