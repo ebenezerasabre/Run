@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Chase</string>
+    <string name="app_name">Vergoes</string>
     <string name="where_are_you_going">Where are you going ?</string>
     <string name="search_destination">search destination</string>
     <string name="cant_show_pickup_point">We can\'t show your pickup point on map because you have disabled location services. Please turn it on for better experience</string>
@@ -38,5 +38,6 @@
     <string name="email">Email</string>
     <string name="about_us">About us</string>
     <string name="can_t_connect_to_internet_please_check_your_network_settings_and_try_again">Can\'t connect to internet. Please check your network settings and try again</string>
+    <string name="enable_internet">Enable internet</string>
 
 </resources>

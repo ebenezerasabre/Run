@@ -65,7 +65,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 import asabre.com.chase.R;
@@ -92,7 +91,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
 //     ride option widgets
     RelativeLayout userRelativeLayout;
     LinearLayout rideOptionsContainer;
-
     LinearLayout longVehicleOption;
     LinearLayout truckOption;
     LinearLayout vanOption;
@@ -126,6 +124,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
     TextView forUserRideNumber;
     TextView forUserDriverName;
     TextView forUserDriverFinishedRides;
+    TextView textGoingWhere;
 //    MaterialButton forUserChangeRide;
     MaterialButton forUserFinishRide;
 
@@ -147,14 +146,21 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
     // driver Accept / start ride widgets
     RelativeLayout driverRelativeLayout;
     LinearLayout driverAcceptRideContainer;
+    LinearLayout acceptOrDeclineRideCon;
+    LinearLayout callOrStartRideLineCon;
+
     TextView forDriverUserFirstName;
     TextView acceptTimeToUserPickUp;
     TextView acceptDistanceToUserPickUp;
     TextView acceptEntryLocation;
     TextView acceptExitLocation;
     MaterialButton driverAcceptRide;
+    MaterialButton driverDeclineRide;
     MaterialButton driverStartRide;
-    ImageView callUser;
+    MaterialButton callUser;
+
+
+
 
 
     // driver end ride widgets
@@ -172,22 +178,30 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
     TextView driverShowCurrentRating;
 
     ProgressBar waitingForAccept;
+    ProgressBar mapLoadingProgressBar;
 
 
     private void initDriverAcceptStartRide(View view){
         waitingForAccept = view.findViewById(R.id.watingForAccept);
+        mapLoadingProgressBar = view.findViewById(R.id.mapLoadingProgressBar);
+        textGoingWhere = view.findViewById(R.id.textGoingWhere);
         driverRelativeLayout = view.findViewById(R.id.driverRelativeLayout);
         driverAcceptRideContainer = view.findViewById(R.id.driverAcceptRideContainer);
+        acceptOrDeclineRideCon = view.findViewById(R.id.acceptOrDeclineRide);
+        callOrStartRideLineCon = view.findViewById(R.id.callOrStartRide);
+
         forDriverUserFirstName = view.findViewById(R.id.forDriverUserFirstName);
         acceptTimeToUserPickUp = view.findViewById(R.id.acceptTimeToUserPickUp);
         acceptDistanceToUserPickUp = view.findViewById(R.id.acceptDistanceToUserPickUp);
         acceptEntryLocation = view.findViewById(R.id.acceptEntryLocation);
         acceptExitLocation = view.findViewById(R.id.acceptExitLocation);
         driverAcceptRide = view.findViewById(R.id.driverAcceptRide);
+        driverDeclineRide = view.findViewById(R.id.driverDeclineRide);
         driverStartRide = view.findViewById(R.id.driverStartRide);
         callUser = view.findViewById(R.id.callUser);
 
     }
+
 
     private void initDriverGoOnline(View view){
         driverGoOnlineContainer = view.findViewById(R.id.driverGoOnlineContainer);
@@ -261,26 +275,25 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
         initMap(view, savedInstanceState);
 
         ViewTrack();
-
         internetConnection();
-        observeUserDriverFull();
+//        observeUserDriverFull();
 
         return view;
     }
 
 
 
-    private void observeUserDriverFull(){
-//        if(getActivity() != null){
-//
-//            mHomeViewModel.init();
-//            if(HomeViewModel.userType.contains("user")){
-//                mHomeViewModel.getFindUserById().observe(this, user -> HomeViewModel.userFull = user);
-//            } else if(HomeViewModel.userType.contains("driver")){
-//                mHomeViewModel.getFindDriverById().observe(this, driver -> HomeViewModel.driverFull = driver);
-//            }
-//        }
-    }
+//    private void observeUserDriverFull(){
+////        if(getActivity() != null){
+////
+////            mHomeViewModel.init();
+////            if(HomeViewModel.userType.contains("user")){
+////                mHomeViewModel.getFindUserById().observe(this, user -> HomeViewModel.userFull = user);
+////            } else if(HomeViewModel.userType.contains("driver")){
+////                mHomeViewModel.getFindDriverById().observe(this, driver -> HomeViewModel.driverFull = driver);
+////            }
+////        }
+//    }
 
 
     @Override
@@ -327,7 +340,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
          * and calling the methods after it which at first was called in
          * DownloadTask, ParserTask , PostExecute
          */
-        //        coordsCallChangeExp(); // uncomment this
+        //        coordsCallChangeExp();
 
         HomeViewModel.myDestinationLatLng = place.getLatLng();
         drawRoute(HomeViewModel.myLocationLatLng, HomeViewModel.myDestinationLatLng);
@@ -594,25 +607,20 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
 
     private void driverActions(){
         driverAcceptRide.setOnClickListener(view -> {
-//            showDriverStartRide();
-//            driverAcceptActions();
-//            waitingForAccept.setVisibility(View.GONE);
 
-
-
+            acceptOrDeclineRideCon.setVisibility(View.GONE);
+            callOrStartRideLineCon.setVisibility(View.VISIBLE);
             HomeViewModel.setViewTrack("DRIVER_ACCEPT_RIDE");
         });
 
         driverStartRide.setOnClickListener(view -> {
-//            driverStartActions(); // here and automate response
-//            showDriverEnd();
+
 
             HomeViewModel.setViewTrack("DRIVER_START_RIDE");
         });
 
         driverEndRide.setOnClickListener(view -> {
-//            driverFinisActions();
-//            showDriverGoOnline();
+
 
             clearGoogleMap();
             HomeViewModel.setViewTrack("DRIVER_END_RIDE");
@@ -1131,6 +1139,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
 
                 if(location.getLatitude() > 0){
                     HomeViewModel.setMapIsReady();
+
+                    // set the whole map relative layout toinvisible
+                    mapLoadingProgressBar.setVisibility(View.GONE);
+                    mMapView.setVisibility(View.VISIBLE);
+                    mGoingWhere.setVisibility(View.VISIBLE);
+                    textGoingWhere.setVisibility(View.VISIBLE);
                 }
 
                 // set device location
@@ -1243,6 +1257,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
         }
     }
 
+    /**
+     * I wanted to use the method beneath to draw a car on the map
+     * @param latLng
+     */
     private void drawMarker(LatLng latLng){
 //        Log.d(TAG, "drawMarker: drawn");
 //        Drawable carDrawable = getResources().getDrawable(R.drawable.ic_outline_directions_car_24);
@@ -1648,9 +1666,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
                                     driverEndRidContainer);
     }
     private void showDriverStartRide(){
-//        setDriverContainerVisibility(driverAcceptRideContainer,
-//                                    driverGoOnlineContainer,
-//                                    driverEndRidContainer);
         driverAcceptRide.setVisibility(View.GONE);
         driverStartRide.setVisibility(View.VISIBLE);
     }
@@ -1731,7 +1746,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
         mMapView.onStart();
 
         Log.d(TAG, "mapFrag onStart: called");
-//        loadAboutFragment();
 
         containerListeners();
         goingWHereListener();
@@ -1748,9 +1762,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
         driverEarnings();
         driverRatings();
 
-//        loadRequestFragment();
-
-//        loadAboutFragment();
 
     }
 
@@ -1785,100 +1796,52 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
     }
 
     private void ViewTrack() {
-//                switch (s){
-//                    // for user
-//                    case "USER_GOING_WHERE":
-//                        Log.d(TAG, "USER_GOING_WHERE: called withing");
-//                        showGoingWhere();
-//                        break;
-//                    case "USER_RIDE_OPTIONS":
-//                        Log.d(TAG, "USER_RIDE_OPTIONS: called withing");
-//                        showRideOptions();
-//                        break;
-//                    case "USER_RIDE_REQUEST":
-//                        showRideRequest();
-//                        break;
-//                    case "USER_RIDE_ARRIVE":
-//                        showDriverArrives();
-//                        break;
-//
-//                        // for driver
-//                    case "DRIVER_GO_ONLINE":
-//                        showDriverGoOnline();
-//                        break;
-//                    case "DRIVER_ACCEPT_RIDE":
-//                        showDriverStartRide();
-//                        driverAcceptActions();
-//                        waitingForAccept.setVisibility(View.GONE);
-//                        break;
-//                    case "DRIVER_START_RIDE":
-//                        driverStartActions();
-//                        showDriverEnd();
-//                        break;
-//                    case "DRIVER_END_RIDE":
-//                        driverFinisActions();
-//                        showDriverGoOnline();
-//                        break;
-//
-//                    case "CONNECT_INTERNET":
-//                        showInternet();
-//                        break;
-//                    default:
-//                        // do nothing
-//                        break;
-//                }
 
+        HomeViewModel.getViewTrack().observe(getViewLifecycleOwner(), s -> {
+            switch (s){
+                // for user
+                case "USER_GOING_WHERE":
+                    Log.d(TAG, "USER_GOING_WHERE: called withing");
+                    showGoingWhere();
+                    break;
+                case "USER_RIDE_OPTIONS":
+                    Log.d(TAG, "USER_RIDE_OPTIONS: called withing");
+                    showRideOptions();
+                    break;
+                case "USER_RIDE_REQUEST":
+                    showRideRequest();
+                    break;
+                case "USER_RIDE_ARRIVE":
+                    showDriverArrives();
+                    break;
 
-        HomeViewModel.getViewTrack().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                switch (s){
-                    // for user
-                    case "USER_GOING_WHERE":
-                        Log.d(TAG, "USER_GOING_WHERE: called withing");
-                        showGoingWhere();
-                        break;
-                    case "USER_RIDE_OPTIONS":
-                        Log.d(TAG, "USER_RIDE_OPTIONS: called withing");
-                        showRideOptions();
-                        break;
-                    case "USER_RIDE_REQUEST":
-                        showRideRequest();
-                        break;
-                    case "USER_RIDE_ARRIVE":
-                        showDriverArrives();
-                        break;
+                    // for driver
+                case "DRIVER_GO_ONLINE":
+                    showDriverGoOnline();
+                    break;
+                case "DRIVER_ACCEPT_RIDE":
+                    showDriverStartRide();
+                    driverAcceptActions();
+                    Log.d(TAG, "details from driver " + HomeViewModel.mRideRequest);
+                    waitingForAccept.setVisibility(View.GONE);
+                    break;
+                case "DRIVER_START_RIDE":
+                    driverStartActions();
+                    showDriverEnd();
+                    break;
+                case "DRIVER_END_RIDE":
+                    driverFinisActions();
+                    showDriverGoOnline();
+                    break;
 
-                        // for driver
-                    case "DRIVER_GO_ONLINE":
-                        showDriverGoOnline();
-                        break;
-                    case "DRIVER_ACCEPT_RIDE":
-
-                        showDriverStartRide();
-                        driverAcceptActions();
-                        Log.d(TAG, "details from driver " + HomeViewModel.mRideRequest);
-                        waitingForAccept.setVisibility(View.GONE);
-                        break;
-                    case "DRIVER_START_RIDE":
-                        driverStartActions();
-                        showDriverEnd();
-                        break;
-                    case "DRIVER_END_RIDE":
-                        driverFinisActions();
-                        showDriverGoOnline();
-                        break;
-
-                    case "CONNECT_INTERNET":
-                        showInternet();
-                        break;
-                    default:
-                        // do nothing
-                        break;
-                }
+                case "CONNECT_INTERNET":
+                    showInternet();
+                    break;
+                default:
+                    // do nothing
+                    break;
             }
         });
-
 
     }
 
