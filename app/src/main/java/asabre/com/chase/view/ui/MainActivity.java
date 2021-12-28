@@ -171,22 +171,16 @@ public class MainActivity extends AppCompatActivity implements
 
         if(HomeViewModel.userType.contains("user")){
             mHomeViewModel.setFindUserById(HomeViewModel.userEntity.get_id());
-            mHomeViewModel.getFindUserById().observe(this, new Observer<User>() {
-                @Override
-                public void onChanged(User user) {
-                    Log.d(TAG, "onChanged: getting userFull " + user);
-                    HomeViewModel.userFull = user;
-                }
+            mHomeViewModel.getFindUserById().observe(this, user -> {
+                Log.d(TAG, "onChanged: getting userFull " + user);
+                HomeViewModel.userFull = user;
             });
 
         } else if(HomeViewModel.userType.contains("driver")){
             mHomeViewModel.setFindDriverById(HomeViewModel.userEntity.get_id());
-            mHomeViewModel.getFindDriverById().observe(this, new Observer<Driver>() {
-                @Override
-                public void onChanged(Driver driver) {
-                    Log.d(TAG, "onChanged: getting driverFull " + driver);
-                    HomeViewModel.driverFull = driver;
-                }
+            mHomeViewModel.getFindDriverById().observe(this, driver -> {
+                Log.d(TAG, "onChanged: getting driverFull " + driver);
+                HomeViewModel.driverFull = driver;
             });
         }
     }
@@ -204,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements
 
 
     private void startRegistering(){
-        switch (mRegProcess) {
+        switch (mRegProcess){
             case INTRO:
                 loadIntroFragment();
                 break;

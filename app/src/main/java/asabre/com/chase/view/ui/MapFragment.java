@@ -414,48 +414,15 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
 // union systems
 
 
-    /**
-     * I've moved these methods to ExtraClass
-     * @return
-     */
-    private String userGoOnlineObj(){
-        JSONObject obj = new JSONObject();
-//        try {
-//            obj.put("userId", HomeViewModel.userEntity.get_id());
-//            obj.put("userType", HomeViewModel.userEntity.getUserType());
-//            obj.put("socketId", HomeViewModel.socketId);
-//        } catch (JSONException e){
-//            e.printStackTrace();
-//        }
-        return obj.toString();
-    }
-
-    private String driverGoOnlineObj(){
-        JSONObject obj = new JSONObject();
-//        try {
-//            obj.put("driverId", HomeViewModel.userEntity.get_id());
-//            obj.put("userType", HomeViewModel.userEntity.getUserType());
-//            obj.put("socketId", HomeViewModel.socketId);
-//            obj.put("city", HomeViewModel.userEntryPoint.split("&")[0].toLowerCase());
-//            obj.put("lat", HomeViewModel.userEntryPoint.split("&")[2]);
-//            obj.put("lng",  HomeViewModel.userEntryPoint.split("&")[3]);
-//            obj.put("rideType", "car");
-//        } catch (JSONException e){
-//            e.printStackTrace();
-//        }
-        return obj.toString();
-    }
 
     private void goOnline(){
         if(HomeViewModel.userType.contains("user")){
-//            mSocket.emit("userOnline", userGoOnlineObj())
             mSocket.emit("userOnline", ExtraClass.userGoOnlineObj())
                     .on("userOnline", args -> {
                         Log.d(TAG, "initSocket: userOnline with " + args[0]);
                     });
         }
         if(HomeViewModel.userType.contains("driver")){
-//            mSocket.emit("driverOnline", driverGoOnlineObj())
             mSocket.emit("driverOnline", ExtraClass.driverGoOnlineObj())
                     .on("driverOnline", args -> {
                         Log.d(TAG, "driverGoOnline: with " + args[0]);
@@ -673,9 +640,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
             String[] options;
             // check if user is signed in
             if(HomeViewModel.userEntity != null){
-                options = new String[]{"Sign-out", "News", "About us"};
+//                options = new String[]{"Sign-out", "News", "About us"};
+                options = new String[]{"Sign-out", "News"};
             } else {
-                options = new String[]{"Sign-in", "News", "About us"};
+//                options = new String[]{"Sign-in", "News", "About us"};
+                options = new String[]{"Sign-in", "News"};
             }
             final String[] finalOptions = options;
             MaterialAlertDialogBuilder mADB = new MaterialAlertDialogBuilder(getContext())
@@ -691,6 +660,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
     }
 
 
+    /**
+     * Work on about us
+     * @param filterName
+     */
     @Override
     public void filterDialogCallback(String filterName) {
         switch (filterName){
@@ -699,13 +672,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
                 loadEnterNumberFragment();
                 break;
             case "Sign-out":
-//                clearFragments();
                 clearDatabase();
                 break;
             case "News":
                 break;
-            case "About us":
-                break;
+//            case "About us":
+//                setAbout();
+//                break;
             default:
                 //  do nothing
                 break;
@@ -715,7 +688,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
     private void driverAcceptActions(){
 //      driver accepts request
         HomeViewModel.driverHasRequest = true;
-//        toggleDriverWidgets();
         addDriverDetails();
         driverResponse("accept");
         routeDriverToUserEntry();
@@ -1896,6 +1868,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
       }
     }
 
+
+
+
     private void loadIntroFragment(){
        if(getActivity() != null){
            IntroFragment introFragment = new IntroFragment();
@@ -1911,9 +1886,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
     private void loadDriverEarningFragment(){
         if(getActivity() != null){
             DriverEarningFragment driverEarningFragment = new DriverEarningFragment();
-//            getActivity().getSupportFragmentManager().beginTransaction().replace().commit();
-
-
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
@@ -1925,8 +1897,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
     private void loadDriverRatingFragment(){
         if(getActivity() != null){
             DriverRatingFragment driverRatingFragment = new DriverRatingFragment();
-//            getActivity().getSupportFragmentManager().beginTransaction().replace().commit();
-
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
@@ -1937,40 +1907,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
     }
 
 
-    private void loadAboutFragment(){
-        if (getActivity() != null){
-            AboutFragment aboutFragment = new AboutFragment();
-            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-            transaction.replace(R.id.conAbout, aboutFragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
-        }
-    }
 
-    private void loadRequestHistoryFragment(){
-        if (getActivity() != null){
-            RequestFragment requestFragment = new RequestFragment();
-            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-            transaction.replace(R.id.conHistory, requestFragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
-        }
-    }
-    private void loadProfileFragment(){
-        if (getActivity() != null){
-            ProfileFragment profileFragment = new ProfileFragment();
-            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-            transaction.replace(R.id.containerProfile, profileFragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
-        }
-    }
+
 
 
 

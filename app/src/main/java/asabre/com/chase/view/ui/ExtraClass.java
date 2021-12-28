@@ -268,6 +268,10 @@ public class ExtraClass {
         return obj.toString();
     }
 
+    /**
+     * rideType property should be dynamic not static
+     * @return
+     */
     public static String driverGoOnlineObj(){
         JSONObject obj = new JSONObject();
         try {
