@@ -62,7 +62,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="34dp"
-            android:visibility="visible"
+            android:visibility="gone"
             >
 
             <ProgressBar
@@ -189,7 +189,7 @@
             android:background="@drawable/bback"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="40dp"
-            android:visibility="gone"
+            android:visibility="visible"
 
             >
 
@@ -790,7 +790,7 @@
 
 
 
-<!--        accepting ride-->
+<!--     Driver   accepting ride-->
         <LinearLayout
             android:id="@+id/driverAcceptRideContainer"
             android:layout_width="match_parent"
@@ -799,7 +799,7 @@
             android:background="#fff"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="40dp"
-            android:visibility="visible">
+            android:visibility="gone">
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -843,15 +843,7 @@
                         android:textColor="#333333"
                         android:textSize="18sp"
                         android:layout_marginStart="16dp" />
-                    <TextView
-                        android:id="@+id/acceptDistanceToUserPickUp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="3.5 km"
-                        android:fontFamily="@font/alegreya"
-                        android:textColor="#474747"
-                        android:textSize="22sp"
-                        android:layout_marginStart="8dp" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -882,15 +874,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Pickup time :"
+                        android:text="Pickup :"
                         android:fontFamily="@font/alegreya"
                         android:textSize="18sp"
                         android:layout_marginStart="16dp" />
                     <TextView
-                        android:id="@+id/acceptTimeToUserPickUp"
+                        android:id="@+id/acceptDistanceToUserPickUp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="4mins"
+                        android:text="km"
                         android:fontFamily="@font/andika"
                         android:textColor="#333333"
                         android:textSize="18sp"
@@ -904,7 +896,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:weightSum="2"
+                    android:visibility="visible"
+                    >
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

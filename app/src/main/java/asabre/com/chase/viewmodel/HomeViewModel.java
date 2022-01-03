@@ -117,6 +117,7 @@ public class HomeViewModel extends ViewModel {
     public static String rideState = "";
     public static boolean driverHasRequest = false;
 
+//    public static MutableLiveData<RideRequest> mmRideRequest = new MutableLiveData<>();
     public static RideRequest mRideRequest = new RideRequest();
     public static String requestStringDetails = "";
     private MutableLiveData<List<RideRequest>> mRideRequestHistory;
@@ -150,6 +151,12 @@ public class HomeViewModel extends ViewModel {
     public static String strViewTrack = "";
 
     public static MutableLiveData<String> mBackTrack = new MutableLiveData<>();
+
+    public static MutableLiveData<String> mDistanceToExit = new MutableLiveData<>();
+    public static MutableLiveData<String> mTimeToExit = new MutableLiveData<>();
+    public static MutableLiveData<String> mDriverName = new MutableLiveData<>();
+    public static MutableLiveData<String> mFinishedRides = new MutableLiveData<>();
+
 
     // view visibility
     /*
@@ -193,6 +200,7 @@ public class HomeViewModel extends ViewModel {
     public LiveData<String> deleteDriver(String driverId){ return mHomeRepository.deleteDriver(driverId); }
 
 
+
     // TODO ABOUT
     public void setAbout(){ about = mHomeRepository.findAllAbouts(); }
     public LiveData<List<About>> getAbouts(){ return about; }
@@ -220,6 +228,7 @@ public class HomeViewModel extends ViewModel {
     public static void startLoading(){ isLoading.setValue(true); }
     public static void stopLoading(){ isLoading.setValue(false);}
     public static LiveData<Boolean> getIsLoading(){ return isLoading; }
+
 
     // TODO MAP READY
     public static void setMapIsReady(){ mapIsReady.setValue(true);}

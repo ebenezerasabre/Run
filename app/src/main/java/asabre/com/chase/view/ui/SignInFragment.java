@@ -47,7 +47,7 @@ public class SignInFragment extends Fragment {
     }
 
     private void init(View view) {
-        mHomeViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(HomeViewModel.class);
+        mHomeViewModel = ViewModelProviders.of(requireActivity()).get(HomeViewModel.class);
         signInBack = view.findViewById(R.id.signInBack);
     }
 
@@ -68,7 +68,7 @@ public class SignInFragment extends Fragment {
     }
 
     private void checkIfLoading() {
-        HomeViewModel.getIsLoading().observe(this, aBoolean -> {
+        HomeViewModel.getIsLoading().observe(getViewLifecycleOwner(), aBoolean -> {
             if(aBoolean){
                 Log.d(TAG, "setViewModel: something loading");
                 showProgressDialog();
@@ -82,7 +82,7 @@ public class SignInFragment extends Fragment {
 
     private void setUserViewModel() {
         mHomeViewModel.signInUser(HomeViewModel.createObject.get("phoneNumber"))
-                .observe(this, user -> {
+                .observe(getViewLifecycleOwner(), user -> {
                     Log.d(TAG, "onChanged: the user is " + user);
                     HomeViewModel.userFull = new User(user);
                     saveUserData(userInfo(user));
@@ -91,7 +91,7 @@ public class SignInFragment extends Fragment {
 
     private void setDriverViewModel() {
         mHomeViewModel.signInDriver(HomeViewModel.createObject.get("phoneNumber"))
-                .observe(this, driver -> {
+                .observe(getViewLifecycleOwner(), driver -> {
                     Log.d(TAG, "setDriverViewModel: the driver is " + driver);
                     HomeViewModel.driverFull = driver;
                     saveUserData(driverInfo(driver));

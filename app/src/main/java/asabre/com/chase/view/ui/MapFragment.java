@@ -58,6 +58,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -65,6 +66,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 import asabre.com.chase.R;
@@ -150,7 +152,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
     LinearLayout callOrStartRideLineCon;
 
     TextView forDriverUserFirstName;
-    TextView acceptTimeToUserPickUp;
+//    TextView acceptTimeToUserPickUp;
     TextView acceptDistanceToUserPickUp;
     TextView acceptEntryLocation;
     TextView acceptExitLocation;
@@ -181,6 +183,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
     ProgressBar mapLoadingProgressBar;
 
 
+    // driver accept views
+
+
+
     private void initDriverAcceptStartRide(View view){
         waitingForAccept = view.findViewById(R.id.watingForAccept);
         mapLoadingProgressBar = view.findViewById(R.id.mapLoadingProgressBar);
@@ -191,7 +197,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
         callOrStartRideLineCon = view.findViewById(R.id.callOrStartRide);
 
         forDriverUserFirstName = view.findViewById(R.id.forDriverUserFirstName);
-        acceptTimeToUserPickUp = view.findViewById(R.id.acceptTimeToUserPickUp);
+//      acceptTimeToUserPickUp = view.findViewById(R.id.acceptTimeToUserPickUp);
         acceptDistanceToUserPickUp = view.findViewById(R.id.acceptDistanceToUserPickUp);
         acceptEntryLocation = view.findViewById(R.id.acceptEntryLocation);
         acceptExitLocation = view.findViewById(R.id.acceptExitLocation);
@@ -430,6 +436,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
         }
     }
 
+
     private void passRequestString(String requestString, String requestState){
         class PassRequestString extends AsyncTask<String, Void, String>{
             @Override
@@ -486,6 +493,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
 
                 case "start":
                     showDriverEnd();
+                    ShowDriverExitTime();
                     break;
 
                 case "finish":
@@ -517,13 +525,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
             HomeViewModel.setViewTrack("USER_RIDE_REQUEST");
         });
         truckOption.setOnClickListener(view -> {
-            HomeViewModel.rideType = "car";
+            HomeViewModel.rideType = "truck";
             userRequestRide();
             setRideImage("truck");
             HomeViewModel.setViewTrack("USER_RIDE_REQUEST");
         });
         vanOption.setOnClickListener(view -> {
-            HomeViewModel.rideType = "car";
+            HomeViewModel.rideType = "van";
             userRequestRide();
             setRideImage("van");
             HomeViewModel.setViewTrack("USER_RIDE_REQUEST");
@@ -568,9 +576,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
         acceptExitLocation.setText(String.format(Locale.US, "%s", exit));
         forDriverUserFirstName.setText(String.format(Locale.US, "%s", firstName));
 
-        endExitLocation.setText(String.format(Locale.US, "%s", exit));
-
     }
+
+    private void ShowDriverExitTime(){
+        String exit =  HomeViewModel.mRideRequest.getExitPoint().split("&")[1];
+        endExitLocation.setText(String.format(Locale.US, "%s", exit));
+        HomeViewModel.mTimeToExit.observe(getViewLifecycleOwner(), str -> {
+            endDestinationTime.setText(str);
+        });
+    }
+
 
     private void driverActions(){
         driverAcceptRide.setOnClickListener(view -> {
@@ -581,13 +596,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
         });
 
         driverStartRide.setOnClickListener(view -> {
-
-
             HomeViewModel.setViewTrack("DRIVER_START_RIDE");
         });
 
         driverEndRide.setOnClickListener(view -> {
-
 
             clearGoogleMap();
             HomeViewModel.setViewTrack("DRIVER_END_RIDE");
@@ -747,10 +759,19 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
 
         // TODO FINISH RIDE
         // TODO CANCEL RIDE
+        else if(HomeViewModel.rideState.contains("cancel")){
+            // if driver cancels ride
+        }
 
     }
 
+    /**
+     * This function has two methods
+     * Method One; calculates distance from driver to user
+     * Method two; Calculates distance from user entry to exit point
+     */
     private void changeRequestState() {
+        Log.d(TAG, "changeRequestState: called");
         double lat1, lat2, lng1, lng2;
 
         if(HomeViewModel.rideState.contains("accept")){
@@ -763,6 +784,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
 
             double acceptToStart = distanceBTWN(lat1, lat2, lng1, lng2);
             Log.d(TAG, "changeRequestState: diff distance " + acceptToStart);
+//            acceptDistanceToUserPickUp.setText(String.valueOf(acceptToStart));
+            acceptDistanceToUserPickUp.setText(String.format(Locale.US,"%.2fkm", acceptToStart));
+
             if(acceptToStart < 1){
                 HomeViewModel.rideState = "start";
                 Toast.makeText(getContext(), "Starting ride", Toast.LENGTH_SHORT).show();
@@ -1456,6 +1480,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
                 // distance = 0.8 km
                 // distance = 4 mins
 
+                HomeViewModel.mTimeToExit.setValue(duration.split(" ")[0]);
+                HomeViewModel.mDistanceToExit.setValue(distance.split(" ")[0]);
             }
         }
     }
@@ -1473,7 +1499,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
     private void placeIntent(){
         Log.d(TAG, "placeIntent: called");
         if(!Places.isInitialized()){
-            Places.initialize(getContext(), AppConstants.API_KEY);
+            Places.initialize(requireContext(), AppConstants.API_KEY);
         }
         List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG);
 
@@ -1568,6 +1594,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
         loadEndRideFragment();
     }
 
+    /**
+     * Work on this
+     */
     private void resetDriverArrives(){
         forUserDriverArrivesTime.setText(String.format(Locale.US, "Driver arrives in %s min", HomeViewModel.mRideRequest.getdArrivalTime()));
         forUserRideDescription.setText(HomeViewModel.mRideRequest.getdRideDescription());
@@ -1650,8 +1679,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
     }
 
 
-
-
     private void setRideImage(String rideType){
         switch (rideType){
             case "Car":
@@ -1708,7 +1735,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
         // calculate the result
         return (c * r);
     }
-
 
 
 
@@ -1792,12 +1818,23 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
                     showDriverGoOnline();
                     break;
                 case "DRIVER_ACCEPT_RIDE":
+                   setExitTimeAndDistance();
                     showDriverStartRide();
                     driverAcceptActions();
                     Log.d(TAG, "details from driver " + HomeViewModel.mRideRequest);
                     waitingForAccept.setVisibility(View.GONE);
                     break;
+                /**
+                 * work on this
+                 * adding time to arrive to exit location
+                 */
                 case "DRIVER_START_RIDE":
+                    HomeViewModel.mTimeToExit.observe(getViewLifecycleOwner(), str -> {
+                        endDestinationTime.setText(str);
+                    });
+
+                    endExitLocation.setText(" ");
+
                     driverStartActions();
                     showDriverEnd();
                     break;
@@ -1817,6 +1854,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
 
     }
 
+
+
+    private void setExitTimeAndDistance(){
+        HomeViewModel.mDriverName.setValue(HomeViewModel.mRideRequest.getdName());
+        HomeViewModel.mFinishedRides.setValue(HomeViewModel.mRideRequest.getdFinishedRides());
+    }
 
 
     private void clearDatabase(){
@@ -1868,9 +1911,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
       }
     }
 
-
-
-
     private void loadIntroFragment(){
        if(getActivity() != null){
            IntroFragment introFragment = new IntroFragment();
@@ -1905,10 +1945,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, FilterD
             transaction.commit();
         }
     }
-
-
-
-
 
 
 

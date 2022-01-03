@@ -23,7 +23,6 @@ public class AboutFragment extends Fragment {
 
     private ImageView aboutBack;
     private MaterialButton rateApp;
-    private MaterialButton connectFacebook;
     private MaterialButton termsAndConditions;
     private MaterialButton aboutUs;
     private HomeViewModel mHomeViewModel;
@@ -65,9 +64,7 @@ public class AboutFragment extends Fragment {
         rateApp.setOnClickListener(view -> {
 
         });
-        connectFacebook.setOnClickListener(view -> {
 
-        });
         termsAndConditions.setOnClickListener(view -> {
 
         });
@@ -76,14 +73,12 @@ public class AboutFragment extends Fragment {
     private void resetButtons(){
         aboutBack.setOnClickListener(null);
         rateApp.setOnClickListener(null);
-        connectFacebook.setOnClickListener(null);
         termsAndConditions.setOnClickListener(null);
     }
 
     private void init(View view){
         aboutBack = view.findViewById(R.id.aboutBack);
         rateApp = view.findViewById(R.id.rateApp);
-        connectFacebook = view.findViewById(R.id.connectFacebook);
         termsAndConditions = view.findViewById(R.id.termsAndConditions);
         aboutUs = view.findViewById(R.id.aboutUs);
     }

@@ -78,25 +78,6 @@
                 app:strokeColor="#000"
                 />
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/connectFacebook"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#fff"
-                android:fontFamily="@font/andada"
-                android:text="@string/facebook"
-                android:textColor="@color/cardview_dark_background"
-                android:textAllCaps="false"
-                android:textSize="20sp"
-                android:paddingStart="32dp"
-                android:paddingEnd="32dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:gravity="start"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                app:strokeColor="#000"
-                />
-            <com.google.android.material.button.MaterialButton
                 android:id="@+id/termsAndConditions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
