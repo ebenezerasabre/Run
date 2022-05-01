@@ -20,6 +20,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import asabre.com.chase.service.model.About;
+import asabre.com.chase.service.model.Booking;
 import asabre.com.chase.service.model.Driver;
 import asabre.com.chase.service.model.DriverOnline;
 import asabre.com.chase.service.model.Help;
@@ -121,6 +122,7 @@ public class HomeViewModel extends ViewModel {
     public static RideRequest mRideRequest = new RideRequest();
     public static String requestStringDetails = "";
     private MutableLiveData<List<RideRequest>> mRideRequestHistory;
+    private MutableLiveData<List<Booking>> mUserBookings;
 
     // automation of driver response
     // start, finish should be called once
@@ -188,7 +190,8 @@ public class HomeViewModel extends ViewModel {
     public LiveData<User> signInUser(String phoneNumber){ return mHomeRepository.signInUser(phoneNumber); }
 
     public LiveData<User> updateUser(String id, HashMap<String, String> body){ return mHomeRepository.updateUser(id, body); }
-    public LiveData<String> deleteUser(String userId){ return mHomeRepository.deleteUser(userId); }
+//    public LiveData<String> deleteUser(String userId){ return mHomeRepository.deleteUser(userId); }
+public LiveData<String> deleteUser(String userId){ return mHomeRepository.deleteObjectById(userId); }
 
 
     // TODO DRIVER
@@ -197,7 +200,8 @@ public class HomeViewModel extends ViewModel {
     public LiveData<Driver> getFindDriverById(){ return currentDriver; }
     public LiveData<Driver> signInDriver(String phoneNumber){ return mHomeRepository.signInDriver(phoneNumber); }
     public LiveData<Driver> updateDriver(String driverId, HashMap<String, String> body){ return mHomeRepository.updateDriver(driverId, body); }
-    public LiveData<String> deleteDriver(String driverId){ return mHomeRepository.deleteDriver(driverId); }
+//    public LiveData<String> deleteDriver(String driverId){ return mHomeRepository.deleteDriver(driverId); }
+public LiveData<String> deleteDriver(String driverId){ return mHomeRepository.deleteObjectById(driverId); }
 
 
 
@@ -212,7 +216,8 @@ public class HomeViewModel extends ViewModel {
     public void setUserHistory(String userId){ history = mHomeRepository.findUserHistory(userId); }
     public void setDriverHistory(String driverId){ history = mHomeRepository.findDriverHistory(driverId); }
     public LiveData<List<History>> getHistory(){ return history; }
-    public LiveData<String> deleteHistory(String id){ return mHomeRepository.deleteHistory(id);}
+//    public LiveData<String> deleteHistory(String id){ return mHomeRepository.deleteHistory(id);}
+public LiveData<String> deleteHistory(String id){ return mHomeRepository.deleteObjectById(id);}
 
     // TODO REVIEW
     public LiveData<Review> createReview(HashMap<String, String> body){ return mHomeRepository.createReview(body); }
@@ -228,6 +233,11 @@ public class HomeViewModel extends ViewModel {
     public static void startLoading(){ isLoading.setValue(true); }
     public static void stopLoading(){ isLoading.setValue(false);}
     public static LiveData<Boolean> getIsLoading(){ return isLoading; }
+
+    // TODO BOOKING
+    public LiveData<Booking> createBooking(HashMap<String, String> body){ return mHomeRepository.createBooking(body);};
+
+
 
 
     // TODO MAP READY
@@ -268,6 +278,13 @@ public class HomeViewModel extends ViewModel {
 
 
 
+    // TODO USER BOOKINGS
+    public LiveData<List<Booking>> userBookings(String id){
+        if(mUserBookings == null){
+            mUserBookings = mHomeRepository.findUserBookings(id);
+        }
+        return mUserBookings;
+    }
 
 
 

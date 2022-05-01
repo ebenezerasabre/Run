@@ -51,7 +51,7 @@ public class AboutUsFragment  extends Fragment implements BaseFragment {
             HomeViewModel homeViewModel = ViewModelProviders.of(getActivity()).get(HomeViewModel.class);
             homeViewModel.init();
             homeViewModel.setAbout();
-            homeViewModel.getAbouts().observe(this, list -> mAboutUsAdapter.loadNewData(list));
+            homeViewModel.getAbouts().observe(getViewLifecycleOwner(), list -> mAboutUsAdapter.loadNewData(list));
         }
     }
 
@@ -93,7 +93,7 @@ public class AboutUsFragment  extends Fragment implements BaseFragment {
     private void removeThisFragment(){
         if(getActivity() != null){
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-            Fragment fragment = fragmentManager.findFragmentById(R.id.conHistoryDetails);
+            Fragment fragment = fragmentManager.findFragmentById(R.id.conAboutDetails);
             if(fragment != null){
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .remove(fragment)

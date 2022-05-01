@@ -11,16 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import asabre.com.chase.R;
 import asabre.com.chase.service.model.RideRequest;
-import asabre.com.chase.view.callback.RequestCallback;
+import asabre.com.chase.view.callback.HistoryCallback;
 
-public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHolder> {
+public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
 
     private List<RideRequest> mRideRequestList;
-    private RequestCallback mRequestCallback;
+    private HistoryCallback mHistoryCallback;
 
-    public RequestAdapter(List<RideRequest> rideRequestList, RequestCallback requestCallback) {
+    public HistoryAdapter(List<RideRequest> rideRequestList, HistoryCallback historyCallback) {
         mRideRequestList = rideRequestList;
-        mRequestCallback = requestCallback;
+        mHistoryCallback = historyCallback;
     }
 
 
@@ -50,7 +50,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
             holder.browseDate.setText(date);
             holder.browseTime.setText(time);
             holder.browseState.setText(rideState);
-            holder.itemView.setOnClickListener(requestDetails(rideRequest));
+            holder.itemView.setOnClickListener(historyDetails(rideRequest));
         }
     }
 
@@ -64,7 +64,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
         notifyDataSetChanged();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         TextView browseExitPoint;
         TextView browseExitCity;
         TextView browseDate;
@@ -80,8 +80,8 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
         }
     }
 
-    private View.OnClickListener requestDetails(RideRequest rideRequest){
-        return view -> mRequestCallback.requestCallback(rideRequest);
+    private View.OnClickListener historyDetails(RideRequest rideRequest){
+        return view -> mHistoryCallback.historyCallback(rideRequest);
     }
 
 

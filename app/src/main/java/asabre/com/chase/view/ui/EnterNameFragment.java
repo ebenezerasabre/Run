@@ -100,8 +100,8 @@ public class EnterNameFragment extends Fragment implements BaseFragment{
         MainActivity.mRegProcess = MainActivity.RegistrationProcess.DONE;
         mHomeViewModel.init();
         // save user data in database
-       mHomeViewModel.createUser(HomeViewModel.createObject).observe(this, this::saveUserData);
-//               loadMapFragment();
+       mHomeViewModel.createUser(HomeViewModel.createObject)
+               .observe(getViewLifecycleOwner(), this::saveUserData);
     }
 
 
@@ -111,6 +111,7 @@ public class EnterNameFragment extends Fragment implements BaseFragment{
 
         if(!(user.getFirstName().isEmpty())){
             HomeViewModel.userFull = new User(user);
+            userInfo(user);
 
             class SaveUserData extends AsyncTask<Void, Void, Void> {
                 @Override
@@ -127,9 +128,9 @@ public class EnterNameFragment extends Fragment implements BaseFragment{
                             .getInstance(getContext())
                             .getAppDatabase()
                             .mUserDao()
-                            .insert(userInfo(user));
+                            .insert(HomeViewModel.userEntity);
 
-                    resetViewModelArguments(userInfo(user));
+//                    resetViewModelArguments(userInfo(user));
                     return null;
                 }
 
@@ -154,7 +155,7 @@ public class EnterNameFragment extends Fragment implements BaseFragment{
     }
 
     private void resultInfo(String title, String msg) {
-        MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getContext());
+        MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(requireContext());
         materialAlertDialogBuilder
                 .setTitle(title)
                 .setMessage(msg)
@@ -165,8 +166,9 @@ public class EnterNameFragment extends Fragment implements BaseFragment{
         materialAlertDialogBuilder.show();
     }
 
-    private UserEntity userInfo(User user){
-        return new UserEntity(
+
+    private void userInfo(User user){
+        HomeViewModel.userEntity = new UserEntity(
                 user.get_id(),
                 user.getFirstName(),
                 user.getLastName(),
@@ -176,9 +178,11 @@ public class EnterNameFragment extends Fragment implements BaseFragment{
         );
     }
 
-    private void resetViewModelArguments(UserEntity userEntity){
-        HomeViewModel.userEntity = userEntity;
-    }
+
+//    private void resetViewModelArguments(UserEntity userEntity){
+//        HomeViewModel.userEntity = userEntity;
+//    }
+
 
     private boolean fieldsNotEmpty() {
         ArrayList<String> fields = new ArrayList<>();
@@ -193,11 +197,13 @@ public class EnterNameFragment extends Fragment implements BaseFragment{
         return true;
     }
 
+
     private void nameBackListener(){
         enterNameBack.setOnClickListener(view -> {
             loadEnterEmailFragment();
         });
     }
+
 
     private void loadMapFragment(){
        if(getActivity() != null){

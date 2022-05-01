@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/sback"
+    android:layout_marginBottom="16dp"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/bookingRideBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Booking ride"
+            android:textSize="22sp"
+            android:textColor="#000"
+            android:fontFamily="@font/alegreya"
+            android:gravity="center_horizontal"
+            app:drawableStartCompat="@drawable/ic_outline_arrow_back_24"
+            android:layout_marginEnd="90dp"
+            android:layout_marginTop="8dp"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Booked rides"
+                android:textColor="@color/teal_700"
+                />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/holderBookedRides"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Book new ride"
+                android:textColor="@color/teal_700"
+                />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_margin="16dp"
+            >
+            <TextView
+                android:id="@+id/showDate"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Click to add date"
+                android:layout_margin="8dp"
+                android:textStyle="bold"
+                android:fontFamily="@font/alegreya"
+                android:textSize="18sp"
+                />
+            <TextView
+                android:id="@+id/showTime"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Click to add time"
+                android:layout_margin="8dp"
+                android:textStyle="bold"
+                android:fontFamily="@font/alegreya"
+                android:textSize="18sp"
+                />
+        </LinearLayout>
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_margin="16dp"
+            >
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Pick up"
+                android:padding="8dp"
+                app:endIconMode="clear_text"
+                app:boxCornerRadiusTopStart="4dp"
+                app:boxCornerRadiusTopEnd="4dp"
+                app:boxCornerRadiusBottomStart="4dp"
+                app:boxCornerRadiusBottomEnd="4dp"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/enterPickUp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/alegreya"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Drop off"
+                android:padding="8dp"
+                app:endIconMode="clear_text"
+                app:boxCornerRadiusTopStart="4dp"
+                app:boxCornerRadiusTopEnd="4dp"
+                app:boxCornerRadiusBottomStart="4dp"
+                app:boxCornerRadiusBottomEnd="4dp"
+
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/enterDropOff"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/alegreya"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/chooseRide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alegreya"
+            android:textSize="18sp"
+            android:text="Select ride"
+            android:layout_margin="16dp"
+            android:textColor="#800000"
+            android:layout_gravity="center_horizontal"
+            />
+
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bookRideButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cornerRadius="32dp"
+            android:backgroundTint="@color/teal_200"
+            android:fontFamily="@font/alegreya"
+            android:text="Book ride"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:layout_margin="16dp"
+            android:padding="8dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            />
+
+
+
+
+    </LinearLayout>
+</ScrollView>

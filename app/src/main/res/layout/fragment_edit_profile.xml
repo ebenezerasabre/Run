@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/sback"
+    android:padding="8dp"
+    >
+
+    <TextView
+        android:id="@+id/editProfileBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Edit Profile"
+        android:textSize="22sp"
+        android:textColor="#000"
+        android:fontFamily="@font/alegreya"
+        android:gravity="center_horizontal"
+        app:drawableStartCompat="@drawable/ic_baseline_arrow_back_ios_24"
+        android:layout_marginEnd="90dp"
+        android:layout_marginTop="8dp"
+
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="firstname"
+        android:padding="8dp"
+        app:endIconMode="clear_text"
+        app:boxCornerRadiusTopStart="4dp"
+        app:boxCornerRadiusTopEnd="4dp"
+        app:boxCornerRadiusBottomStart="4dp"
+        app:boxCornerRadiusBottomEnd="4dp"
+        android:layout_margin="16dp"
+        app:startIconContentDescription="fristname"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editFirstname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:fontFamily="@font/alegreya"
+            android:textSize="18sp"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="lastname"
+        android:padding="8dp"
+        app:endIconMode="clear_text"
+        app:boxCornerRadiusTopStart="4dp"
+        app:boxCornerRadiusTopEnd="4dp"
+        app:boxCornerRadiusBottomStart="4dp"
+        app:boxCornerRadiusBottomEnd="4dp"
+        android:layout_margin="16dp"
+        app:startIconContentDescription="lastname"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editLastname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:fontFamily="@font/alegreya"
+            android:textSize="18sp"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="0554456123"
+        android:padding="8dp"
+        app:endIconMode="clear_text"
+        app:boxCornerRadiusTopStart="4dp"
+        app:boxCornerRadiusTopEnd="4dp"
+        app:boxCornerRadiusBottomStart="4dp"
+        app:boxCornerRadiusBottomEnd="4dp"
+        app:helperTextEnabled="true"
+        app:helperText="For ride confirmation purposes"
+        app:counterEnabled="true"
+        app:counterMaxLength="10"
+        app:startIconDrawable="@drawable/ic_baseline_local_phone_24"
+        app:startIconContentDescription="contact"
+        android:layout_margin="16dp"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:fontFamily="@font/alegreya"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/saveProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cornerRadius="32dp"
+        android:backgroundTint="@color/teal_200"
+        android:fontFamily="@font/alegreya"
+        android:text="save"
+        android:textColor="@color/white"
+        android:textAllCaps="true"
+        android:layout_margin="32dp"
+        android:padding="8dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
+
+</LinearLayout>

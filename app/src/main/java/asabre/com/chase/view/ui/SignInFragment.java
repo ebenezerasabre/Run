@@ -13,8 +13,6 @@ import android.widget.TextView;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import java.util.Objects;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -225,11 +223,11 @@ public class SignInFragment extends Fragment {
 
     private void loadRequestHistoryFragment(){
         if (getActivity() != null){
-            RequestFragment requestFragment = new RequestFragment();
+            HistoryFragment historyFragment = new HistoryFragment();
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-            transaction.replace(R.id.conHistory, requestFragment);
+            transaction.replace(R.id.conHistory, historyFragment);
             transaction.addToBackStack(null);
             transaction.commit();
         }

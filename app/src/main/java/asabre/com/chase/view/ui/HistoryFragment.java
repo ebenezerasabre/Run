@@ -19,14 +19,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import asabre.com.chase.R;
 import asabre.com.chase.service.model.RideRequest;
-import asabre.com.chase.view.adapter.RequestAdapter;
-import asabre.com.chase.view.callback.RequestCallback;
+import asabre.com.chase.view.adapter.HistoryAdapter;
+import asabre.com.chase.view.callback.HistoryCallback;
 import asabre.com.chase.viewmodel.HomeViewModel;
 
-public class RequestFragment extends Fragment implements RequestCallback {
-    private static final String TAG = RequestFragment.class.getSimpleName();
+public class HistoryFragment extends Fragment implements HistoryCallback {
+    private static final String TAG = HistoryFragment.class.getSimpleName();
 
-    private RequestAdapter mRequestAdapter;
+    private HistoryAdapter mHistoryAdapter;
     private HomeViewModel mHomeViewModel;
 
     @Nullable
@@ -39,10 +39,10 @@ public class RequestFragment extends Fragment implements RequestCallback {
     }
 
     private void init(View view){
-        mRequestAdapter = new RequestAdapter(new ArrayList<>(), this);
+        mHistoryAdapter = new HistoryAdapter(new ArrayList<>(), this);
         RecyclerView recyclerView = view.findViewById(R.id.holderHistory);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(mRequestAdapter);
+        recyclerView.setAdapter(mHistoryAdapter);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class RequestFragment extends Fragment implements RequestCallback {
     }
 
     @Override
-    public void requestCallback(RideRequest rideRequest){
+    public void historyCallback(RideRequest rideRequest){
         Toast.makeText(getContext(), "Details", Toast.LENGTH_SHORT).show();
         Log.d(TAG, "history details");
         HomeViewModel.mRideRequestDetails = rideRequest;
@@ -83,16 +83,16 @@ public class RequestFragment extends Fragment implements RequestCallback {
     }
 
     private void setUserRequestModel() {
-        mHomeViewModel.userRequestHistory(HomeViewModel.userEntity.get_id()).observe(this, list -> {
+        mHomeViewModel.userRequestHistory(HomeViewModel.userEntity.get_id()).observe(getViewLifecycleOwner(), list -> {
             Log.d(TAG, "setUserRequestModel: list " + list);
-            mRequestAdapter.loadNewData(list);
+            mHistoryAdapter.loadNewData(list);
         });
     }
 
     private void setDriverRequestModel() {
-        mHomeViewModel.driverRequestHistory(HomeViewModel.userEntity.get_id()).observe(this, list -> {
+        mHomeViewModel.driverRequestHistory(HomeViewModel.userEntity.get_id()).observe(getViewLifecycleOwner(), list -> {
             Log.d(TAG, "setDriverRequestModel: list " + list);
-            mRequestAdapter.loadNewData(list);
+            mHistoryAdapter.loadNewData(list);
         });
     }
 
@@ -100,11 +100,11 @@ public class RequestFragment extends Fragment implements RequestCallback {
     private void loadRequestDetailsFragment(){
         if(getActivity() != null){
             Log.d(TAG, "loadRequestDetailsFragment: called");
-            RequestDetailsFragment requestDetailsFragment = new RequestDetailsFragment();
+            HistoryDetailsFragment historyDetailsFragment = new HistoryDetailsFragment();
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-            transaction.replace(R.id.conHistoryDetails, requestDetailsFragment);
+            transaction.replace(R.id.conHistoryDetails, historyDetailsFragment);
             transaction.addToBackStack(null);
             transaction.commit();
         }

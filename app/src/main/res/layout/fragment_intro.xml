@@ -20,17 +20,17 @@
             android:layout_margin="16dp"
             android:fontFamily="@font/capriola"
             android:gravity="center_horizontal"
-            android:text="Vergoes"
+            android:text="@string/vergoes"
             android:textColor="#000"
             android:textSize="30sp"
             />
-
 
            <LinearLayout
               android:id="@+id/longVehicleOption"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+               android:layout_marginTop="50dp"
                 >
                 <ImageView
                     android:layout_width="70dp"
@@ -96,7 +96,7 @@
                    app:cornerRadius="32dp"
                     android:backgroundTint="@color/teal_200"
                    android:fontFamily="@font/alegreya"
-                   android:text="@string/signup_as_driver"
+                   android:text="@string/sing_up_as_user"
                    android:textSize="18sp"
                    android:textColor="@color/white"
                    android:textAllCaps="true"
@@ -106,59 +106,47 @@
 
 
 
-
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--            android:id="@+id/continueAsUser"-->
-<!--            android:layout_width="300dp"-->
-<!--            android:layout_height="55dp"-->
-<!--            app:cornerRadius="32dp"-->
-<!--            android:backgroundTint="@color/teal_200"-->
-<!--            android:fontFamily="@font/alegreya"-->
-<!--            android:text="signup as user"-->
-<!--            android:textSize="18sp"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textAllCaps="true"-->
-<!--            app:icon="@drawable/ic_driver_50"-->
-<!--            app:iconTint="@color/white"-->
-<!--            android:layout_marginStart="100dp"-->
-<!--            />-->
-
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/already_have_an_account"
             android:fontFamily="@font/andada"
             android:textSize="16dp"
-            android:layout_margin="8dp"
+            android:layout_margin="16dp"
             android:layout_gravity="center_horizontal"
             />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="center_horizontal"
+            android:weightSum="2"
             >
             <TextView
                 android:id="@+id/signInAsUser"
-                android:layout_width="wrap_content"
+               android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Sign in as user"
+                android:text="@string/sign_in_as_user"
                 android:fontFamily="@font/andada"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:layout_margin="8dp"
                 android:textColor="@color/purple_200"
+                android:layout_width="0dp"
+                android:gravity="center"
+
                 />
             <TextView
                 android:id="@+id/signInAsDriver"
-                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Sign in as driver"
+                android:text="@string/sign_in_as_driver"
                 android:fontFamily="@font/andada"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:layout_margin="8dp"
                 android:textColor="@color/teal_700"
+                android:gravity="center"
                 />
         </LinearLayout>
 

@@ -1,7 +1,7 @@
 package asabre.com.chase.view.callback;
 
-import asabre.com.chase.service.model.History;
+import asabre.com.chase.service.model.RideRequest;
 
 public interface HistoryCallback {
-    void historyDetails(History history);
+    void historyCallback(RideRequest rideRequest);
 }

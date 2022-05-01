@@ -25,6 +25,7 @@ public class AboutFragment extends Fragment {
     private MaterialButton rateApp;
     private MaterialButton termsAndConditions;
     private MaterialButton aboutUs;
+    private MaterialButton bookR;
     private HomeViewModel mHomeViewModel;
 
 
@@ -55,11 +56,16 @@ public class AboutFragment extends Fragment {
 
     private void listeners(){
 
+        bookR.setOnClickListener(view -> {
+            setVisibility();
+            loadBookingFragment();
+        });
         aboutBack.setOnClickListener(view -> {
             goBack();
         });
         aboutUs.setOnClickListener(view -> {
             setVisibility();
+            loadAboutUsFragment();
         });
         rateApp.setOnClickListener(view -> {
 
@@ -81,6 +87,7 @@ public class AboutFragment extends Fragment {
         rateApp = view.findViewById(R.id.rateApp);
         termsAndConditions = view.findViewById(R.id.termsAndConditions);
         aboutUs = view.findViewById(R.id.aboutUs);
+        bookR = view.findViewById(R.id.bookR);
     }
 
     private void initViewModel() {
@@ -94,12 +101,12 @@ public class AboutFragment extends Fragment {
     private void setVisibility(){
         if(getActivity() != null){
             Log.d(TAG, "setVisibility: Going back to About");
-            MainActivity.mAboutTrack= MainActivity.AboutTrack.ABOUT_DETAILS;
+            MainActivity.mAboutTrack = MainActivity.AboutTrack.ABOUT_DETAILS;
 
             getActivity().findViewById(R.id.conAbout).setVisibility(View.GONE);
             getActivity().findViewById(R.id.conAboutDetails).setVisibility(View.VISIBLE);
 
-            loadAboutUsFragment();
+
         }
     }
 
@@ -115,6 +122,17 @@ public class AboutFragment extends Fragment {
             transaction.commit();
         }
     }
+    private void loadBookingFragment(){
+        if(getActivity() != null){
+            BookingFragment bookingFragment = new BookingFragment();
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+            transaction.replace(R.id.conAboutDetails, bookingFragment);
+            transaction.addToBackStack("bookingFragment");
+            transaction.commit();
+        }
+    }
 
 
     private void goBack(){
@@ -125,6 +143,8 @@ public class AboutFragment extends Fragment {
 
         }
     }
+
+
 
 
 

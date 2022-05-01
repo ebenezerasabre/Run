@@ -10,6 +10,7 @@ import java.util.List;
 
 import androidx.lifecycle.MutableLiveData;
 import asabre.com.chase.service.model.About;
+import asabre.com.chase.service.model.Booking;
 import asabre.com.chase.service.model.Driver;
 import asabre.com.chase.service.model.Help;
 import asabre.com.chase.service.model.History;
@@ -132,26 +133,26 @@ public class HomeRepository {
         return user;
     }
 
-    public MutableLiveData<String> deleteUser(String userId){
-        final MutableLiveData<String> del = new MutableLiveData<>();
-        Call<String> call = chaseService.deleteUser(userId);
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if(response.isSuccessful()){
-                    del.setValue(response.body());
-                } else {
-                    Log.d(TAG, "onResponse: deleteUser error " + response.errorBody());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Log.d(TAG, "onFailure: deleteUser failure " + t.getMessage());
-            }
-        });
-        return del;
-    }
+//    public MutableLiveData<String> deleteUser(String userId){
+//        final MutableLiveData<String> del = new MutableLiveData<>();
+//        Call<String> call = chaseService.deleteUser(userId);
+//        call.enqueue(new Callback<String>() {
+//            @Override
+//            public void onResponse(Call<String> call, Response<String> response) {
+//                if(response.isSuccessful()){
+//                    del.setValue(response.body());
+//                } else {
+//                    Log.d(TAG, "onResponse: deleteUser error " + response.errorBody());
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<String> call, Throwable t) {
+//                Log.d(TAG, "onFailure: deleteUser failure " + t.getMessage());
+//            }
+//        });
+//        return del;
+//    }
 
 
 
@@ -246,26 +247,26 @@ public class HomeRepository {
         return driver;
     }
 
-    public MutableLiveData<String> deleteDriver(String driverId){
-        final MutableLiveData<String> del = new MutableLiveData<>();
-        Call<String> call = chaseService.deleteDriver(driverId);
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if(response.isSuccessful()){
-                    del.setValue(response.body());
-                } else {
-                    Log.d(TAG, "onResponse: delete driver error " + response.errorBody());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Log.d(TAG, "onFailure: delete driver failure " + t.getMessage());
-            }
-        });
-        return del;
-    }
+//    public MutableLiveData<String> deleteDriver(String driverId){
+//        final MutableLiveData<String> del = new MutableLiveData<>();
+//        Call<String> call = chaseService.deleteDriver(driverId);
+//        call.enqueue(new Callback<String>() {
+//            @Override
+//            public void onResponse(Call<String> call, Response<String> response) {
+//                if(response.isSuccessful()){
+//                    del.setValue(response.body());
+//                } else {
+//                    Log.d(TAG, "onResponse: delete driver error " + response.errorBody());
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<String> call, Throwable t) {
+//                Log.d(TAG, "onFailure: delete driver failure " + t.getMessage());
+//            }
+//        });
+//        return del;
+//    }
 
 
 
@@ -363,26 +364,26 @@ public class HomeRepository {
     }
 
     // delete history
-    public MutableLiveData<String> deleteHistory(String id){
-        final MutableLiveData<String> del = new MutableLiveData<>();
-        Call<String> call = chaseService.deleteHistory(id);
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if(response.isSuccessful()){
-                    del.setValue(response.body());
-                } else {
-                    Log.d(TAG, "onResponse: deleting history error " + response.errorBody());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Log.d(TAG, "onFailure: deleting history failure " + t.getMessage());
-            }
-        });
-        return del;
-    }
+//    public MutableLiveData<String> deleteHistory(String id){
+//        final MutableLiveData<String> del = new MutableLiveData<>();
+//        Call<String> call = chaseService.deleteHistory(id);
+//        call.enqueue(new Callback<String>() {
+//            @Override
+//            public void onResponse(Call<String> call, Response<String> response) {
+//                if(response.isSuccessful()){
+//                    del.setValue(response.body());
+//                } else {
+//                    Log.d(TAG, "onResponse: deleting history error " + response.errorBody());
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<String> call, Throwable t) {
+//                Log.d(TAG, "onFailure: deleting history failure " + t.getMessage());
+//            }
+//        });
+//        return del;
+//    }
 
 
 
@@ -504,5 +505,90 @@ public class HomeRepository {
         });
         return rides;
     }
+
+
+
+    // TODO BOOKING
+
+    public MutableLiveData<List<Booking>> findUserBookings(String id){
+        HomeViewModel.startLoading();
+
+        final MutableLiveData<List<Booking>> books = new MutableLiveData<>();
+        Call<List<Booking>> call = chaseService.findUserBookings(id);
+        call.enqueue(new Callback<List<Booking>>() {
+            @Override
+            public void onResponse(Call<List<Booking>> call, Response<List<Booking>> response) {
+                if(response.isSuccessful()){
+                    HomeViewModel.stopLoading();
+                    books.setValue(response.body());
+                } else {
+                    Log.d(TAG, "onResponse: findUserBookings error " + response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Booking>> call, Throwable t) {
+                HomeViewModel.stopLoading();
+                Log.d(TAG, "onFailure: findUserBooking error " + t.getMessage());
+            }
+        });
+        return books;
+    }
+
+    public MutableLiveData<Booking> createBooking(HashMap<String, String> body){
+        HomeViewModel.startLoading();
+
+        final MutableLiveData<Booking> book = new MutableLiveData<>();
+        Call<Booking> call = chaseService.createBooking(body);
+        call.enqueue(new Callback<Booking>() {
+            @Override
+            public void onResponse(Call<Booking> call, Response<Booking> response) {
+                if(response.isSuccessful()){
+                    HomeViewModel.stopLoading();
+                    book.setValue(response.body());
+                } else {
+                    Log.d(TAG, "onResponse: creating Booking error " + response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Booking> call, Throwable t) {
+                HomeViewModel.stopLoading();
+                Log.d(TAG, "onFailure: creating Booking error " + t.getMessage());
+            }
+        });
+        return book;
+    }
+
+
+    // delete history
+    public MutableLiveData<String> deleteObjectById(String id){
+        HomeViewModel.stopLoading();
+
+        final MutableLiveData<String> del = new MutableLiveData<>();
+        Call<String> call = chaseService.deleteHistory(id);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.isSuccessful()){
+                    HomeViewModel.stopLoading();
+                    del.setValue(response.body());
+                } else {
+                    Log.d(TAG, "onResponse: deleting object error " + response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                HomeViewModel.stopLoading();
+                Log.d(TAG, "onFailure: deleting object failure " + t.getMessage());
+            }
+        });
+        return del;
+    }
+
+
+
+
 
 }

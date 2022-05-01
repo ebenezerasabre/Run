@@ -41,8 +41,8 @@ import asabre.com.chase.R;
 import asabre.com.chase.service.model.RideRequest;
 import asabre.com.chase.viewmodel.HomeViewModel;
 
-public class RequestDetailsFragment extends Fragment implements BaseFragment, OnMapReadyCallback {
-    private static final String TAG = RequestDetailsFragment.class.getSimpleName();
+public class HistoryDetailsFragment extends Fragment implements BaseFragment, OnMapReadyCallback {
+    private static final String TAG = HistoryDetailsFragment.class.getSimpleName();
 
     private ImageView endRideBack;
     private TextView endRideStartPoint;
@@ -51,6 +51,7 @@ public class RequestDetailsFragment extends Fragment implements BaseFragment, On
     private TextView endRideFee;
     private TextView endRideDriverName;
     private TextView endRideDate;
+
 
 
     // for google map
@@ -127,11 +128,11 @@ public class RequestDetailsFragment extends Fragment implements BaseFragment, On
 
     private void loadRequestFragment(){
         if(getActivity() != null){
-            RequestFragment requestFragment = new RequestFragment();
+            HistoryFragment historyFragment = new HistoryFragment();
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
-            transaction.replace(R.id.conHome, requestFragment);
+            transaction.replace(R.id.conHome, historyFragment);
             transaction.addToBackStack(null);
             transaction.commit();
         }

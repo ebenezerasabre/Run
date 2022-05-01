@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import asabre.com.chase.service.model.About;
+import asabre.com.chase.service.model.Booking;
 import asabre.com.chase.service.model.Driver;
 import asabre.com.chase.service.model.Help;
 import asabre.com.chase.service.model.History;
@@ -104,5 +105,16 @@ public interface ChaseService {
 
     @GET("ride/driver/{id}")
     Call<List<RideRequest>> findDriverRideRequests(@Path("id") String id);
+
+
+    // TODO BOOKING
+    @GET("book/{id}")
+    Call<List<Booking>> findUserBookings(@Path("id") String id);
+
+    @POST("book/")
+    Call<Booking> createBooking(@Body HashMap<String, String> body);
+
+    @DELETE("book/{id}")
+    Call<String> deleteBooking(@Path("id") String id);
 
 }

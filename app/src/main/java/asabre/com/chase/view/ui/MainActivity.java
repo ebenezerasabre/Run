@@ -10,11 +10,8 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import asabre.com.chase.R;
-import asabre.com.chase.service.model.Driver;
-import asabre.com.chase.service.model.User;
 import asabre.com.chase.service.model.UserEntity;
 import asabre.com.chase.service.repository.DatabaseClient;
 import asabre.com.chase.viewmodel.HomeViewModel;
@@ -420,10 +417,10 @@ public class MainActivity extends AppCompatActivity implements
 
     private void loadRequestFragment(){
         mHistoryTrack = HistoryTrack.HISTORY;
-        RequestFragment requestFragment = new RequestFragment();
+        HistoryFragment historyFragment = new HistoryFragment();
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.conHistory, requestFragment).commit();
+                .replace(R.id.conHistory, historyFragment).commit();
     }
 
     private void loadEnterNameFragment(){
@@ -703,6 +700,8 @@ public class MainActivity extends AppCompatActivity implements
         }
         TellFragmentsBackIsPressed();
     }
+
+
 
     private void TellFragmentsBackIsPressed(){
         List<Fragment> fragments = getSupportFragmentManager().getFragments();

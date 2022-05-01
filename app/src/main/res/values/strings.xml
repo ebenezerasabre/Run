@@ -39,5 +39,10 @@
     <string name="about_us">About us</string>
     <string name="can_t_connect_to_internet_please_check_your_network_settings_and_try_again">Can\'t connect to internet. Please check your network settings and try again</string>
     <string name="enable_internet">Enable internet</string>
+    <string name="sign_in_as_user">Sign in as user</string>
+    <string name="sign_in_as_driver">Sign in as driver</string>
+    <string name="vergoes">Vergoes</string>
+    <string name="sing_up_as_user">sing up as user</string>
+    <string name="maakro_station">Maakro Station</string>
 
 </resources>
